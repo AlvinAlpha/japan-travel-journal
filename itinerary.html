@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>旅遊行程推薦 ｜ 一日遊、三日遊、五日遊自由行規劃 - 日本旅遊誌</title>
+  <meta name="description" content="精心規劃的日本自由行行程推薦！涵蓋東京都會一日遊、京都關西三日深度遊、富士山五日全景，依照第一次訪日、情侶夫妻、上班族客製化路線。">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/itinerary.css">
+</head>
+<body>
+
+  <canvas id="sakura-canvas"></canvas>
+  <button id="sakura-toggle-btn" class="sakura-toggle-btn"><span>🌸 櫻花：開</span></button>
+  <button id="back-to-top" class="back-to-top"><i class="fas fa-chevron-up"></i></button>
+
+  <header class="site-header">
+    <div class="header-container">
+      <a href="index.html" class="site-logo">
+        <div class="logo-icon"><i class="fas fa-torii-gate"></i></div>
+        <div class="logo-text-group">
+          <span class="logo-title">日本旅遊誌</span>
+          <span class="logo-sub">JAPAN TRAVEL JOURNAL</span>
+        </div>
+      </a>
+
+      <nav class="main-nav" id="main-nav">
+        <ul class="nav-list">
+          <li><a href="index.html" class="nav-link"><i class="fas fa-home"></i> 首頁</a></li>
+          <li class="dropdown">
+            <a href="javascript:void(0)" class="nav-link">
+              <i class="fas fa-map-marked-alt"></i> 推薦地區 <i class="fas fa-angle-down" style="font-size:0.75rem;"></i>
+            </a>
+            <div class="dropdown-menu">
+              <a href="tokyo.html" class="dropdown-item"><span>🗼 東京 Tokyo</span> <span class="badge">現代繁華</span></a>
+              <a href="kyoto.html" class="dropdown-item"><span>⛩️ 京都 Kyoto</span> <span class="badge">古都古韻</span></a>
+              <a href="osaka.html" class="dropdown-item"><span>🏯 大阪 Osaka</span> <span class="badge">美食熱情</span></a>
+              <a href="hokkaido.html" class="dropdown-item"><span>❄️ 北海道 Hokkaido</span> <span class="badge">純白浪漫</span></a>
+              <a href="okinawa.html" class="dropdown-item"><span>🌺 沖繩 Okinawa</span> <span class="badge">度假蔚藍</span></a>
+              <a href="fuji.html" class="dropdown-item"><span>🗻 富士山 Fuji</span> <span class="badge">壯麗神山</span></a>
+            </div>
+          </li>
+          <li><a href="itinerary.html" class="nav-link active"><i class="fas fa-route"></i> 行程推薦</a></li>
+          <li><a href="food.html" class="nav-link"><i class="fas fa-utensils"></i> 特色美食</a></li>
+          <li><a href="guide.html" class="nav-link"><i class="fas fa-compass"></i> 旅遊須知 & Q&A</a></li>
+          <li><a href="contact.html" class="nav-link"><i class="fas fa-envelope"></i> 聯絡我們</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button class="fav-btn" id="fav-open-btn">
+          <i class="fas fa-heart" style="color:var(--color-torii);"></i>
+          <span>我的收藏</span>
+          <span class="fav-count">0</span>
+        </button>
+        <button class="mobile-menu-toggle" id="mobile-menu-toggle"><i class="fas fa-bars"></i></button>
+      </div>
+    </div>
+  </header>
+
+  <!-- 麵包屑導航 -->
+  <div class="breadcrumb-section">
+    <div class="breadcrumb-container">
+      <a href="index.html"><i class="fas fa-home"></i> 首頁</a>
+      <span class="breadcrumb-separator"><i class="fas fa-chevron-right"></i></span>
+      <span class="breadcrumb-current">行程推薦</span>
+    </div>
+  </div>
+
+  <!-- Hero Banner -->
+  <section class="itinerary-page-hero">
+    <div class="itinerary-hero-container">
+      <span class="section-badge" style="background:rgba(255,255,255,0.25); color:#fff; border-color:rgba(255,255,255,0.4);"><i class="fas fa-map-marked-alt"></i> 客製化自由行指南</span>
+      <h1 style="font-family:var(--font-serif); font-size:clamp(2.2rem, 4vw, 3.5rem); margin-bottom:12px;">精選日本旅遊行程推薦</h1>
+      <p style="font-size:1.05rem; color:#F0ECE6; max-width:700px; line-height:1.8;">
+        不論是一日經典快閃、三日精華漫遊，還是五天四夜全景度假，我們依據不同旅遊群體的需求與偏好，為您量身梳理出景點與美食無縫銜接的最佳路線。
+      </p>
+    </div>
+  </section>
+
+  <!-- 天數與受眾篩選列 -->
+  <section class="filter-tabs-section">
+    <div class="filter-tabs-container">
+      <!-- 天數 Tab -->
+      <div class="day-tabs">
+        <button class="day-tab-btn active" data-day="all">全部天數</button>
+        <button class="day-tab-btn" data-day="1">一日遊</button>
+        <button class="day-tab-btn" data-day="3">三日遊</button>
+        <button class="day-tab-btn" data-day="5">五日遊</button>
+      </div>
+
+      <!-- 適合對象篩選 -->
+      <div class="audience-filter-group">
+        <span style="font-size:0.85rem; color:var(--text-muted); font-weight:600;"><i class="fas fa-user-friends"></i> 適合對象：</span>
+        <button class="audience-tag-btn active" data-audience="all">不限族群</button>
+        <button class="audience-tag-btn" data-audience="first">第一次訪日</button>
+        <button class="audience-tag-btn" data-audience="couple">情侶朋友</button>
+        <button class="audience-tag-btn" data-audience="worker">上班族自由行</button>
+        <button class="audience-tag-btn" data-audience="foodie">美食文化控</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 行程詳細卡片列表 -->
+  <section class="itinerary-list-section">
+    
+    <!-- 行程 1: 東京一日經典 (1日, first, couple, worker, foodie) -->
+    <article class="itinerary-detail-card" data-days="1" data-audience="first,couple,worker,foodie">
+      <div class="itinerary-card-banner">
+        <img src="https://images.unsplash.com/photo-1542051841857-5f90071e7989?w=1200&auto=format&fit=crop&q=80" alt="東京晴空塔" loading="lazy">
+        <div class="itinerary-banner-overlay">
+          <div class="itinerary-banner-info">
+            <div class="itinerary-tags-row">
+              <span class="itinerary-days-pill">一日遊 · 經典精華</span>
+              <span class="itinerary-target-pill"><i class="fas fa-user"></i> 第一次訪日、情侶朋友、上班族快閃</span>
+              <span class="itinerary-target-pill"><i class="fas fa-map-pin"></i> 東京</span>
+            </div>
+            <h3>東京經典都會精粹一日散策</h3>
+          </div>
+        </div>
+      </div>
+
+      <div class="itinerary-schedule-body">
+        <div class="itinerary-day-block">
+          <h4 class="itinerary-day-title"><i class="far fa-calendar-check"></i> 一日完整時程規劃</h4>
+          <div class="timeline-stops">
+            <div class="stop-box">
+              <span class="stop-time">09:00 - 11:30</span>
+              <div class="stop-title">⛩️ 淺草寺雷門 & 仲見世通</div>
+              <p class="stop-desc">抽吉籤、拍攝巨大紅色雷門燈籠，沿著江戶風情商店街散步感受百年香火。</p>
+              <div class="stop-food-tag"><i class="fas fa-utensils"></i> 美食：淺草百年天婦羅丼、炸饅頭</div>
+            </div>
+
+            <div class="stop-box">
+              <span class="stop-time">12:00 - 15:00</span>
+              <div class="stop-title">🗼 東京晴空塔登高 & 商場漫步</div>
+              <p class="stop-desc">登上350米觀景台眺望東京平原與遠處富士山，並在 Solamachi 採購名產。</p>
+              <div class="stop-food-tag"><i class="fas fa-utensils"></i> 美食：月島文字燒、特濃抹茶甜品</div>
+            </div>
+
+            <div class="stop-box">
+              <span class="stop-time">16:00 - 18:30</span>
+              <div class="stop-title">🌲 明治神宮都會綠洲</div>
+              <p class="stop-desc">穿過巨木森林大鳥居，沉澱心靈，感受日本傳統神道的莊嚴肅穆氣質。</p>
+              <div class="stop-food-tag"><i class="fas fa-utensils"></i> 美食：原宿排隊日式軟可麗餅</div>
+            </div>
+
+            <div class="stop-box">
+              <span class="stop-time">19:00 - 21:30</span>
+              <div class="stop-title">🌆 澀谷十字路口 & SHIBUYA SKY</div>
+              <p class="stop-desc">體驗世界最繁忙十字路口震撼人潮，露天展望台欣賞夢幻百萬夜景。</p>
+              <div class="stop-food-tag"><i class="fas fa-utensils"></i> 美食：頂級黑毛和牛燒肉、拉麵</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="itinerary-card-actions">
+        <span style="font-size:0.85rem; color:var(--text-muted);"><i class="fas fa-ticket-alt"></i> 建議使用：東京地鐵 24 小時通票</span>
+        <button class="btn btn-outline" data-print-plan style="padding:6px 16px; font-size:0.85rem;"><i class="fas fa-print"></i> 列印 / 儲存行程</button>
+      </div>
+    </article>
+
+    <!-- 行程 2: 關西古都與美食三日遊 (3日, first, couple, worker, foodie) -->
+    <article class="itinerary-detail-card" data-days="3" data-audience="first,couple,worker,foodie">
+      <div class="itinerary-card-banner">
+        <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=1200&auto=format&fit=crop&q=80" alt="京都清水寺" loading="lazy">
+        <div class="itinerary-banner-overlay">
+          <div class="itinerary-banner-info">
+            <div class="itinerary-tags-row">
+              <span class="itinerary-days-pill">三日遊 · 關西風華</span>
+              <span class="itinerary-target-pill"><i class="fas fa-heart"></i> 情侶出遊、美食愛好者、世界遺產</span>
+              <span class="itinerary-target-pill"><i class="fas fa-map-pin"></i> 京都 · 大阪</span>
+            </div>
+            <h3>京阪風情三日深度漫遊</h3>
+          </div>
+        </div>
+      </div>
+
+      <div class="itinerary-schedule-body">
+        <!-- Day 1 -->
+        <div class="itinerary-day-block">
+          <h4 class="itinerary-day-title"><i class="far fa-sun"></i> Day 1：京都世界遺產與祈願之旅</h4>
+          <div class="timeline-stops">
+            <div class="stop-box">
+              <span class="stop-time">上午</span>
+              <div class="stop-title">🦊 伏見稻荷大社 千本鳥居</div>
+              <p class="stop-desc">清晨漫步朱紅鳥居山徑，避開熱門人潮，在狐狸神社抽良緣籤。</p>
+              <div class="stop-food-tag"><i class="fas fa-utensils"></i> 美食：甘煮豆皮壽司</div>
+            </div>
+            <div class="stop-box">
+              <span class="stop-time">下午</span>
+              <div class="stop-title">⛩️ 清水寺 & 二年坂三年坂</div>
+              <p class="stop-desc">登上懸空清水舞台俯瞰京都市景，漫步在石板老街採購清水燒與和風手帕。</p>
+              <div class="stop-food-tag"><i class="fas fa-utensils"></i> 美食：宇治特濃抹茶聖代</div>
+            </div>
+            <div class="stop-box">
+              <span class="stop-time">晚間</span>
+              <div class="stop-title">🏮 祇園花見小路古街</div>
+              <p class="stop-desc">走入町家紅燈籠小巷，巧遇優雅舞妓，在鴨川旁品嚐精緻懷石料理。</p>
+              <div class="stop-food-tag"><i class="fas fa-utensils"></i> 美食：京懷石料理、烤丸子</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Day 2 -->
+        <div class="itinerary-day-block">
+          <h4 class="itinerary-day-title"><i class="far fa-sun"></i> Day 2：嵐山竹海與金閣寺禪風</h4>
+          <div class="timeline-stops">
+            <div class="stop-box">
+              <span class="stop-time">上午</span>
+              <div class="stop-title">🎋 嵐山竹林之道 & 渡月橋</div>
+              <p class="stop-desc">聆聽微風拂過翠綠竹海的天然聲音，搭乘嵯峨野小火車穿梭保津川峽谷。</p>
+              <div class="stop-food-tag"><i class="fas fa-utensils"></i> 美食：渡月橋畔傳統滑嫩湯豆腐</div>
+            </div>
+            <div class="stop-box">
+              <span class="stop-time">下午</span>
+              <div class="stop-title">✨ 金閣寺鏡湖倒影</div>
+              <p class="stop-desc">參觀金箔閃耀的室町時代將軍離宮，欣賞鏡湖池中絕美的金色倒影。</p>
+              <div class="stop-food-tag"><i class="fas fa-utensils"></i> 美食：金閣寺金箔冰淇淋</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Day 3 -->
+        <div class="itinerary-day-block">
+          <h4 class="itinerary-day-title"><i class="far fa-sun"></i> Day 3：天下廚房大阪食倒之日</h4>
+          <div class="timeline-stops">
+            <div class="stop-box">
+              <span class="stop-time">上午</span>
+              <div class="stop-title">🏯 大阪城天守閣</div>
+              <p class="stop-desc">漫步護城河巨大石壘，登上城頂俯瞰大阪，回味日本戰國風雲。</p>
+              <div class="stop-food-tag"><i class="fas fa-utensils"></i> 美食：黑門市場現烤和牛串</div>
+            </div>
+            <div class="stop-box">
+              <span class="stop-time">下午/晚間</span>
+              <div class="stop-title">🏃 道頓堀、心齋橋 & 通天閣</div>
+              <p class="stop-desc">與固力果跑跑人招牌合影，採購免稅美妝藥妝，享受熱鬧不夜城！</p>
+              <div class="stop-food-tag"><i class="fas fa-utensils"></i> 美食：元祖章魚燒、大阪燒、酥脆串炸</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="itinerary-card-actions">
+        <span style="font-size:0.85rem; color:var(--text-muted);"><i class="fas fa-ticket-alt"></i> 建議使用：京阪電車觀光一日券 + 大阪周遊卡</span>
+        <button class="btn btn-outline" data-print-plan style="padding:6px 16px; font-size:0.85rem;"><i class="fas fa-print"></i> 列印 / 儲存行程</button>
+      </div>
+    </article>
+
+    <!-- 行程 3: 東京與富士山五日全景 (5日, first, worker, couple, foodie) -->
+    <article class="itinerary-detail-card" data-days="5" data-audience="first,worker,couple,foodie">
+      <div class="itinerary-card-banner">
+        <img src="https://images.unsplash.com/photo-1490806843957-31f4c9a91c65?w=1200&auto=format&fit=crop&q=80" alt="富士山河口湖" loading="lazy">
+        <div class="itinerary-banner-overlay">
+          <div class="itinerary-banner-info">
+            <div class="itinerary-tags-row">
+              <span class="itinerary-days-pill">五日遊 · 都會與神山全景</span>
+              <span class="itinerary-target-pill"><i class="fas fa-star"></i> 第一次訪日首選</span>
+              <span class="itinerary-target-pill"><i class="fas fa-briefcase"></i> 上班族特休假期、情侶渡假</span>
+              <span class="itinerary-target-pill"><i class="fas fa-map-pin"></i> 東京 · 富士五湖</span>
+            </div>
+            <h3>東京摩登都會與富士山湖畔溫泉五日全景</h3>
+          </div>
+        </div>
+      </div>
+
+      <div class="itinerary-schedule-body">
+        <div class="itinerary-day-block">
+          <h4 class="itinerary-day-title"><i class="far fa-sun"></i> Day 1 - 2：繁華東京潮流與經典名勝</h4>
+          <div class="timeline-stops">
+            <div class="stop-box">
+              <span class="stop-time">D1 經典下町</span>
+              <div class="stop-title">晴空塔 ➔ 淺草寺 ➔ 銀座</div>
+              <p class="stop-desc">初抵東京，登晴空塔看夜景，在築地或銀座品嚐正統江戶前壽司。</p>
+              <div class="stop-food-tag"><i class="fas fa-utensils"></i> 美食：江戶前握壽司</div>
+            </div>
+            <div class="stop-box">
+              <span class="stop-time">D2 潮流原宿澀谷</span>
+              <div class="stop-title">明治神宮 ➔ 表參道 ➔ SHIBUYA SKY</div>
+              <p class="stop-desc">享受市中心森林靜謐，逛街血拼名品潮流，晚上享用和牛燒肉。</p>
+              <div class="stop-food-tag"><i class="fas fa-utensils"></i> 美食：頂級黑毛和牛、拉麵</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="itinerary-day-block">
+          <h4 class="itinerary-day-title"><i class="far fa-sun"></i> Day 3 - 4：富士山河口湖溫泉放鬆之旅</h4>
+          <div class="timeline-stops">
+            <div class="stop-box">
+              <span class="stop-time">D3 朝聖神山絕景</span>
+              <div class="stop-title">搭富士回遊 ➔ 新倉山五重塔 ➔ 忍野八海</div>
+              <p class="stop-desc">上午拍攝經典五重塔櫻花富士山，下午探訪忍野八海純淨清泉，入住湖畔溫泉飯店。</p>
+              <div class="stop-food-tag"><i class="fas fa-utensils"></i> 美食：熱騰騰山梨南瓜餺飥麵</div>
+            </div>
+            <div class="stop-box">
+              <span class="stop-time">D4 湖畔散策與倒影</span>
+              <div class="stop-title">清晨逆富士 ➔ 天上山纜車 ➔ 大石公園</div>
+              <p class="stop-desc">早起在湖畔欣賞絕美無波逆富士，漫步薰衣草花毯步道，搭乘遊船遊湖。</p>
+              <div class="stop-food-tag"><i class="fas fa-utensils"></i> 美食：若鷺魚定食、信玄餅</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="itinerary-day-block">
+          <h4 class="itinerary-day-title"><i class="far fa-sun"></i> Day 5：東京購物與滿載歸國</h4>
+          <div class="timeline-stops">
+            <div class="stop-box">
+              <span class="stop-time">D5 最後採買</span>
+              <div class="stop-title">東京車站一番街 ➔ 成田/羽田機場出境</div>
+              <p class="stop-desc">選購特色伴手禮（東京香蕉蛋糕、文明堂蜂蜜蛋糕），結束完美的放鬆假期。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="itinerary-card-actions">
+        <span style="font-size:0.85rem; color:var(--text-muted);"><i class="fas fa-train"></i> 交通建議：JR 富士回遊特急 + 河口湖周遊巴士票券</span>
+        <button class="btn btn-outline" data-print-plan style="padding:6px 16px; font-size:0.85rem;"><i class="fas fa-print"></i> 列印 / 儲存行程</button>
+      </div>
+    </article>
+
+    <!-- 行程 4: 關西京阪神新手黃金五日遊 (5日, first, couple, worker, foodie) -->
+    <article class="itinerary-detail-card" data-days="5" data-audience="first,couple,worker,foodie">
+      <div class="itinerary-card-banner">
+        <img src="https://images.unsplash.com/photo-1590253230536-a363765108a9?w=1200&auto=format&fit=crop&q=80" alt="大阪道頓堀夜景" loading="lazy">
+        <div class="itinerary-banner-overlay">
+          <div class="itinerary-banner-info">
+            <div class="itinerary-tags-row">
+              <span class="itinerary-days-pill">五日遊 · 關西黃金路線</span>
+              <span class="itinerary-target-pill"><i class="fas fa-crown"></i> 第一次自由行超人氣 NO.1</span>
+              <span class="itinerary-target-pill"><i class="fas fa-utensils"></i> 美食狂熱、情侶同遊</span>
+              <span class="itinerary-target-pill"><i class="fas fa-map-pin"></i> 大阪 · 京都</span>
+            </div>
+            <h3>關西初心精華：京都世界遺產與大阪食倒五日遊</h3>
+          </div>
+        </div>
+      </div>
+
+      <div class="itinerary-schedule-body">
+        <div class="itinerary-day-block">
+          <h4 class="itinerary-day-title"><i class="far fa-sun"></i> Day 1 - 2：大阪天下廚房與地標打卡</h4>
+          <div class="timeline-stops">
+            <div class="stop-box">
+              <span class="stop-time">D1 難波心齋橋</span>
+              <div class="stop-title">抵達關西機場 ➔ 心齋橋 ➔ 道頓堀</div>
+              <p class="stop-desc">與固力果跑跑人合影，搭乘運河遊船，吃現烤章魚燒與大阪燒。</p>
+              <div class="stop-food-tag"><i class="fas fa-utensils"></i> 美食：元祖章魚燒、大阪燒</div>
+            </div>
+            <div class="stop-box">
+              <span class="stop-time">D2 戰國古堡與高空</span>
+              <div class="stop-title">大阪城天守閣 ➔ 黑門市場 ➔ 梅田空中庭園</div>
+              <p class="stop-desc">登天守閣看戰國歷史，黑門市場吃生蠔與煎和牛，晚上俯瞰梅田夜景。</p>
+              <div class="stop-food-tag"><i class="fas fa-utensils"></i> 美食：黑門市場海鮮、和牛串燒</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="itinerary-day-block">
+          <h4 class="itinerary-day-title"><i class="far fa-sun"></i> Day 3 - 4：京都古都幽情與浪漫嵐山</h4>
+          <div class="timeline-stops">
+            <div class="stop-box">
+              <span class="stop-time">D3 世界遺產經典</span>
+              <div class="stop-title">伏見稻荷大社 ➔ 清水寺 ➔ 祇園花見小路</div>
+              <p class="stop-desc">清晨漫步朱紅千本鳥居，登上清水舞台祈福，漫步石板老街吃抹茶。</p>
+              <div class="stop-food-tag"><i class="fas fa-utensils"></i> 美食：宇治抹茶聖代、湯豆腐</div>
+            </div>
+            <div class="stop-box">
+              <span class="stop-time">D4 嵐山竹林幽境</span>
+              <div class="stop-title">嵐山渡月橋 ➔ 竹林之道 ➔ 金閣寺</div>
+              <p class="stop-desc">聽竹海風聲，搭乘小火車，下午欣賞鏡湖池金色倒映的金閣寺。</p>
+              <div class="stop-food-tag"><i class="fas fa-utensils"></i> 美食：嵐山湯豆腐、京都烤糰子</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="itinerary-day-block">
+          <h4 class="itinerary-day-title"><i class="far fa-sun"></i> Day 5：通天閣懷舊與機場免稅大採購</h4>
+          <div class="timeline-stops">
+            <div class="stop-box">
+              <span class="stop-time">D5 滿載歸途</span>
+              <div class="stop-title">新世界通天閣 ➔ 關西國際機場出發</div>
+              <p class="stop-desc">摸比利肯福神腳底帶來幸運，品嚐金黃串炸，機場免稅店掃貨伴手禮！</p>
+              <div class="stop-food-tag"><i class="fas fa-utensils"></i> 美食：新世界元祖炸串</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="itinerary-card-actions">
+        <span style="font-size:0.85rem; color:var(--text-muted);"><i class="fas fa-ticket-alt"></i> 交通建議：關西周遊券 (KANSAI THRU PASS) 或 ICOCA + HARUKA 套票</span>
+        <button class="btn btn-outline" data-print-plan style="padding:6px 16px; font-size:0.85rem;"><i class="fas fa-print"></i> 列印 / 儲存行程</button>
+      </div>
+    </article>
+
+    <!-- 行程 5: 沖繩蔚藍自駕五日全覽 (5日, first, couple, worker) -->
+    <article class="itinerary-detail-card" data-days="5" data-audience="first,couple,worker">
+      <div class="itinerary-card-banner">
+        <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=1200&auto=format&fit=crop&q=80" alt="沖繩水族館" loading="lazy">
+        <div class="itinerary-banner-overlay">
+          <div class="itinerary-banner-info">
+            <div class="itinerary-tags-row">
+              <span class="itinerary-days-pill">五日遊 · 海島度假</span>
+              <span class="itinerary-target-pill"><i class="fas fa-umbrella-beach"></i> 第一次海島自由行</span>
+              <span class="itinerary-target-pill"><i class="fas fa-car"></i> 輕鬆自駕、情侶朋友放鬆</span>
+              <span class="itinerary-target-pill"><i class="fas fa-map-pin"></i> 沖繩全島</span>
+            </div>
+            <h3>沖繩蔚藍海岸與水族館自駕五日度假遊</h3>
+          </div>
+        </div>
+      </div>
+
+      <div class="itinerary-schedule-body">
+        <div class="itinerary-day-block">
+          <h4 class="itinerary-day-title"><i class="far fa-sun"></i> Day 1 - 2：那霸市集、波上宮與中部日落</h4>
+          <div class="timeline-stops">
+            <div class="stop-box">
+              <span class="stop-time">D1 那霸初探</span>
+              <div class="stop-title">抵達那霸 ➔ 波上宮海崖神社 ➔ 國際通</div>
+              <p class="stop-desc">參拜懸崖上的波上宮，逛熱鬧國際通，品嚐雪鹽冰淇淋與居酒屋三線琴料理。</p>
+              <div class="stop-food-tag"><i class="fas fa-utensils"></i> 美食：石垣牛燒肉、雪鹽冰淇淋</div>
+            </div>
+            <div class="stop-box">
+              <span class="stop-time">D2 象鼻岩與美式風情</span>
+              <div class="stop-title">租車出發 ➔ 萬座毛 ➔ 美國村日落沙灘</div>
+              <p class="stop-desc">拍攝東海象鼻斷崖壯觀景色，下午在北谷美國村漫步喝咖啡看夕陽。</p>
+              <div class="stop-food-tag"><i class="fas fa-utensils"></i> 美食：沖繩軟骨排骨麵</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="itinerary-day-block">
+          <h4 class="itinerary-day-title"><i class="far fa-sun"></i> Day 3 - 4：北部海洋奇蹟與跨海大橋</h4>
+          <div class="timeline-stops">
+            <div class="stop-box">
+              <span class="stop-time">D3 壯闊黑潮之海</span>
+              <div class="stop-title">美麗海水族館 ➔ 翡翠海灘</div>
+              <p class="stop-desc">近距離觀賞巨大鯨鯊與鬼蝠魟游弋，在翡翠沙灘踏浪放空享受日光。</p>
+              <div class="stop-food-tag"><i class="fas fa-utensils"></i> 美食：海葡萄蓋飯、阿古豬定食</div>
+            </div>
+            <div class="stop-box">
+              <span class="stop-time">D4 古宇利絕景</span>
+              <div class="stop-title">古宇利大橋 ➔ 心形岩 ➔ 恩納村渡假飯店</div>
+              <p class="stop-desc">馳騁在清澈果凍海的跨海大橋，探訪戀人聖地愛心岩，傍晚享用無敵海景晚餐。</p>
+              <div class="stop-food-tag"><i class="fas fa-utensils"></i> 美食：古宇利蝦蝦飯、紅芋塔</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="itinerary-day-block">
+          <h4 class="itinerary-day-title"><i class="far fa-sun"></i> Day 5：瀨長島小希臘與免稅歸國</h4>
+          <div class="timeline-stops">
+            <div class="stop-box">
+              <span class="stop-time">D5 悠閒收尾</span>
+              <div class="stop-title">瀨長島 Umikaji Terrace ➔ 機場返程</div>
+              <p class="stop-desc">在純白階梯小希臘吃舒芙蕾鬆餅、看飛機從頭頂起降，買齊沖繩土產滿載而歸！</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="itinerary-card-actions">
+        <span style="font-size:0.85rem; color:var(--text-muted);"><i class="fas fa-car"></i> 交通建議：那霸機場取車自駕 + 附中文導航</span>
+        <button class="btn btn-outline" data-print-plan style="padding:6px 16px; font-size:0.85rem;"><i class="fas fa-print"></i> 列印 / 儲存行程</button>
+      </div>
+    </article>
+
+    <!-- 查無行程時的友善提示 -->
+    <div id="itinerary-empty-state" style="display:none; text-align:center; padding:60px 20px; background:#fff; border-radius:var(--radius-lg); border:1px solid var(--border-color); margin-top:20px;">
+      <i class="far fa-compass" style="font-size:3rem; color:var(--border-color); margin-bottom:16px;"></i>
+      <h3 style="font-size:1.3rem; margin-bottom:8px; color:var(--text-main);">目前條件下尚未有符合的行程規劃</h3>
+      <p style="font-size:0.92rem; color:var(--text-muted); margin-bottom:20px;">
+        您可以嘗試點擊上方<strong>「全部天數」</strong>或選擇<strong>「不限族群」</strong>瀏覽更多精彩路線！
+      </p>
+      <button class="btn btn-primary" id="reset-itinerary-filter-btn"><i class="fas fa-undo"></i> 重設所有篩選</button>
+    </div>
+
+  </section>
+
+  <!-- 全站頁尾 Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="site-logo">
+            <div class="logo-icon"><i class="fas fa-torii-gate"></i></div>
+            <div class="logo-text-group">
+              <span class="logo-title">日本旅遊誌</span>
+              <span class="logo-sub">JAPAN TRAVEL JOURNAL</span>
+            </div>
+          </div>
+          <p class="footer-desc">「日本旅遊誌」精心策劃每一條自由行路線，讓您以最流暢的步調，遇見最動人的日本風景！</p>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">推薦地區</h4>
+          <ul class="footer-links">
+            <li><a href="tokyo.html"><i class="fas fa-angle-right"></i> 東京 Tokyo</a></li>
+            <li><a href="kyoto.html"><i class="fas fa-angle-right"></i> 京都 Kyoto</a></li>
+            <li><a href="osaka.html"><i class="fas fa-angle-right"></i> 大阪 Osaka</a></li>
+            <li><a href="hokkaido.html"><i class="fas fa-angle-right"></i> 北海道 Hokkaido</a></li>
+            <li><a href="okinawa.html"><i class="fas fa-angle-right"></i> 沖繩 Okinawa</a></li>
+            <li><a href="fuji.html"><i class="fas fa-angle-right"></i> 富士山 Mt. Fuji</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">網站導覽</h4>
+          <ul class="footer-links">
+            <li><a href="index.html"><i class="fas fa-angle-right"></i> 首頁</a></li>
+            <li><a href="itinerary.html"><i class="fas fa-angle-right"></i> 行程推薦</a></li>
+            <li><a href="food.html"><i class="fas fa-angle-right"></i> 特色美食</a></li>
+            <li><a href="guide.html"><i class="fas fa-angle-right"></i> 旅遊須知 & Q&A</a></li>
+            <li><a href="contact.html"><i class="fas fa-angle-right"></i> 聯絡我們</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">聯絡我們</h4>
+          <div class="footer-contact-item"><i class="fas fa-map-marker-alt"></i><div>地址：台北市 XX 區 XX 路 XX 號</div></div>
+          <div class="footer-contact-item"><i class="fas fa-phone-alt"></i><div>電話：02-1234-5678</div></div>
+          <div class="footer-contact-item"><i class="fas fa-envelope"></i><div>Email：japantravel@example.com</div></div>
+          <div class="footer-contact-item"><i class="far fa-clock"></i><div>營業時間：週二至週日 11:00 - 21:00 (週一公休)</div></div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>© 2026 日本旅遊誌 Japan Travel Journal. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="fav-drawer-overlay" id="fav-drawer-overlay"></div>
+  <aside class="fav-drawer" id="fav-drawer">
+    <div class="fav-drawer-header">
+      <h3 class="fav-drawer-title"><i class="fas fa-heart" style="color:var(--color-torii);"></i> 我的收藏地點</h3>
+      <button class="close-drawer-btn" id="fav-close-btn"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="fav-drawer-body" id="fav-drawer-body"></div>
+    <div class="fav-drawer-footer">
+      <button class="btn btn-outline" id="clear-fav-btn" style="padding:6px 14px; font-size:0.85rem;"><i class="fas fa-trash-alt"></i> 全部清空</button>
+      <a href="itinerary.html" class="btn btn-primary" style="padding:6px 16px; font-size:0.85rem;"><i class="fas fa-route"></i> 帶入行程規劃</a>
+    </div>
+  </aside>
+
+  <script src="js/common.js"></script>
+  <script src="js/itinerary.js"></script>
+</body>
+</html>
+

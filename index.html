@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>日本旅遊誌 JAPAN TRAVEL JOURNAL ｜ 探索東京、京都、大阪、北海道、沖繩與富士山美景美食</title>
+  <meta name="description" content="日本旅遊誌帶領旅客探索東京、大阪、京都、北海道、沖繩、富士山等日本熱門城市與景點，提供景點介紹、在地美食推薦、行程規劃與旅遊須知。">
+  
+  <!-- FontAwesome 圖標 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- 全站共用樣式與首頁專屬樣式 -->
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+
+  <!-- 櫻花飄落背景畫布 -->
+  <canvas id="sakura-canvas"></canvas>
+
+  <!-- 櫻花動態開關 -->
+  <button id="sakura-toggle-btn" class="sakura-toggle-btn" aria-label="切換櫻花特效">
+    <span>🌸 櫻花：開</span>
+  </button>
+
+  <!-- 回到頂部按鈕 -->
+  <button id="back-to-top" class="back-to-top" aria-label="回到頁面頂部">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <!-- 全站頂部導航列 Header -->
+  <header class="site-header">
+    <div class="header-container">
+      <a href="index.html" class="site-logo">
+        <div class="logo-icon">
+          <i class="fas fa-torii-gate"></i>
+        </div>
+        <div class="logo-text-group">
+          <span class="logo-title">日本旅遊誌</span>
+          <span class="logo-sub">JAPAN TRAVEL JOURNAL</span>
+        </div>
+      </a>
+
+      <!-- 導航選單 -->
+      <nav class="main-nav" id="main-nav">
+        <ul class="nav-list">
+          <li><a href="index.html" class="nav-link active"><i class="fas fa-home"></i> 首頁</a></li>
+          
+          <!-- 旅遊地區下拉選單 -->
+          <li class="dropdown">
+            <a href="javascript:void(0)" class="nav-link">
+              <i class="fas fa-map-marked-alt"></i> 推薦地區 <i class="fas fa-angle-down" style="font-size:0.75rem;"></i>
+            </a>
+            <div class="dropdown-menu">
+              <a href="tokyo.html" class="dropdown-item"><span>🗼 東京 Tokyo</span> <span class="badge">現代繁華</span></a>
+              <a href="kyoto.html" class="dropdown-item"><span>⛩️ 京都 Kyoto</span> <span class="badge">古都古韻</span></a>
+              <a href="osaka.html" class="dropdown-item"><span>🏯 大阪 Osaka</span> <span class="badge">美食熱情</span></a>
+              <a href="hokkaido.html" class="dropdown-item"><span>❄️ 北海道 Hokkaido</span> <span class="badge">純白浪漫</span></a>
+              <a href="okinawa.html" class="dropdown-item"><span>🌺 沖繩 Okinawa</span> <span class="badge">度假蔚藍</span></a>
+              <a href="fuji.html" class="dropdown-item"><span>🗻 富士山 Fuji</span> <span class="badge">壯麗神山</span></a>
+            </div>
+          </li>
+
+          <li><a href="itinerary.html" class="nav-link"><i class="fas fa-route"></i> 行程推薦</a></li>
+          <li><a href="food.html" class="nav-link"><i class="fas fa-utensils"></i> 特色美食</a></li>
+          <li><a href="guide.html" class="nav-link"><i class="fas fa-compass"></i> 旅遊須知 & Q&A</a></li>
+          <li><a href="contact.html" class="nav-link"><i class="fas fa-envelope"></i> 聯絡我們</a></li>
+        </ul>
+      </nav>
+
+      <!-- 右側收藏按鈕與手機漢堡 -->
+      <div class="header-actions">
+        <button class="fav-btn" id="fav-open-btn" title="查看我的收藏">
+          <i class="fas fa-heart" style="color:var(--color-torii);"></i>
+          <span>我的收藏</span>
+          <span class="fav-count">0</span>
+        </button>
+        <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="選單開關">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- 一、英雄巨幕 Banner / Hero Section -->
+  <section class="hero-section">
+    <div class="hero-overlay-pattern"></div>
+    <div class="hero-content">
+      <div class="hero-tag">
+        <i class="fas fa-feather-alt"></i> NIPPON TRAVEL MAGAZINE
+      </div>
+      <h1 class="hero-title">
+        歡迎來到<span class="highlight">「日本旅遊誌」</span>
+      </h1>
+      <p class="hero-desc">
+        探索日本最迷人的風景，開啟一趟難忘的日本之旅。<br>
+        從繁華的東京街頭，到古色古香的京都寺院；從壯麗的富士山，到浪漫的北海道雪景，帶你一次探索日本各地值得造訪的著名景點與靈魂美食。
+      </p>
+
+      <div class="hero-actions">
+        <a href="#regions" class="btn btn-primary"><i class="fas fa-map-pin"></i> 探索六大地區</a>
+        <a href="#popular-spots" class="btn btn-outline" style="color:#fff; border-color:rgba(255,255,255,0.7); background:rgba(255,255,255,0.15); backdrop-filter:blur(6px);"><i class="fas fa-camera"></i> 瀏覽熱門景點</a>
+      </div>
+
+      <!-- 目標受眾專屬標籤 -->
+      <div class="hero-audience-chips">
+        <span class="audience-chip"><i class="fas fa-user-friends"></i> 喜歡日本旅遊的年輕人</span>
+        <span class="audience-chip"><i class="fas fa-heart"></i> 情侶與朋友出遊族群</span>
+        <span class="audience-chip"><i class="fas fa-plane-departure"></i> 第一次前往日本的旅客</span>
+        <span class="audience-chip"><i class="fas fa-mountain"></i> 文化、美食與自然愛好者</span>
+        <span class="audience-chip"><i class="fas fa-briefcase"></i> 規劃日本自由行的上班族</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 關於我們 About Section -->
+  <section class="about-section">
+    <div class="about-card">
+      <div class="about-text-col">
+        <span class="section-badge"><i class="fas fa-book-open"></i> 關於我們 · 旅誌初衷</span>
+        <h2>探索日本，從這裡開始</h2>
+        <p>
+          「日本旅遊誌」是一個專為日本旅遊愛好者打造的景點與美食資訊網站。
+        </p>
+        <p>
+          我們用心整理日本各地著名景點、特色道地美食與最實用的旅遊資訊，希望陪伴並協助每一位旅客更輕鬆、更自在地規劃專屬於自己的日本旅行。
+        </p>
+        <p>
+          無論你是第一次造訪日本的新手旅人，還是已經無數次踏上這片土地的深度漫遊者，都能在這裡翻閱出下一趟旅程的靈感火花！
+        </p>
+        
+        <div class="about-features">
+          <div class="about-feature-item">
+            <i class="fas fa-check-circle"></i> 各地景點深度照片介紹
+          </div>
+          <div class="about-feature-item">
+            <i class="fas fa-check-circle"></i> 地區美食與景點連動
+          </div>
+          <div class="about-feature-item">
+            <i class="fas fa-check-circle"></i> 1日/3日/5日行程規劃
+          </div>
+          <div class="about-feature-item">
+            <i class="fas fa-check-circle"></i> 實用交通與文化須知
+          </div>
+        </div>
+      </div>
+
+      <div class="about-img-col">
+        <img src="https://images.unsplash.com/photo-1478436127897-769e00d2c715?w=800&auto=format&fit=crop&q=80" alt="伏見稻荷大社千本鳥居" class="about-main-img">
+        <div class="about-accent-badge">
+          <div class="accent-badge-icon">
+            <i class="fas fa-seedling"></i>
+          </div>
+          <div>
+            <div style="font-weight: 700; color: var(--text-main); font-size: 0.95rem;">日系雜誌美學排版</div>
+            <div style="font-size: 0.8rem; color: var(--text-muted);">溫暖米白、櫻花粉與木質大地氛圍</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 五、熱門景點介紹 Section -->
+  <section class="popular-spots-section" id="popular-spots">
+    <div class="popular-container">
+      <div class="section-header-center">
+        <span class="section-badge"><i class="fas fa-star"></i> 精選景點推薦</span>
+        <h2 class="section-title">熱門日本代表景點</h2>
+        <p class="section-subtitle">
+          展示日本各地著名景點的照片、名稱、特色與推薦理由。無論自然壯景或歷史古蹟，皆是日本旅行必訪打卡之選。
+        </p>
+      </div>
+
+      <div class="spots-grid">
+        <!-- 1. 東京晴空塔 -->
+        <article class="spot-card">
+          <div class="spot-card-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1542051841857-5f90071e7989?w=800&auto=format&fit=crop&q=80" alt="東京晴空塔" class="spot-card-img" loading="lazy">
+            <span class="spot-region-pill"><i class="fas fa-map-marker-alt"></i> 東京</span>
+            <button class="spot-fav-btn" data-fav-id="tokyo-skytree" data-fav-name="東京晴空塔" data-fav-region="東京" data-fav-type="代表地標" data-fav-image="https://images.unsplash.com/photo-1542051841857-5f90071e7989?w=600&auto=format&fit=crop&q=80" aria-label="收藏東京晴空塔">
+              <i class="far fa-heart"></i>
+            </button>
+          </div>
+          <div class="spot-card-body">
+            <div class="spot-header-group">
+              <h3 class="spot-title">🗼 東京晴空塔</h3>
+              <span class="spot-jp-name">スカイツリー</span>
+            </div>
+            <p class="spot-desc">
+              日本著名地標之一，可以從高處欣賞東京城市景色。周邊也有購物中心與餐廳，非常適合安排半日或一日行程。
+            </p>
+            <div class="spot-meta">
+              <span class="spot-highlight-tag"><i class="fas fa-utensils"></i> 搭配：晴空商場文字燒</span>
+              <a href="javascript:void(0)" class="spot-link-btn" data-spot-modal="spot-skytree">詳情介紹 <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 2. 京都清水寺 -->
+        <article class="spot-card">
+          <div class="spot-card-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=800&auto=format&fit=crop&q=80" alt="京都清水寺" class="spot-card-img" loading="lazy">
+            <span class="spot-region-pill"><i class="fas fa-map-marker-alt"></i> 京都</span>
+            <button class="spot-fav-btn" data-fav-id="kyoto-kiyomizu" data-fav-name="京都清水寺" data-fav-region="京都" data-fav-type="世界文化遺產" data-fav-image="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=600&auto=format&fit=crop&q=80" aria-label="收藏京都清水寺">
+              <i class="far fa-heart"></i>
+            </button>
+          </div>
+          <div class="spot-card-body">
+            <div class="spot-header-group">
+              <h3 class="spot-title">⛩️ 京都清水寺</h3>
+              <span class="spot-jp-name">きよみずでら</span>
+            </div>
+            <p class="spot-desc">
+              京都最具代表性的寺院之一，擁有悠久歷史與傳統日本建築。春季櫻花與秋季楓葉時期尤其受到旅客喜愛。
+            </p>
+            <div class="spot-meta">
+              <span class="spot-highlight-tag"><i class="fas fa-utensils"></i> 搭配：二年坂宇治抹茶</span>
+              <a href="javascript:void(0)" class="spot-link-btn" data-spot-modal="spot-kiyomizu">詳情介紹 <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 3. 大阪城 -->
+        <article class="spot-card">
+          <div class="spot-card-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1590559899731-a372a1464529?w=800&auto=format&fit=crop&q=80" alt="大阪城" class="spot-card-img" loading="lazy">
+            <span class="spot-region-pill"><i class="fas fa-map-marker-alt"></i> 大阪</span>
+            <button class="spot-fav-btn" data-fav-id="osaka-castle" data-fav-name="大阪城天守閣" data-fav-region="大阪" data-fav-type="歷史名城" data-fav-image="https://images.unsplash.com/photo-1590559899731-a372a1464529?w=600&auto=format&fit=crop&q=80" aria-label="收藏大阪城">
+              <i class="far fa-heart"></i>
+            </button>
+          </div>
+          <div class="spot-card-body">
+            <div class="spot-header-group">
+              <h3 class="spot-title">🏯 大阪城</h3>
+              <span class="spot-jp-name">おおさかじょう</span>
+            </div>
+            <p class="spot-desc">
+              大阪代表性的歷史景點，城堡周圍擁有大片公園，春季賞櫻時非常受歡迎，護城河與宏偉天守閣極富歷史魅力。
+            </p>
+            <div class="spot-meta">
+              <span class="spot-highlight-tag"><i class="fas fa-utensils"></i> 搭配：道頓堀章魚燒</span>
+              <a href="javascript:void(0)" class="spot-link-btn" data-spot-modal="spot-osakacastle">詳情介紹 <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 4. 富士山 -->
+        <article class="spot-card">
+          <div class="spot-card-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1490806843957-31f4c9a91c65?w=800&auto=format&fit=crop&q=80" alt="富士山與河口湖" class="spot-card-img" loading="lazy">
+            <span class="spot-region-pill"><i class="fas fa-map-marker-alt"></i> 富士山周邊</span>
+            <button class="spot-fav-btn" data-fav-id="fuji-kawaguchiko" data-fav-name="富士山河口湖" data-fav-region="富士山周邊" data-fav-type="自然神山" data-fav-image="https://images.unsplash.com/photo-1490806843957-31f4c9a91c65?w=600&auto=format&fit=crop&q=80" aria-label="收藏富士山">
+              <i class="far fa-heart"></i>
+            </button>
+          </div>
+          <div class="spot-card-body">
+            <div class="spot-header-group">
+              <h3 class="spot-title">🗻 富士山</h3>
+              <span class="spot-jp-name">ふじさん</span>
+            </div>
+            <p class="spot-desc">
+              日本最具代表性的自然景觀之一。除了欣賞富士山本身，也可以前往河口湖等周邊地區感受壯麗湖光山色。
+            </p>
+            <div class="spot-meta">
+              <span class="spot-highlight-tag"><i class="fas fa-utensils"></i> 搭配：甲州鄉土餺飥麵</span>
+              <a href="javascript:void(0)" class="spot-link-btn" data-spot-modal="spot-fuji">詳情介紹 <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 5. 北海道小樽 -->
+        <article class="spot-card">
+          <div class="spot-card-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1545569341-9eb8b30979d9?w=800&auto=format&fit=crop&q=80" alt="北海道小樽" class="spot-card-img" loading="lazy">
+            <span class="spot-region-pill"><i class="fas fa-map-marker-alt"></i> 北海道</span>
+            <button class="spot-fav-btn" data-fav-id="hokkaido-otaru" data-fav-name="北海道小樽運河" data-fav-region="北海道" data-fav-type="浪漫雪景" data-fav-image="https://images.unsplash.com/photo-1545569341-9eb8b30979d9?w=600&auto=format&fit=crop&q=80" aria-label="收藏北海道小樽">
+              <i class="far fa-heart"></i>
+            </button>
+          </div>
+          <div class="spot-card-body">
+            <div class="spot-header-group">
+              <h3 class="spot-title">❄️ 北海道小樽</h3>
+              <span class="spot-jp-name">おたる</span>
+            </div>
+            <p class="spot-desc">
+              以運河、歷史街道與浪漫氛圍聞名。冬季雪景搭配小樽運河與復古瓦斯燈，呈現充滿日式風情的浪漫景色。
+            </p>
+            <div class="spot-meta">
+              <span class="spot-highlight-tag"><i class="fas fa-utensils"></i> 搭配：小樽帝王蟹海鮮丼</span>
+              <a href="javascript:void(0)" class="spot-link-btn" data-spot-modal="spot-otaru">詳情介紹 <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 6. 沖繩美麗海 -->
+        <article class="spot-card">
+          <div class="spot-card-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&auto=format&fit=crop&q=80" alt="沖繩美麗海水族館" class="spot-card-img" loading="lazy">
+            <span class="spot-region-pill"><i class="fas fa-map-marker-alt"></i> 沖繩</span>
+            <button class="spot-fav-btn" data-fav-id="okinawa-churaumi" data-fav-name="沖繩美麗海" data-fav-region="沖繩" data-fav-type="海洋奇景" data-fav-image="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&auto=format&fit=crop&q=80" aria-label="收藏沖繩美麗海">
+              <i class="far fa-heart"></i>
+            </button>
+          </div>
+          <div class="spot-card-body">
+            <div class="spot-header-group">
+              <h3 class="spot-title">🌺 沖繩美麗海</h3>
+              <span class="spot-jp-name">ちゅらうみ</span>
+            </div>
+            <p class="spot-desc">
+              沖繩擁有美麗的海岸與碧藍海水，適合喜歡陽光、海景與悠閒旅行的旅客，在黑潮之海近距離親近巨大鯨鯊。
+            </p>
+            <div class="spot-meta">
+              <span class="spot-highlight-tag"><i class="fas fa-utensils"></i> 搭配：石垣牛與海葡萄</span>
+              <a href="javascript:void(0)" class="spot-link-btn" data-spot-modal="spot-okinawa-aquarium">詳情介紹 <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 六、推薦旅遊地區分類專區 (點下去直接顯示該地區旅遊景點與美食) -->
+  <section class="regions-section" id="regions">
+    <div class="section-header-center">
+      <span class="section-badge"><i class="fas fa-compass"></i> 六大旅遊勝地</span>
+      <h2 class="section-title">推薦旅遊地區</h2>
+      <p class="section-subtitle">
+        點選任意地區，即可進入該城市的專屬指南，立即探索專屬於當地的旅遊景點與特色美食！
+      </p>
+    </div>
+
+    <div class="regions-grid">
+      <!-- 1. 東京 -->
+      <a href="tokyo.html" class="region-card">
+        <img src="https://images.unsplash.com/photo-1503899036084-c55cdd92da26?w=900&auto=format&fit=crop&q=80" alt="東京繁華市街" class="region-card-bg">
+        <div class="region-card-overlay"></div>
+        <div class="region-card-content">
+          <span class="region-badge">熱門首選 NO.1</span>
+          <h3 class="region-card-title">東京 Tokyo <i class="fas fa-chevron-right"></i></h3>
+          <p class="region-card-desc">感受日本現代都市的繁華，探索東京鐵塔、淺草寺、澀谷Sky與新宿街頭。</p>
+          <div class="region-card-footer">
+            <span><i class="fas fa-map-pin"></i> 景點：晴空塔、淺草寺、澀谷</span>
+            <span><i class="fas fa-utensils"></i> 壽司、拉麵</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 2. 京都 -->
+      <a href="kyoto.html" class="region-card">
+        <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=900&auto=format&fit=crop&q=80" alt="京都清水寺與古寺" class="region-card-bg">
+        <div class="region-card-overlay"></div>
+        <div class="region-card-content">
+          <span class="region-badge">千年古都歷史</span>
+          <h3 class="region-card-title">京都 Kyoto <i class="fas fa-chevron-right"></i></h3>
+          <p class="region-card-desc">欣賞古都風情，走訪清水寺、伏見稻荷大社、金閣寺與嵐山幽靜竹林。</p>
+          <div class="region-card-footer">
+            <span><i class="fas fa-map-pin"></i> 景點：清水寺、伏見稻荷、嵐山</span>
+            <span><i class="fas fa-utensils"></i> 抹茶、懷石料理</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 3. 大阪 -->
+      <a href="osaka.html" class="region-card">
+        <img src="https://images.unsplash.com/photo-1590253230536-a363765108a9?w=900&auto=format&fit=crop&q=80" alt="大阪道頓堀夜景" class="region-card-bg">
+        <div class="region-card-overlay"></div>
+        <div class="region-card-content">
+          <span class="region-badge">天下之廚房</span>
+          <h3 class="region-card-title">大阪 Osaka <i class="fas fa-chevron-right"></i></h3>
+          <p class="region-card-desc">品嚐章魚燒、大阪燒等特色美食，同時探索大阪城、通天閣與道頓堀運河。</p>
+          <div class="region-card-footer">
+            <span><i class="fas fa-map-pin"></i> 景點：大阪城、道頓堀、環球影城</span>
+            <span><i class="fas fa-utensils"></i> 章魚燒、大阪燒</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 4. 北海道 -->
+      <a href="hokkaido.html" class="region-card">
+        <img src="https://images.unsplash.com/photo-1545569341-9eb8b30979d9?w=900&auto=format&fit=crop&q=80" alt="北海道小樽雪景" class="region-card-bg">
+        <div class="region-card-overlay"></div>
+        <div class="region-card-content">
+          <span class="region-badge">四季極致美景</span>
+          <h3 class="region-card-title">北海道 Hokkaido <i class="fas fa-chevron-right"></i></h3>
+          <p class="region-card-desc">欣賞自然風景與四季美景，體驗札幌、小樽運河與富良野花海的北國魅力。</p>
+          <div class="region-card-footer">
+            <span><i class="fas fa-map-pin"></i> 景點：小樽運河、函館山、富良野</span>
+            <span><i class="fas fa-utensils"></i> 湯咖哩、成吉思汗</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 5. 沖繩 -->
+      <a href="okinawa.html" class="region-card">
+        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=900&auto=format&fit=crop&q=80" alt="沖繩湛藍大海" class="region-card-bg">
+        <div class="region-card-overlay"></div>
+        <div class="region-card-content">
+          <span class="region-badge">度假海島風情</span>
+          <h3 class="region-card-title">沖繩 Okinawa <i class="fas fa-chevron-right"></i></h3>
+          <p class="region-card-desc">享受陽光、沙灘與碧藍海洋，體驗與日本本島截然不同的悠閒悠哉渡假氣氛。</p>
+          <div class="region-card-footer">
+            <span><i class="fas fa-map-pin"></i> 景點：美麗海水族館、萬座毛</span>
+            <span><i class="fas fa-utensils"></i> 沖繩麵、石垣牛</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 6. 富士山周邊 -->
+      <a href="fuji.html" class="region-card">
+        <img src="https://images.unsplash.com/photo-1526481280693-3bfa7568e0f3?w=900&auto=format&fit=crop&q=80" alt="新倉山淺間公園遠眺富士山" class="region-card-bg">
+        <div class="region-card-overlay"></div>
+        <div class="region-card-content">
+          <span class="region-badge">世界文化遺產</span>
+          <h3 class="region-card-title">富士山周邊 Mt. Fuji <i class="fas fa-chevron-right"></i></h3>
+          <p class="region-card-desc">欣賞日本最具代表性的神山，暢遊河口湖、新倉山淺間公園與忍野八海清泉。</p>
+          <div class="region-card-footer">
+            <span><i class="fas fa-map-pin"></i> 景點：河口湖、新倉山、忍野八海</span>
+            <span><i class="fas fa-utensils"></i> 餺飥麵、信玄餅</span>
+          </div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- 二、美食推薦精選 (每道美食一張高畫質圖片並搭配旅遊景點) -->
+  <section class="food-preview-section">
+    <div class="food-container">
+      <div class="section-header-center">
+        <span class="section-badge"><i class="fas fa-utensils"></i> 舌尖上的日本</span>
+        <h2 class="section-title">各地特色美食推薦</h2>
+        <p class="section-subtitle">
+          介紹日本各地最具代表性的美味料理，每道美食均搭配推薦旅遊景點，在遊覽風景時絕不錯過極致味蕾饗宴。
+        </p>
+      </div>
+
+      <div class="food-grid">
+        <!-- 美食 1: 壽司 -->
+        <div class="food-card">
+          <div class="food-card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=600&auto=format&fit=crop&q=80" alt="日本江戶前握壽司" class="food-card-img" loading="lazy">
+            <span class="food-pairing-badge"><i class="fas fa-map-pin"></i> 東京 · 築地/銀座</span>
+          </div>
+          <div class="food-card-body">
+            <h3 class="food-card-title">🍣 江戶前握壽司 (Sushi)</h3>
+            <p class="food-card-desc">嚴選東京灣新鮮直送的當季海味，師傅以恰到好處的醋飯與捏製手藝，呈現生魚片甘甜滑潤的極致原味。</p>
+            <div class="food-matched-spot">
+              <strong>搭配推薦景點：</strong>逛完「淺草寺」或「東京晴空塔」後，前往築地場外市場品嚐鮮度滿分的壽司！
+            </div>
+          </div>
+        </div>
+
+        <!-- 美食 2: 拉麵 -->
+        <div class="food-card">
+          <div class="food-card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=600&auto=format&fit=crop&q=80" alt="日本道地拉麵" class="food-card-img" loading="lazy">
+            <span class="food-pairing-badge"><i class="fas fa-map-pin"></i> 東京/札幌 · 拉麵激戰區</span>
+          </div>
+          <div class="food-card-body">
+            <h3 class="food-card-title">🍜 濃郁日式拉麵 (Ramen)</h3>
+            <p class="food-card-desc">熬煮十餘小時的醇厚豬骨或醬油雞湯，搭配彈牙手工細麵與炙燒叉燒，是日本庶民美食文化中最溫暖的一碗。</p>
+            <div class="food-matched-spot">
+              <strong>搭配推薦景點：</strong>在「新宿歌舞伎町」或「澀谷十字路口」散步後，來一碗熱騰騰的道地拉麵暖胃。
+            </div>
+          </div>
+        </div>
+
+        <!-- 美食 3: 和牛燒肉 -->
+        <div class="food-card">
+          <div class="food-card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1558030006-450675393462?w=600&auto=format&fit=crop&q=80" alt="頂級和牛炭火燒肉" class="food-card-img" loading="lazy">
+            <span class="food-pairing-badge"><i class="fas fa-map-pin"></i> 沖繩/關西 · 石垣/神戶</span>
+          </div>
+          <div class="food-card-body">
+            <h3 class="food-card-title">🥩 頂級黑毛和牛 (Wagyu)</h3>
+            <p class="food-card-desc">大理石花紋般的細密油花，在炭火上滋滋作響，入口即化、香氣四溢，是犒賞旅程最夢幻的美味體驗。</p>
+            <div class="food-matched-spot">
+              <strong>搭配推薦景點：</strong>參觀完「沖繩美麗海水族館」後，在海景餐廳享用炭烤石垣牛套餐。
+            </div>
+          </div>
+        </div>
+
+        <!-- 美食 4: 章魚燒 -->
+        <div class="food-card">
+          <div class="food-card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1541544741938-0af808871cc0?w=600&auto=format&fit=crop&q=80" alt="大阪章魚燒" class="food-card-img" loading="lazy">
+            <span class="food-pairing-badge"><i class="fas fa-map-pin"></i> 大阪 · 道頓堀/難波</span>
+          </div>
+          <div class="food-card-body">
+            <h3 class="food-card-title">🐙 大阪道地章魚燒 (Takoyaki)</h3>
+            <p class="food-card-desc">外皮微酥金黃，內部高湯麵糊滾燙軟嫩，包裹大塊彈牙章魚肉，淋上特製濃郁醬汁、美乃滋與跳動柴魚片。</p>
+            <div class="food-matched-spot">
+              <strong>搭配推薦景點：</strong>漫步「大阪城公園」與道頓堀跑跑人招牌前，邊走邊吃熱騰騰的現烤章魚燒！
+            </div>
+          </div>
+        </div>
+
+        <!-- 美食 5: 抹茶甜點 -->
+        <div class="food-card">
+          <div class="food-card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1536256263959-770b48d82b0a?w=600&auto=format&fit=crop&q=80" alt="京都宇治抹茶甜點" class="food-card-img" loading="lazy">
+            <span class="food-pairing-badge"><i class="fas fa-map-pin"></i> 京都 · 宇治/清水寺</span>
+          </div>
+          <div class="food-card-body">
+            <h3 class="food-card-title">🍵 宇治抹茶聖代 (Matcha)</h3>
+            <p class="food-card-desc">採用日本京都宇治一番茶，微苦回甘的抹茶冰淇淋，搭配白玉糰子、紅豆泥與寒天凍，層次清雅回味悠長。</p>
+            <div class="food-matched-spot">
+              <strong>搭配推薦景點：</strong>參拜完「京都清水寺」漫步二年坂老街，在傳統町家茶寮享用一份抹茶聖代。
+            </div>
+          </div>
+        </div>
+
+        <!-- 美食 6: 札幌海鮮丼 -->
+        <div class="food-card">
+          <div class="food-card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?w=600&auto=format&fit=crop&q=80" alt="北海道海鮮丼" class="food-card-img" loading="lazy">
+            <span class="food-pairing-badge"><i class="fas fa-map-pin"></i> 北海道 · 小樽/札幌二條市場</span>
+          </div>
+          <div class="food-card-body">
+            <h3 class="food-card-title">🦀 北國豪華海鮮丼 (Kaisen-don)</h3>
+            <p class="food-card-desc">鋪滿整碗的馬糞海膽、晶瑩剔透鮭魚卵、甜蝦與極品帆立貝，每一口都是北海道純淨海域的天然鮮甜滋味。</p>
+            <div class="food-matched-spot">
+              <strong>搭配推薦景點：</strong>漫步清晨的「小樽運河」後，走進小樽三角市場點一碗現切澎湃海鮮丼！
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-align: center; margin-top: 40px;">
+        <a href="food.html" class="btn btn-outline"><i class="fas fa-utensils"></i> 查看全日本特色美食大鑑</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 二、旅遊行程推薦概覽 -->
+  <section class="itinerary-section">
+    <div class="section-header-center">
+      <span class="section-badge"><i class="fas fa-route"></i> 彈性旅遊建議</span>
+      <h2 class="section-title">精選旅遊行程推薦</h2>
+      <p class="section-subtitle">
+        無論是週末快閃、連假深度或是五天四夜自由行，我們依據不同旅客喜好與節奏規劃最佳路線。
+      </p>
+    </div>
+
+    <div class="itinerary-grid">
+      <!-- 一日遊 -->
+      <div class="itinerary-card">
+        <div class="itinerary-header">
+          <span class="itinerary-days-tag"><i class="far fa-clock"></i> 一日遊 · 經典精華路線</span>
+          <h3 class="itinerary-title">東京經典都會一日遊</h3>
+          <span class="itinerary-target"><i class="fas fa-user-tag"></i> 推薦給：第一次訪日旅客、短暫轉機快閃</span>
+        </div>
+        <div class="itinerary-route-list">
+          <div class="itinerary-route-step">
+            <div class="step-marker">09</div>
+            <div class="step-content">
+              <strong>上午：淺草寺雷門祈福</strong>
+              <span>走訪傳統仲見世通，品嚐人形燒與炸饅頭</span>
+            </div>
+          </div>
+          <div class="itinerary-route-step">
+            <div class="step-marker">13</div>
+            <div class="step-content">
+              <strong>下午：東京晴空塔登高</strong>
+              <span>俯瞰關東平原，逛 Solamachi 伴手禮街</span>
+            </div>
+          </div>
+          <div class="itinerary-route-step">
+            <div class="step-marker">18</div>
+            <div class="step-content">
+              <strong>傍晚：澀谷十字路口 & Shibuya Sky</strong>
+              <span>欣賞夕陽與璀璨夜景，享用拉麵居酒屋</span>
+            </div>
+          </div>
+        </div>
+        <a href="itinerary.html#day-1" class="btn btn-outline" style="width:100%;">查看一日遊詳細安排</a>
+      </div>
+
+      <!-- 三日遊 -->
+      <div class="itinerary-card">
+        <div class="itinerary-header">
+          <span class="itinerary-days-tag"><i class="far fa-clock"></i> 三日遊 · 關西風情散策</span>
+          <h3 class="itinerary-title">京阪神三日深度之旅</h3>
+          <span class="itinerary-target"><i class="fas fa-user-tag"></i> 推薦給：情侶朋友同遊、人文美食愛好者</span>
+        </div>
+        <div class="itinerary-route-list">
+          <div class="itinerary-route-step">
+            <div class="step-marker">D1</div>
+            <div class="step-content">
+              <strong>Day 1：京都世界遺產巡禮</strong>
+              <span>清水寺祈願、二年坂三年坂漫步、伏見稻荷大社</span>
+            </div>
+          </div>
+          <div class="itinerary-route-step">
+            <div class="step-marker">D2</div>
+            <div class="step-content">
+              <strong>Day 2：嵐山竹林小火車 & 金閣寺</strong>
+              <span>渡月橋倒影、野宮神社、品嚐宇治抹茶甜品</span>
+            </div>
+          </div>
+          <div class="itinerary-route-step">
+            <div class="step-marker">D3</div>
+            <div class="step-content">
+              <strong>Day 3：大阪天下廚房與城池</strong>
+              <span>大阪城天守閣、心齋橋採購、道頓堀章魚燒</span>
+            </div>
+          </div>
+        </div>
+        <a href="itinerary.html#day-3" class="btn btn-outline" style="width:100%;">查看三日遊詳細安排</a>
+      </div>
+
+      <!-- 五日遊 -->
+      <div class="itinerary-card">
+        <div class="itinerary-header">
+          <span class="itinerary-days-tag"><i class="far fa-clock"></i> 五日遊 · 富士自然與都會</span>
+          <h3 class="itinerary-title">東京與富士山五日全景</h3>
+          <span class="itinerary-target"><i class="fas fa-user-tag"></i> 推薦給：上班族休假、家庭全景自由行</span>
+        </div>
+        <div class="itinerary-route-list">
+          <div class="itinerary-route-step">
+            <div class="step-marker">D1-2</div>
+            <div class="step-content">
+              <strong>東京現代風貌探索</strong>
+              <span>抵達東京、晴空塔、明治神宮、表參道散策</span>
+            </div>
+          </div>
+          <div class="itinerary-route-step">
+            <div class="step-marker">D3-4</div>
+            <div class="step-content">
+              <strong>富士山河口湖溫泉兩日</strong>
+              <span>新倉山五重塔富士山、忍野八海清泉、湖畔溫泉旅館</span>
+            </div>
+          </div>
+          <div class="itinerary-route-step">
+            <div class="step-marker">D5</div>
+            <div class="step-content">
+              <strong>銀座最後採購與歸途</strong>
+              <span>百貨公司退稅、羽田/成田機場購買東京名產</span>
+            </div>
+          </div>
+        </div>
+        <a href="itinerary.html#day-5" class="btn btn-outline" style="width:100%;">查看五日遊詳細安排</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 七、旅遊小提醒 Tips Section -->
+  <section class="tips-section">
+    <div class="tips-container">
+      <div class="section-header-center">
+        <span class="section-badge"><i class="fas fa-lightbulb"></i> 貼心指南</span>
+        <h2 class="section-title">日本旅遊小提醒</h2>
+        <p class="section-subtitle">
+          出發前掌握必備技巧與在地禮儀，讓你的日本假期安心無憂、順暢愉快。
+        </p>
+      </div>
+
+      <div class="tips-grid">
+        <div class="tip-card">
+          <div class="tip-icon">✈️</div>
+          <h3 class="tip-title">出發前先做好準備</h3>
+          <p class="tip-desc">
+            確認護照效期（6個月以上）、預先填寫 Visit Japan Web 通關手續、準備好交通票券（如 Suica/Pasmo IC卡）、住宿預約確認與行程保險。
+          </p>
+        </div>
+
+        <div class="tip-card">
+          <div class="tip-icon">🚆</div>
+          <h3 class="tip-title">善用日本交通系統</h3>
+          <p class="tip-desc">
+            日本擁有準時便捷的大眾交通系統。可依照旅遊地區選擇適合的地鐵通票、JR PASS 鐵路周遊券或觀光巴士，省時又節省交通開銷。
+          </p>
+        </div>
+
+        <div class="tip-card">
+          <div class="tip-icon">🍱</div>
+          <h3 class="tip-title">尊重當地文化禮儀</h3>
+          <p class="tip-desc">
+            旅行時請遵守日本當地的公共禮儀，例如自覺排隊、大眾運輸內手機調成靜音避免講電話、垃圾隨身攜帶分類丟棄，維護優良環境。
+          </p>
+        </div>
+
+        <div class="tip-card">
+          <div class="tip-icon">🌸</div>
+          <h3 class="tip-title">注意四季景緻與穿搭</h3>
+          <p class="tip-desc">
+            日本四季景色各具特色：春季賞櫻、夏季祭典花火、秋季賞楓賞銀杏、冬季賞雪泡湯。出發前務必依據旅遊季節與氣溫準備合適衣著。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 八、常見問題 Q&A Section -->
+  <section class="faq-section">
+    <div class="section-header-center">
+      <span class="section-badge"><i class="fas fa-question-circle"></i> 疑難排解</span>
+      <h2 class="section-title">旅遊須知與常見 Q&A</h2>
+      <p class="section-subtitle">
+        解答第一次前往日本旅遊時旅客最常碰到的問題，幫助你快速掌握行前關鍵。
+      </p>
+    </div>
+
+    <div class="faq-list">
+      <div class="faq-item active">
+        <button class="faq-question">
+          <div style="display:flex; align-items:center; gap:12px;">
+            <span class="q-icon">Q</span>
+            <span>第一次去日本推薦去哪裡？</span>
+          </div>
+          <i class="fas fa-chevron-down arrow"></i>
+        </button>
+        <div class="faq-answer">
+          A：如果是第一次前往日本，強烈推薦考慮<strong>東京、大阪或京都</strong>！這些大都市的繁華景點密集、大眾交通網絡十分便利（地鐵站都有繁體中文標示），而且美食選擇多樣、購物退稅非常方便，是非常友善且安心的初次自由行首選目的地。
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <div style="display:flex; align-items:center; gap:12px;">
+            <span class="q-icon">Q</span>
+            <span>什麼季節適合去日本旅遊？</span>
+          </div>
+          <i class="fas fa-chevron-down arrow"></i>
+        </button>
+        <div class="faq-answer">
+          A：日本四季分明，每個季節都有絕美獨特景緻：
+          <ul style="margin-top:8px; padding-left:18px; list-style:disc;">
+            <li><strong>春季（3月～5月）：</strong>氣候涼爽宜人，是全日本櫻花盛開的浪漫花季。</li>
+            <li><strong>夏季（6月～8月）：</strong>適合沖繩水上活動、北海道薰衣草花田與熱鬧的夏日祭典花火大會。</li>
+            <li><strong>秋季（9月～11月）：</strong>天高氣爽，京都與各大名山進入火紅的賞楓賞銀杏旺季。</li>
+            <li><strong>冬季（12月～2月）：</strong>北海道雪景、白川鄉合掌村點燈與享受日本各地知名露天溫泉。</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <div style="display:flex; align-items:center; gap:12px;">
+            <span class="q-icon">Q</span>
+            <span>日本有哪些必吃的特色美食？</span>
+          </div>
+          <i class="fas fa-chevron-down arrow"></i>
+        </button>
+        <div class="faq-answer">
+          A：握壽司、拉麵、天婦羅、和牛燒肉、大阪章魚燒、關西大阪燒以及宇治抹茶甜點都是許多旅客喜愛的日本經典美食！此外，各個地區也有獨特鄉土料理，例如北海道的湯咖哩與海鮮丼、山梨的餺飥麵、沖繩的排骨麵與石垣牛，都非常值得親自品嚐。
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <div style="display:flex; align-items:center; gap:12px;">
+            <span class="q-icon">Q</span>
+            <span>在日本旅遊，現金與信用卡哪種更方便？</span>
+          </div>
+          <i class="fas fa-chevron-down arrow"></i>
+        </button>
+        <div class="faq-answer">
+          A：目前日本大都市（百貨公司、連鎖超商、飯店、JR）普遍支援信用卡、Apple Pay 與交通 IC 卡支付。但部分傳統神社寺院參拜費用、路邊攤小吃、投幣式自動販賣機與部分在地老店仍僅收日圓現金，因此建議隨身準備少許日圓現金以備不時之需。
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align: center; margin-top: 36px;">
+      <a href="guide.html" class="btn btn-outline"><i class="fas fa-book-reader"></i> 查看更完整旅遊須知與問答手冊</a>
+    </div>
+  </section>
+
+  <!-- 九、聯絡方式與資訊 Banner -->
+  <section style="background:var(--color-sakura-light); border-top:1px solid var(--border-color); padding: 50px 24px; text-align:center;">
+    <div style="max-width:800px; margin:0 auto;">
+      <h3 style="font-family:var(--font-serif); font-size:1.8rem; margin-bottom:12px; color:var(--text-main);">
+        歡迎透過「日本旅遊誌」探索日本，找到下一個想出發的目的地！
+      </h3>
+      <p style="color:var(--text-muted); margin-bottom:24px; font-size:0.95rem;">
+        有任何旅遊行程規劃疑問或商務合作，歡迎隨時與我們聯繫交流。
+      </p>
+      <a href="contact.html" class="btn btn-primary"><i class="fas fa-paper-plane"></i> 聯絡我們與線上諮詢</a>
+    </div>
+  </section>
+
+  <!-- 全站頁尾 Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-grid">
+        <!-- 品牌區 -->
+        <div class="footer-brand">
+          <div class="site-logo">
+            <div class="logo-icon">
+              <i class="fas fa-torii-gate"></i>
+            </div>
+            <div class="logo-text-group">
+              <span class="logo-title">日本旅遊誌</span>
+              <span class="logo-sub">JAPAN TRAVEL JOURNAL</span>
+            </div>
+          </div>
+          <p class="footer-desc">
+            「日本旅遊誌」專為日本旅遊愛好者打造，匯聚日本各地著名景點、在地靈魂美食、多日行程推薦與自由行實用須知，陪伴您規劃最精彩動人的日本假期。
+          </p>
+        </div>
+
+        <!-- 推薦地區 -->
+        <div>
+          <h4 class="footer-col-title">推薦旅遊地區</h4>
+          <ul class="footer-links">
+            <li><a href="tokyo.html"><i class="fas fa-angle-right"></i> 東京 Tokyo</a></li>
+            <li><a href="kyoto.html"><i class="fas fa-angle-right"></i> 京都 Kyoto</a></li>
+            <li><a href="osaka.html"><i class="fas fa-angle-right"></i> 大阪 Osaka</a></li>
+            <li><a href="hokkaido.html"><i class="fas fa-angle-right"></i> 北海道 Hokkaido</a></li>
+            <li><a href="okinawa.html"><i class="fas fa-angle-right"></i> 沖繩 Okinawa</a></li>
+            <li><a href="fuji.html"><i class="fas fa-angle-right"></i> 富士山 Mt. Fuji</a></li>
+          </ul>
+        </div>
+
+        <!-- 網站導覽 -->
+        <div>
+          <h4 class="footer-col-title">網站導覽</h4>
+          <ul class="footer-links">
+            <li><a href="index.html"><i class="fas fa-angle-right"></i> 首頁精選</a></li>
+            <li><a href="itinerary.html"><i class="fas fa-angle-right"></i> 旅遊行程推薦</a></li>
+            <li><a href="food.html"><i class="fas fa-angle-right"></i> 日本美食特輯</a></li>
+            <li><a href="guide.html"><i class="fas fa-angle-right"></i> 旅遊須知與 Q&A</a></li>
+            <li><a href="contact.html"><i class="fas fa-angle-right"></i> 聯絡我們</a></li>
+          </ul>
+        </div>
+
+        <!-- 聯絡方式（嚴格依用戶第九點文案） -->
+        <div>
+          <h4 class="footer-col-title">聯絡我們</h4>
+          <div class="footer-contact-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <div>地址：台北市 XX 區 XX 路 XX 號</div>
+          </div>
+          <div class="footer-contact-item">
+            <i class="fas fa-phone-alt"></i>
+            <div>電話：02-1234-5678</div>
+          </div>
+          <div class="footer-contact-item">
+            <i class="fas fa-envelope"></i>
+            <div>Email：<a href="mailto:japantravel@example.com" style="color:var(--color-sakura);">japantravel@example.com</a></div>
+          </div>
+          <div class="footer-contact-item">
+            <i class="far fa-clock"></i>
+            <div>營業時間：週二至週日 11:00 - 21:00<br><span style="color:#EAA5B2;">週一公休</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>© 2026 日本旅遊誌 Japan Travel Journal. All rights reserved.</div>
+        <div>用心記錄每一處日本風景 · 一本翻不膩的日本旅行手札</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 收藏清單側邊抽屜 Drawer -->
+  <div class="fav-drawer-overlay" id="fav-drawer-overlay"></div>
+  <aside class="fav-drawer" id="fav-drawer" aria-label="我的收藏清單">
+    <div class="fav-drawer-header">
+      <h3 class="fav-drawer-title"><i class="fas fa-heart" style="color:var(--color-torii);"></i> 我的收藏地點</h3>
+      <button class="close-drawer-btn" id="fav-close-btn" aria-label="關閉收藏清單"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="fav-drawer-body" id="fav-drawer-body">
+      <!-- JS 動態渲染收藏清單 -->
+    </div>
+    <div class="fav-drawer-footer">
+      <button class="btn btn-outline" id="clear-fav-btn" style="padding:6px 14px; font-size:0.85rem;"><i class="fas fa-trash-alt"></i> 全部清空</button>
+      <a href="itinerary.html" class="btn btn-primary" style="padding:6px 16px; font-size:0.85rem;"><i class="fas fa-route"></i> 帶入行程規劃</a>
+    </div>
+  </aside>
+
+  <!-- 景點與美食詳情彈出視窗 Modal -->
+  <div class="modal-overlay" id="detail-modal" role="dialog" aria-modal="true">
+    <div class="modal-content-wrapper">
+      <button class="modal-close-btn" id="modal-close-btn" aria-label="關閉視窗"><i class="fas fa-times"></i></button>
+      <img src="" alt="" class="modal-hero-img" id="modal-img">
+      <div class="modal-body">
+        <span class="section-badge" id="modal-badge">精選推薦</span>
+        <h2 style="font-family:var(--font-serif); font-size:1.6rem; margin-top:8px; margin-bottom:4px;" id="modal-title">標題</h2>
+        <div style="font-size:0.85rem; color:var(--color-wood); margin-bottom:16px;" id="modal-subtitle">副標題</div>
+        <p style="color:var(--text-muted); line-height:1.8; font-size:0.95rem;" id="modal-desc">說明內容</p>
+        <div id="modal-extra-info"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 全站共用腳本與首頁專屬腳本 -->
+  <script src="js/common.js"></script>
+  <script src="js/index.js"></script>
+</body>
+</html>
+

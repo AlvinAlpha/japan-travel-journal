@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>富士山周邊旅遊指南 ｜ 河口湖逆富士、新倉山五重塔與山麓美食 - 日本旅遊誌</title>
+  <meta name="description" content="朝聖日本靈魂神山富士山！探索河口湖逆富士、新倉山淺間公園、忍野八海與大石公園花海。品嚐山梨鄉土餺飥麵、桔梗信玄餅與富士宮炒麵。">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/fuji.css">
+</head>
+<body>
+
+  <canvas id="sakura-canvas"></canvas>
+  <button id="sakura-toggle-btn" class="sakura-toggle-btn"><span>🌸 櫻花：開</span></button>
+  <button id="back-to-top" class="back-to-top"><i class="fas fa-chevron-up"></i></button>
+
+  <header class="site-header">
+    <div class="header-container">
+      <a href="index.html" class="site-logo">
+        <div class="logo-icon"><i class="fas fa-torii-gate"></i></div>
+        <div class="logo-text-group">
+          <span class="logo-title">日本旅遊誌</span>
+          <span class="logo-sub">JAPAN TRAVEL JOURNAL</span>
+        </div>
+      </a>
+
+      <nav class="main-nav" id="main-nav">
+        <ul class="nav-list">
+          <li><a href="index.html" class="nav-link"><i class="fas fa-home"></i> 首頁</a></li>
+          <li class="dropdown">
+            <a href="javascript:void(0)" class="nav-link active">
+              <i class="fas fa-map-marked-alt"></i> 推薦地區 <i class="fas fa-angle-down" style="font-size:0.75rem;"></i>
+            </a>
+            <div class="dropdown-menu">
+              <a href="tokyo.html" class="dropdown-item"><span>🗼 東京 Tokyo</span> <span class="badge">現代繁華</span></a>
+              <a href="kyoto.html" class="dropdown-item"><span>⛩️ 京都 Kyoto</span> <span class="badge">古都古韻</span></a>
+              <a href="osaka.html" class="dropdown-item"><span>🏯 大阪 Osaka</span> <span class="badge">美食熱情</span></a>
+              <a href="hokkaido.html" class="dropdown-item"><span>❄️ 北海道 Hokkaido</span> <span class="badge">純白浪漫</span></a>
+              <a href="okinawa.html" class="dropdown-item"><span>🌺 沖繩 Okinawa</span> <span class="badge">度假蔚藍</span></a>
+              <a href="fuji.html" class="dropdown-item" style="color:#2F5177; font-weight:700;"><span>🗻 富士山 Fuji</span> <span class="badge">當前地區</span></a>
+            </div>
+          </li>
+          <li><a href="itinerary.html" class="nav-link"><i class="fas fa-route"></i> 行程推薦</a></li>
+          <li><a href="food.html" class="nav-link"><i class="fas fa-utensils"></i> 特色美食</a></li>
+          <li><a href="guide.html" class="nav-link"><i class="fas fa-compass"></i> 旅遊須知 & Q&A</a></li>
+          <li><a href="contact.html" class="nav-link"><i class="fas fa-envelope"></i> 聯絡我們</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button class="fav-btn" id="fav-open-btn">
+          <i class="fas fa-heart" style="color:var(--color-torii);"></i>
+          <span>我的收藏</span>
+          <span class="fav-count">0</span>
+        </button>
+        <button class="mobile-menu-toggle" id="mobile-menu-toggle"><i class="fas fa-bars"></i></button>
+      </div>
+    </div>
+  </header>
+
+  <!-- 麵包屑導航 -->
+  <div class="breadcrumb-section">
+    <div class="breadcrumb-container">
+      <a href="index.html"><i class="fas fa-home"></i> 首頁</a>
+      <span class="breadcrumb-separator"><i class="fas fa-chevron-right"></i></span>
+      <span>推薦地區</span>
+      <span class="breadcrumb-separator"><i class="fas fa-chevron-right"></i></span>
+      <span class="breadcrumb-current">富士山周邊 Mt. Fuji</span>
+    </div>
+  </div>
+
+  <!-- 富士山 Hero 橫幅 -->
+  <section class="region-hero fuji-hero">
+    <div class="region-hero-content">
+      <div class="region-hero-title-group">
+        <span class="region-badge-pill fuji-badge"><i class="fas fa-mountain"></i> 日本心靈神山與世界文化遺產</span>
+        <h1 class="region-hero-title">富士山周邊 <span>ふじさん · MT. FUJI</span></h1>
+        <p class="region-hero-desc">
+          日本最具代表性的自然景觀之一！海拔3,776公尺的雄偉神山矗立於天地之間。除了仰望富士山本身，更能暢遊河口湖波平如鏡的「逆富士」、新倉山五重塔櫻花絕景、忍野八海天然純淨清泉，品味大鐵鍋烹煮的熱騰騰山梨餺飥麵。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 頁面內部錨點導航 -->
+  <div class="region-nav-bar">
+    <div class="region-nav-container">
+      <a href="#spots" class="region-nav-item active"><i class="fas fa-camera"></i> 富士山周邊景點</a>
+      <a href="#foods" class="region-nav-item"><i class="fas fa-utensils"></i> 山麓鄉土美食</a>
+      <a href="#plans" class="region-nav-item"><i class="fas fa-calendar-alt"></i> 富士賞景行程</a>
+      <a href="#traffic" class="region-nav-item"><i class="fas fa-train"></i> 富士回遊交通</a>
+    </div>
+  </div>
+
+  <!-- 一、富士山旅遊景點介紹 -->
+  <section class="region-spots-section" id="spots">
+    <div class="region-container">
+      <div class="section-header-center">
+        <span class="section-badge" style="background:#EDF3F8; color:#2F5177;"><i class="fas fa-camera-retro"></i> 絕美神山全景</span>
+        <h2 class="section-title">富士山周邊代表性景點</h2>
+        <p class="section-subtitle">精選六大欣賞富士山的最佳舞台，涵蓋湖泊倒影、傳統五重塔與高山樂園。</p>
+      </div>
+
+      <div class="fuji-spots-grid">
+        <!-- 1. 河口湖與逆富士 -->
+        <article class="fuji-card" id="spot-kawaguchiko">
+          <div class="fuji-card-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1490806843957-31f4c9a91c65?w=800&auto=format&fit=crop&q=80" alt="河口湖逆富士" class="fuji-card-img" loading="lazy">
+            <span class="fuji-card-tag">富士五湖首選</span>
+            <button class="spot-fav-btn" data-fav-id="fuji-spot-kawaguchi" data-fav-name="河口湖逆富士" data-fav-region="富士山周邊" data-fav-type="景點" data-fav-image="https://images.unsplash.com/photo-1490806843957-31f4c9a91c65?w=600&auto=format&fit=crop&q=80">
+              <i class="far fa-heart"></i>
+            </button>
+          </div>
+          <div class="fuji-card-body">
+            <h3 class="fuji-card-title">🗻 河口湖與逆富士 (Lake Kawaguchi)</h3>
+            <span class="fuji-card-sub">山梨縣 · 清晨微風無波時的絕美倒影與全景纜車</span>
+            <p class="fuji-card-desc">
+              觀光設施最為完善的湖區。清晨無風時，白雪覆蓋的富士山倒映於如鏡湖面上；搭乘天上山全景纜車登高，視野一覽無遺。
+            </p>
+            <div class="fuji-card-footer">
+              <span style="color:var(--color-wood);"><i class="fas fa-train"></i> 河口湖站轉周遊公車</span>
+              <button class="btn btn-outline" style="padding:4px 12px; font-size:0.82rem;" data-fuji-spot="fuji-kawaguchiko">查看詳情</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- 2. 新倉山淺間公園 -->
+        <article class="fuji-card" id="spot-chureito">
+          <div class="fuji-card-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1526481280693-3bfa7568e0f3?w=800&auto=format&fit=crop&q=80" alt="新倉山五重塔與富士山" class="fuji-card-img" loading="lazy">
+            <span class="fuji-card-tag">日本第一明信片絕景</span>
+            <button class="spot-fav-btn" data-fav-id="fuji-spot-chureito" data-fav-name="新倉山淺間公園" data-fav-region="富士山周邊" data-fav-type="景點" data-fav-image="https://images.unsplash.com/photo-1526481280693-3bfa7568e0f3?w=600&auto=format&fit=crop&q=80">
+              <i class="far fa-heart"></i>
+            </button>
+          </div>
+          <div class="fuji-card-body">
+            <h3 class="fuji-card-title">⛩️ 新倉山淺間公園 (Chureito)</h3>
+            <span class="fuji-card-sub">富士吉田市 · 朱紅五重塔、春櫻與富士山同框世界級景點</span>
+            <p class="fuji-card-desc">
+              登上398階咲くや姬階梯，朱紅色的忠靈塔五重塔與背景純白富士山交相輝映，春櫻盛開時更是全世界遊客爭相朝聖的國寶畫面。
+            </p>
+            <div class="fuji-card-footer">
+              <span style="color:var(--color-wood);"><i class="fas fa-subway"></i> 下吉田站步行10分</span>
+              <button class="btn btn-outline" style="padding:4px 12px; font-size:0.82rem;" data-fuji-spot="fuji-chureito">查看詳情</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- 3. 忍野八海 -->
+        <article class="fuji-card" id="spot-oshino">
+          <div class="fuji-card-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1570535608479-2a9941ebb203?w=800&auto=format&fit=crop&q=80" alt="忍野八海清泉" class="fuji-card-img" loading="lazy">
+            <span class="fuji-card-tag">天然湧水名勝</span>
+            <button class="spot-fav-btn" data-fav-id="fuji-spot-oshino" data-fav-name="忍野八海" data-fav-region="富士山周邊" data-fav-type="景點" data-fav-image="https://images.unsplash.com/photo-1570535608479-2a9941ebb203?w=600&auto=format&fit=crop&q=80">
+              <i class="far fa-heart"></i>
+            </button>
+          </div>
+          <div class="fuji-card-body">
+            <h3 class="fuji-card-title">💧 忍野八海 (Oshino Hakkai)</h3>
+            <span class="fuji-card-sub">忍野村 · 富士山萬年積雪熔岩過濾之清澈天然湧泉</span>
+            <p class="fuji-card-desc">
+              八處澄澈透明如藍寶石的天然清泉，水深數公尺仍能清晰看見游動的高山鱒魚，茅草農舍背景襯著富士山，如世外桃源般清幽。
+            </p>
+            <div class="fuji-card-footer">
+              <span style="color:var(--color-wood);"><i class="fas fa-bus"></i> 忍野八海公車站</span>
+              <button class="btn btn-outline" style="padding:4px 12px; font-size:0.82rem;" data-fuji-spot="fuji-oshino">查看詳情</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- 4. 富士急樂園 -->
+        <article class="fuji-card" id="spot-fujiq">
+          <div class="fuji-card-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1503899036084-c55cdd92da26?w=800&auto=format&fit=crop&q=80" alt="富士急樂園過山車" class="fuji-card-img" loading="lazy">
+            <span class="fuji-card-tag">金氏世界紀錄極限樂園</span>
+            <button class="spot-fav-btn" data-fav-id="fuji-spot-fujiq" data-fav-name="富士急樂園" data-fav-region="富士山周邊" data-fav-type="景點" data-fav-image="https://images.unsplash.com/photo-1503899036084-c55cdd92da26?w=600&auto=format&fit=crop&q=80">
+              <i class="far fa-heart"></i>
+            </button>
+          </div>
+          <div class="fuji-card-body">
+            <h3 class="fuji-card-title">🎢 富士急樂園 (Fuji-Q)</h3>
+            <span class="fuji-card-sub">富士吉田市 · 仰望神山尖叫的 Guinness 世界紀錄雲霄飛車</span>
+            <p class="fuji-card-desc">
+              擁有「FUJIYAMA」之王、世界最長「戰慄迷宮」鬼屋等頂級設施，雲霄飛車直衝頂端時可將富士山一覽無餘，刺激感爆表。
+            </p>
+            <div class="fuji-card-footer">
+              <span style="color:var(--color-wood);"><i class="fas fa-train"></i> 富士急樂園站直通</span>
+              <button class="btn btn-outline" style="padding:4px 12px; font-size:0.82rem;" data-fuji-spot="fuji-fujiq">查看詳情</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- 5. 大石公園花海步道 -->
+        <article class="fuji-card" id="spot-oishi">
+          <div class="fuji-card-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=800&auto=format&fit=crop&q=80" alt="大石公園花海" class="fuji-card-img" loading="lazy">
+            <span class="fuji-card-tag">湖畔四季花毯</span>
+            <button class="spot-fav-btn" data-fav-id="fuji-spot-oishi" data-fav-name="大石公園" data-fav-region="富士山周邊" data-fav-type="景點" data-fav-image="https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=600&auto=format&fit=crop&q=80">
+              <i class="far fa-heart"></i>
+            </button>
+          </div>
+          <div class="fuji-card-body">
+            <h3 class="fuji-card-title">💐 大石公園花海步道</h3>
+            <span class="fuji-card-sub">河口湖北岸 · 紫色薰衣草與秋季圓潤火紅掃帚草</span>
+            <p class="fuji-card-desc">
+              湖畔視野無任何建築阻礙，夏天薰衣草紫浪翻滾，秋天可愛紅通通掃帚草沿湖排列，是拍攝富士山最優雅柔美的打卡點。
+            </p>
+            <div class="fuji-card-footer">
+              <span style="color:var(--color-wood);"><i class="fas fa-bus"></i> 周遊巴士紅線終點</span>
+              <button class="btn btn-outline" style="padding:4px 12px; font-size:0.82rem;" data-fuji-spot="fuji-oishi">查看詳情</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- 6. 西湖里根場 -->
+        <article class="fuji-card" id="spot-iyashi">
+          <div class="fuji-card-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=800&auto=format&fit=crop&q=80" alt="西湖里根場茅草屋" class="fuji-card-img" loading="lazy">
+            <span class="fuji-card-tag">傳統茅草屋聚落</span>
+            <button class="spot-fav-btn" data-fav-id="fuji-spot-iyashi" data-fav-name="西湖里根場" data-fav-region="富士山周邊" data-fav-type="景點" data-fav-image="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=600&auto=format&fit=crop&q=80">
+              <i class="far fa-heart"></i>
+            </button>
+          </div>
+          <div class="fuji-card-body">
+            <h3 class="fuji-card-title">🏡 西湖里根場 (Saiko Iyashi)</h3>
+            <span class="fuji-card-sub">西湖畔 · 重現富士山腳下傳統合掌覆頂古樸農村</span>
+            <p class="fuji-card-desc">
+              宛如關東版白川鄉合掌村！約20座傳統茅草木造屋矗立山腳，可租借日本傳統和服或武士盔甲漫步古道，極富古意。
+            </p>
+            <div class="fuji-card-footer">
+              <span style="color:var(--color-wood);"><i class="fas fa-bus"></i> 西湖周遊公車綠線</span>
+              <button class="btn btn-outline" style="padding:4px 12px; font-size:0.82rem;" data-fuji-spot="fuji-iyashi">查看詳情</button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 二、富士山周邊必吃特色美食 (每道皆附照片並搭配景點) -->
+  <section class="region-foods-section" id="foods">
+    <div class="region-container">
+      <div class="section-header-center">
+        <span class="section-badge" style="background:#EDF3F8; color:#2F5177;"><i class="fas fa-utensils"></i> 甲州名物</span>
+        <h2 class="section-title">富士山周邊必吃特色美食推薦</h2>
+        <p class="section-subtitle">每道名物皆附上實拍圖片與特色解說，並貼心搭配相鄰的推薦富士山周邊景點！</p>
+      </div>
+
+      <div class="fuji-foods-grid">
+        <!-- 餺飥麵 -->
+        <article class="fuji-card">
+          <div class="fuji-card-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1618449840665-9ed506d73a34?w=800&auto=format&fit=crop&q=80" alt="山梨餺飥麵" class="fuji-card-img" loading="lazy">
+            <button class="spot-fav-btn" data-fav-id="fuji-food-hoto" data-fav-name="山梨鄉土餺飥麵" data-fav-region="富士山周邊" data-fav-type="美食" data-fav-image="https://images.unsplash.com/photo-1618449840665-9ed506d73a34?w=600&auto=format&fit=crop&q=80">
+              <i class="far fa-heart"></i>
+            </button>
+          </div>
+          <div class="fuji-card-body">
+            <h3 class="fuji-card-title">🍲 甲州鄉土名物 餺飥麵 (Hoto)</h3>
+            <span class="fuji-card-sub">ほうとう · 武田信玄陣中秘傳！甘甜南瓜厚實大鐵鍋麵</span>
+            <p class="fuji-card-desc">
+              以天然白味噌與豐富南瓜慢火熬煮的濃稠金黃高湯，放入扎實彈牙的手打扁寬烏龍麵，搭配山菜、菇類與豚肉，大鐵鍋滾燙端上桌，甜美濃郁。
+            </p>
+            <div class="fuji-pairing-box">
+              <strong><i class="fas fa-link"></i> 搭配推薦景點：</strong>
+              欣賞完 <a href="javascript:void(0)" data-target-spot="spot-kawaguchiko" style="color:#2F5177; font-weight:700; text-decoration:underline;">河口湖逆富士</a> 後，前往湖畔名店「名物ほうとう不動」享用！
+            </div>
+          </div>
+        </article>
+
+        <!-- 桔梗信玄餅 -->
+        <article class="fuji-card">
+          <div class="fuji-card-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1582293041079-7814c2f12063?w=800&auto=format&fit=crop&q=80" alt="桔梗信玄餅" class="fuji-card-img" loading="lazy">
+            <button class="spot-fav-btn" data-fav-id="fuji-food-shingen" data-fav-name="桔梗信玄餅" data-fav-region="富士山周邊" data-fav-type="美食" data-fav-image="https://images.unsplash.com/photo-1582293041079-7814c2f12063?w=600&auto=format&fit=crop&q=80">
+              <i class="far fa-heart"></i>
+            </button>
+          </div>
+          <div class="fuji-card-body">
+            <h3 class="fuji-card-title">🍡 經典和菓子 桔梗信玄餅</h3>
+            <span class="fuji-card-sub">ききょうしんげんもち · 濃郁黑蜜與香醇黃豆粉的軟Q麻糬</span>
+            <p class="fuji-card-desc">
+              包裹在小巧日式風呂敷包巾中的軟Q黃豆粉麻糬，淋上隨附的醇厚黑糖蜜，甜而不膩香氣撲鼻，近年更推出信玄餅霜淇淋，人氣爆棚！
+            </p>
+            <div class="fuji-pairing-box">
+              <strong><i class="fas fa-link"></i> 搭配推薦景點：</strong>
+              登上 <a href="javascript:void(0)" data-target-spot="spot-chureito" style="color:#2F5177; font-weight:700; text-decoration:underline;">新倉山淺間公園</a> 爬完398階後，來一份冰涼的信玄餅冰淇淋解渴！
+            </div>
+          </div>
+        </article>
+
+        <!-- 富士宮炒麵 -->
+        <article class="fuji-card">
+          <div class="fuji-card-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1585032226651-759b368d7246?w=800&auto=format&fit=crop&q=80" alt="富士宮炒麵" class="fuji-card-img" loading="lazy">
+            <button class="spot-fav-btn" data-fav-id="fuji-food-yakisoba" data-fav-name="富士宮炒麵" data-fav-region="富士山周邊" data-fav-type="美食" data-fav-image="https://images.unsplash.com/photo-1585032226651-759b368d7246?w=600&auto=format&fit=crop&q=80">
+              <i class="far fa-heart"></i>
+            </button>
+          </div>
+          <div class="fuji-card-body">
+            <h3 class="fuji-card-title">🍝 B-1グランプリ冠軍 富士宮炒麵</h3>
+            <span class="fuji-card-sub">富士宮やきそば · 爆香豬油渣、特選彈牙硬麵與沙丁魚削節</span>
+            <p class="fuji-card-desc">
+              與一般軟麵完全不同，富士宮炒麵採用低含水量、口感極為嚼勁硬Q的手工蒸麵，以酥脆豬背脂（肉かす）大火鐵板翻炒，最後灑滿沙丁魚粉。
+            </p>
+            <div class="fuji-pairing-box">
+              <strong><i class="fas fa-link"></i> 搭配推薦景點：</strong>
+              暢遊 <a href="javascript:void(0)" data-target-spot="spot-oshino" style="color:#2F5177; font-weight:700; text-decoration:underline;">忍野八海</a> 或富士急樂園後，在老街鐵板小吃攤大口享用！
+            </div>
+          </div>
+        </article>
+
+        <!-- 河口湖若鷺魚鹽燒 -->
+        <article class="fuji-card">
+          <div class="fuji-card-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&auto=format&fit=crop&q=80" alt="烤魚定食" class="fuji-card-img" loading="lazy">
+            <button class="spot-fav-btn" data-fav-id="fuji-food-wakasagi" data-fav-name="河口湖若鷺魚天婦羅" data-fav-region="富士山周邊" data-fav-type="美食" data-fav-image="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&auto=format&fit=crop&q=80">
+              <i class="far fa-heart"></i>
+            </button>
+          </div>
+          <div class="fuji-card-body">
+            <h3 class="fuji-card-title">🐟 河口湖特產 酥炸若鷺魚定食 (Wakasagi)</h3>
+            <span class="fuji-card-sub">わかさぎ料理 · 湖水天然孕育的酥脆細緻小魚天婦羅</span>
+            <p class="fuji-card-desc">
+              河口湖清澈湖水中捕撈的新鮮若鷺魚，整尾連骨裹薄粉酥炸，魚骨酥脆可整隻食用，肉質清甜無腥味，沾芥末鹽配白飯堪稱絕配。
+            </p>
+            <div class="fuji-pairing-box">
+              <strong><i class="fas fa-link"></i> 搭配推薦景點：</strong>
+              走訪 <a href="javascript:void(0)" data-target-spot="spot-oishi" style="color:#2F5177; font-weight:700; text-decoration:underline;">大石公園花海步道</a> 散步看湖景時，於周邊湖景定食屋享用。
+            </div>
+          </div>
+        </article>
+
+        <!-- 富士山造型戚風蛋糕甜點 -->
+        <article class="fuji-card">
+          <div class="fuji-card-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1533134242443-d4fd215305ad?w=800&auto=format&fit=crop&q=80" alt="富士山蛋糕甜點" class="fuji-card-img" loading="lazy">
+            <button class="spot-fav-btn" data-fav-id="fuji-food-fuji-cake" data-fav-name="富士山造型戚風蛋糕" data-fav-region="富士山周邊" data-fav-type="美食" data-fav-image="https://images.unsplash.com/photo-1533134242443-d4fd215305ad?w=600&auto=format&fit=crop&q=80">
+              <i class="far fa-heart"></i>
+            </button>
+          </div>
+          <div class="fuji-card-body">
+            <h3 class="fuji-card-title">🍰 富士山造型藍莓戚風甜點</h3>
+            <span class="fuji-card-sub">富士山シフォン · 雪白山頂鮮奶油覆頂的可愛手作點心</span>
+            <p class="fuji-card-desc">
+              外型巧妙還原富士山輪廓，藍色蝶豆花或抹茶蛋糕體，山頂淋上宛如皚皚白雪的香濃北海道鮮奶油，視覺超萌吸睛，拍照打卡人氣第一。
+            </p>
+            <div class="pairing-spot-box">
+              <strong><i class="fas fa-link"></i> 搭配推薦景點：</strong>
+              搭乘 <a href="javascript:void(0)" data-target-spot="spot-kawaguchiko" style="color:#2F5177; font-weight:700; text-decoration:underline;">河口湖天上山全景纜車</a> 登頂後，在狸貓茶屋一邊欣賞富士山一邊品嚐！
+            </div>
+          </div>
+        </article>
+
+        <!-- 甲州紅酒燉牛肉 -->
+        <article class="fuji-card">
+          <div class="fuji-card-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1558030006-450675393462?w=800&auto=format&fit=crop&q=80" alt="紅酒燉牛肉" class="fuji-card-img" loading="lazy">
+            <button class="spot-fav-btn" data-fav-id="fuji-food-wine-beef" data-fav-name="甲州紅酒燉牛肉" data-fav-region="富士山周邊" data-fav-type="美食" data-fav-image="https://images.unsplash.com/photo-1558030006-450675393462?w=600&auto=format&fit=crop&q=80">
+              <i class="far fa-heart"></i>
+            </button>
+          </div>
+          <div class="fuji-card-body">
+            <h3 class="fuji-card-title">🥩 山梨甲州紅酒燉頂級黑毛牛肉</h3>
+            <span class="fuji-card-sub">甲州ワインビーフ · 日本第一葡萄酒鄉的微醺深沉醇香</span>
+            <p class="fuji-card-desc">
+              以山梨在地勝沼特產甲州紅酒酒粕飼育的「甲州紅酒牛」，肉質細緻且油酸豐富，與紅酒黑胡椒醬汁慢燉數小時，肉香醇厚入口即化。
+            </p>
+            <div class="fuji-pairing-box">
+              <strong><i class="fas fa-link"></i> 搭配推薦景點：</strong>
+              漫步完古色古香的 <a href="javascript:void(0)" data-target-spot="spot-iyashi" style="color:#2F5177; font-weight:700; text-decoration:underline;">西湖里根場茅草屋</a> 後，入住河口湖頂級溫泉旅館享用會席主菜！
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 三、富士山行程推薦規劃 -->
+  <section class="region-plans-section" id="plans">
+    <div class="region-container">
+      <div class="section-header-center">
+        <span class="section-badge"><i class="fas fa-route"></i> 經典路線</span>
+        <h2 class="section-title">富士山推薦旅遊行程規劃</h2>
+        <p class="section-subtitle">從東京出發一日快閃，或是入住溫泉飯店放鬆的兩天一夜深度路線。</p>
+      </div>
+
+      <div class="plan-cards-grid">
+        <div class="plan-card">
+          <span class="plan-card-tag"><i class="far fa-clock"></i> 一日快閃 · 新宿出發經典</span>
+          <h3 class="plan-card-title">河口湖經典賞景一日遊</h3>
+          <div class="plan-timeline">
+            <div class="timeline-row">
+              <div class="timeline-hour">07:30</div>
+              <div class="timeline-text">
+                <strong>搭乘「富士回遊」特急由新宿出發</strong>
+                <p>一路免換車直達下吉田站，展開富士朝聖之旅。</p>
+              </div>
+            </div>
+            <div class="timeline-row">
+              <div class="timeline-hour">09:30</div>
+              <div class="timeline-text">
+                <strong>新倉山淺間公園拍攝五重塔與神山</strong>
+                <p>上午順光時段登觀景台，拍攝經典明信片照片。</p>
+              </div>
+            </div>
+            <div class="timeline-row">
+              <div class="timeline-hour">12:30</div>
+              <div class="timeline-text">
+                <strong>河口湖畔享用大鐵鍋餺飥麵午餐</strong>
+                <p>走訪不動茶屋品嚐熱滾滾的味噌南瓜麵，大飽口福。</p>
+              </div>
+            </div>
+            <div class="timeline-row">
+              <div class="timeline-hour">15:00</div>
+              <div class="timeline-text">
+                <strong>大石公園花海步道 & 天上山全景纜車</strong>
+                <p>眺望無遮蔽壯麗富士山全貌，搭乘傍晚班車返回東京。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="plan-card">
+          <span class="plan-card-tag"><i class="far fa-clock"></i> 二日悠活 · 五湖溫泉深度</span>
+          <h3 class="plan-card-title">富士五湖與溫泉悠閒二日遊</h3>
+          <div class="plan-timeline">
+            <div class="timeline-row">
+              <div class="timeline-hour">Day 1</div>
+              <div class="timeline-text">
+                <strong>經典美景與湖畔溫泉</strong>
+                <p>新倉山五重塔 ➔ 忍野八海神泉 ➔ 河口湖遊覽船 ➔ 入住面富士山露天溫泉旅館</p>
+              </div>
+            </div>
+            <div class="timeline-row">
+              <div class="timeline-hour">Day 2</div>
+              <div class="timeline-text">
+                <strong>逆富士晨景與自然聚落</strong>
+                <p>清晨湖北岸拍攝逆富士 ➔ 大石公園散步 ➔ 西湖里根場合掌屋穿和服體驗</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 四、富士山交通須知 -->
+  <section class="region-spots-section" id="traffic" style="background:#FAF3EB;">
+    <div class="region-container">
+      <div class="section-header-center">
+        <span class="section-badge"><i class="fas fa-train"></i> 乘車指南</span>
+        <h2 class="section-title">富士山往返與周邊交通攻略</h2>
+        <p class="section-subtitle">從東京市區前往河口湖的最快捷交通指南！</p>
+      </div>
+
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:24px;">
+        <div style="background:#fff; padding:24px; border-radius:var(--radius-md); border:1px solid var(--border-color);">
+          <h4 style="font-family:var(--font-serif); font-size:1.15rem; margin-bottom:10px; color:var(--text-main);"><i class="fas fa-train" style="color:#2F5177;"></i> JR 特急「富士回遊 (Fuji Excursion)」</h4>
+          <p style="font-size:0.88rem; color:var(--text-muted); line-height:1.7;">
+            每日從新宿站直達河口湖站，車程僅需 1小時55分鐘，全車指定席，免去大月站轉車的繁瑣，是最熱門舒適的交通選擇（建議出發前一個月在 JR 官網預約劃位）。
+          </p>
+        </div>
+
+        <div style="background:#fff; padding:24px; border-radius:var(--radius-md); border:1px solid var(--border-color);">
+          <h4 style="font-family:var(--font-serif); font-size:1.15rem; margin-bottom:10px; color:var(--text-main);"><i class="fas fa-bus" style="color:var(--color-matcha);"></i> 河口湖觀光周遊巴士 (Retro Bus)</h4>
+          <p style="font-size:0.88rem; color:var(--text-muted); line-height:1.7;">
+            抵達河口湖站後，可購買周遊巴士兩日券（¥1,500），包含紅線（河口湖）、綠線（西湖）與藍線（本栖湖），15分鐘一班，隨上隨下暢遊各知名景點。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 全站頁尾 Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="site-logo">
+            <div class="logo-icon"><i class="fas fa-torii-gate"></i></div>
+            <div class="logo-text-group">
+              <span class="logo-title">日本旅遊誌</span>
+              <span class="logo-sub">JAPAN TRAVEL JOURNAL</span>
+            </div>
+          </div>
+          <p class="footer-desc">「日本旅遊誌」陪伴您仰望神聖富士山的四季風華，在湖畔溫泉與鄉土美食中尋覓平靜感動！</p>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">推薦地區</h4>
+          <ul class="footer-links">
+            <li><a href="tokyo.html"><i class="fas fa-angle-right"></i> 東京 Tokyo</a></li>
+            <li><a href="kyoto.html"><i class="fas fa-angle-right"></i> 京都 Kyoto</a></li>
+            <li><a href="osaka.html"><i class="fas fa-angle-right"></i> 大阪 Osaka</a></li>
+            <li><a href="hokkaido.html"><i class="fas fa-angle-right"></i> 北海道 Hokkaido</a></li>
+            <li><a href="okinawa.html"><i class="fas fa-angle-right"></i> 沖繩 Okinawa</a></li>
+            <li><a href="fuji.html"><i class="fas fa-angle-right"></i> 富士山 Mt. Fuji</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">網站導覽</h4>
+          <ul class="footer-links">
+            <li><a href="index.html"><i class="fas fa-angle-right"></i> 首頁</a></li>
+            <li><a href="itinerary.html"><i class="fas fa-angle-right"></i> 行程推薦</a></li>
+            <li><a href="food.html"><i class="fas fa-angle-right"></i> 特色美食</a></li>
+            <li><a href="guide.html"><i class="fas fa-angle-right"></i> 旅遊須知 & Q&A</a></li>
+            <li><a href="contact.html"><i class="fas fa-angle-right"></i> 聯絡我們</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">聯絡我們</h4>
+          <div class="footer-contact-item"><i class="fas fa-map-marker-alt"></i><div>地址：台北市 XX 區 XX 路 XX 號</div></div>
+          <div class="footer-contact-item"><i class="fas fa-phone-alt"></i><div>電話：02-1234-5678</div></div>
+          <div class="footer-contact-item"><i class="fas fa-envelope"></i><div>Email：japantravel@example.com</div></div>
+          <div class="footer-contact-item"><i class="far fa-clock"></i><div>營業時間：週二至週日 11:00 - 21:00 (週一公休)</div></div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>© 2026 日本旅遊誌 Japan Travel Journal. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="fav-drawer-overlay" id="fav-drawer-overlay"></div>
+  <aside class="fav-drawer" id="fav-drawer">
+    <div class="fav-drawer-header">
+      <h3 class="fav-drawer-title"><i class="fas fa-heart" style="color:var(--color-torii);"></i> 我的收藏地點</h3>
+      <button class="close-drawer-btn" id="fav-close-btn"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="fav-drawer-body" id="fav-drawer-body"></div>
+    <div class="fav-drawer-footer">
+      <button class="btn btn-outline" id="clear-fav-btn" style="padding:6px 14px; font-size:0.85rem;"><i class="fas fa-trash-alt"></i> 全部清空</button>
+      <a href="itinerary.html" class="btn btn-primary" style="padding:6px 16px; font-size:0.85rem;"><i class="fas fa-route"></i> 帶入行程規劃</a>
+    </div>
+  </aside>
+
+  <div class="modal-overlay" id="detail-modal">
+    <div class="modal-content-wrapper">
+      <button class="modal-close-btn" id="modal-close-btn"><i class="fas fa-times"></i></button>
+      <img src="" alt="" class="modal-hero-img" id="modal-img">
+      <div class="modal-body">
+        <span class="section-badge" id="modal-badge">富士山推薦</span>
+        <h2 style="font-family:var(--font-serif); font-size:1.6rem; margin-top:8px; margin-bottom:4px;" id="modal-title">標題</h2>
+        <div style="font-size:0.85rem; color:var(--color-wood); margin-bottom:16px;" id="modal-subtitle">副標題</div>
+        <p style="color:var(--text-muted); line-height:1.8; font-size:0.95rem;" id="modal-desc">說明內容</p>
+        <div id="modal-extra-info"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/common.js"></script>
+  <script src="js/fuji.js"></script>
+</body>
+</html>
+

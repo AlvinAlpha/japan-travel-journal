@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>日本旅遊須知與常見問答 Q&A ｜ 行前準備、交通與文化禮儀 - 日本旅遊誌</title>
+  <meta name="description" content="第一次去日本旅遊全攻略！提供行前準備、交通購票、文化禮儀、四季旅遊季節選擇，解答日本旅遊常見問題與美食須知。">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/guide.css">
+</head>
+<body>
+
+  <canvas id="sakura-canvas"></canvas>
+  <button id="sakura-toggle-btn" class="sakura-toggle-btn"><span>🌸 櫻花：開</span></button>
+  <button id="back-to-top" class="back-to-top"><i class="fas fa-chevron-up"></i></button>
+
+  <header class="site-header">
+    <div class="header-container">
+      <a href="index.html" class="site-logo">
+        <div class="logo-icon"><i class="fas fa-torii-gate"></i></div>
+        <div class="logo-text-group">
+          <span class="logo-title">日本旅遊誌</span>
+          <span class="logo-sub">JAPAN TRAVEL JOURNAL</span>
+        </div>
+      </a>
+
+      <nav class="main-nav" id="main-nav">
+        <ul class="nav-list">
+          <li><a href="index.html" class="nav-link"><i class="fas fa-home"></i> 首頁</a></li>
+          <li class="dropdown">
+            <a href="javascript:void(0)" class="nav-link">
+              <i class="fas fa-map-marked-alt"></i> 推薦地區 <i class="fas fa-angle-down" style="font-size:0.75rem;"></i>
+            </a>
+            <div class="dropdown-menu">
+              <a href="tokyo.html" class="dropdown-item"><span>🗼 東京 Tokyo</span> <span class="badge">現代繁華</span></a>
+              <a href="kyoto.html" class="dropdown-item"><span>⛩️ 京都 Kyoto</span> <span class="badge">古都古韻</span></a>
+              <a href="osaka.html" class="dropdown-item"><span>🏯 大阪 Osaka</span> <span class="badge">美食熱情</span></a>
+              <a href="hokkaido.html" class="dropdown-item"><span>❄️ 北海道 Hokkaido</span> <span class="badge">純白浪漫</span></a>
+              <a href="okinawa.html" class="dropdown-item"><span>🌺 沖繩 Okinawa</span> <span class="badge">度假蔚藍</span></a>
+              <a href="fuji.html" class="dropdown-item"><span>🗻 富士山 Fuji</span> <span class="badge">壯麗神山</span></a>
+            </div>
+          </li>
+          <li><a href="itinerary.html" class="nav-link"><i class="fas fa-route"></i> 行程推薦</a></li>
+          <li><a href="food.html" class="nav-link"><i class="fas fa-utensils"></i> 特色美食</a></li>
+          <li><a href="guide.html" class="nav-link active"><i class="fas fa-compass"></i> 旅遊須知 & Q&A</a></li>
+          <li><a href="contact.html" class="nav-link"><i class="fas fa-envelope"></i> 聯絡我們</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button class="fav-btn" id="fav-open-btn">
+          <i class="fas fa-heart" style="color:var(--color-torii);"></i>
+          <span>我的收藏</span>
+          <span class="fav-count">0</span>
+        </button>
+        <button class="mobile-menu-toggle" id="mobile-menu-toggle"><i class="fas fa-bars"></i></button>
+      </div>
+    </div>
+  </header>
+
+  <!-- 麵包屑導航 -->
+  <div class="breadcrumb-section">
+    <div class="breadcrumb-container">
+      <a href="index.html"><i class="fas fa-home"></i> 首頁</a>
+      <span class="breadcrumb-separator"><i class="fas fa-chevron-right"></i></span>
+      <span class="breadcrumb-current">旅遊須知 & Q&A</span>
+    </div>
+  </div>
+
+  <!-- Hero 橫幅 -->
+  <section class="guide-hero-section">
+    <div class="guide-hero-container">
+      <span class="section-badge" style="background:rgba(255,255,255,0.25); color:#fff; border-color:rgba(255,255,255,0.4);"><i class="fas fa-shield-alt"></i> 安心出發指南</span>
+      <h1 style="font-family:var(--font-serif); font-size:clamp(2.2rem, 4vw, 3.5rem); margin-bottom:12px;">旅遊須知與常見問答 Q&A</h1>
+      <p style="font-size:1.05rem; color:#F0ECE6; max-width:700px; line-height:1.8;">
+        出發前做好萬全準備，讓日本自由行順遂安心。這裡整理了最完整的交通、季節穿搭、在地禮儀與初訪旅客最常見的疑問解答。
+      </p>
+    </div>
+  </section>
+
+  <!-- 七、旅遊小提醒核心四大板塊 -->
+  <section class="tips-container-block">
+    <div class="section-header-center">
+      <span class="section-badge"><i class="fas fa-bell"></i> 必備重點</span>
+      <h2 class="section-title">日本旅遊四大行前小提醒</h2>
+      <p class="section-subtitle">出發前先確認好關鍵細節，在旅行途中更從容自信。</p>
+    </div>
+
+    <div class="guide-cards-grid">
+      <!-- 1. 出發前準備 -->
+      <div class="guide-rule-card">
+        <div class="guide-rule-icon">✈️</div>
+        <div class="guide-rule-content">
+          <h3>出發前先做好準備</h3>
+          <p>確認護照、交通票券、住宿與行程安排，讓旅程更加順利。</p>
+          <ul class="guide-sub-points">
+            <li><strong>護照效期：</strong>出發當日算起至少需有 6 個月以上有效效期。</li>
+            <li><strong>數位入境手續：</strong>出發前預先在「Visit Japan Web」填寫入境審查與海關申報，生成 QR Code 快速通關。</li>
+            <li><strong>行動網路：</strong>建議預購日本 4G/5G eSIM 或上網 SIM 卡，隨時查地圖與換乘資訊。</li>
+            <li><strong>外幣準備：</strong>儘管多數店家可感應支付，仍建議隨身準備 2-3 萬日圓現金備用。</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 2. 善用日本交通 -->
+      <div class="guide-rule-card">
+        <div class="guide-rule-icon">🚆</div>
+        <div class="guide-rule-content">
+          <h3>善用日本交通系統</h3>
+          <p>日本擁有便利的大眾交通系統，可以依照旅遊地區選擇適合的電車、地鐵或巴士。</p>
+          <ul class="guide-sub-points">
+            <li><strong>數位 IC 卡：</strong>iPhone 用戶可直接在 Apple 錢包新增 Suica 或 PASMO，隨嗶隨走。</li>
+            <li><strong>地區通票：</strong>東京市區善用「東京地鐵 24-72 小時券」；關西善用「大阪周遊卡」或「關西鐵路周遊券」。</li>
+            <li><strong>新幹線特大行李：</strong>攜帶長寬高合計超過 160 公分的大型行李箱搭乘東海道新幹線，需預約附特大行李席。</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 3. 尊重當地文化 -->
+      <div class="guide-rule-card">
+        <div class="guide-rule-icon">🍱</div>
+        <div class="guide-rule-content">
+          <h3>尊重當地文化禮儀</h3>
+          <p>旅行時請遵守日本當地的公共禮儀，保持環境整潔與社交禮貌。</p>
+          <ul class="guide-sub-points">
+            <li><strong>大眾運輸內：</strong>手機請開啟靜音模式（マナーモード），盡量避免講電話，耳機音量避免外洩。</li>
+            <li><strong>排隊與上下車：</strong>遵守自覺排隊，電車停妥時遵循「先下後上」原則。</li>
+            <li><strong>垃圾隨身攜帶：</strong>日本街頭垃圾桶較少，建議隨身自備小塑膠袋，回到飯店或車站垃圾桶分類丟棄。</li>
+            <li><strong>溫泉入浴規範：</strong>入池前務必先將身體徹底洗淨，毛巾不可浸入溫泉池水中。</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 4. 注意季節氣候 -->
+      <div class="guide-rule-card">
+        <div class="guide-rule-icon">🌸</div>
+        <div class="guide-rule-content">
+          <h3>注意季節氣候與景緻</h3>
+          <p>日本四季景色各具特色，可以依照想欣賞的風景選擇適合的旅遊季節與穿搭。</p>
+          <ul class="guide-sub-points">
+            <li><strong>春季（3月～5月）：</strong>櫻花爛漫，日夜溫差較大，建議洋蔥式穿法並備薄外套。</li>
+            <li><strong>夏季（6月～8月）：</strong>祭典煙火盛事，戶外炎熱多雨，需注意防曬、補充水分與雨具。</li>
+            <li><strong>秋季（9月～11月）：</strong>楓紅銀杏壯觀，天氣涼爽乾燥，適合戶外登山與散步。</li>
+            <li><strong>冬季（12月～2月）：</strong>雪景溫泉，室內暖氣強烈，建議洋蔥式穿著好穿脫保暖大衣。</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 八、Q&A 常見問答詳細專區 -->
+  <section class="guide-faq-section">
+    <div class="section-header-center">
+      <span class="section-badge"><i class="fas fa-question-circle"></i> 疑難排解</span>
+      <h2 class="section-title">常見問答 Q&A</h2>
+      <p class="section-subtitle">點選問題即可查看詳細說明，亦可利用搜尋框快速篩選！</p>
+    </div>
+
+    <!-- 搜尋與控制欄 -->
+    <div class="faq-header-toolbar">
+      <div style="position:relative; flex:1; max-width:400px;">
+        <i class="fas fa-search" style="position:absolute; left:14px; top:50%; transform:translateY(-50%); color:var(--text-light);"></i>
+        <input type="text" id="faq-search-input" placeholder="搜尋常見問題關鍵字（如：季節、美食、交通）..." style="width:100%; padding:8px 16px 8px 38px; border:1px solid var(--border-color); border-radius:var(--radius-full); font-family:inherit; outline:none;">
+      </div>
+      <button class="btn btn-outline" id="toggle-all-faq" style="padding:6px 16px; font-size:0.85rem;">展開全部問答</button>
+    </div>
+
+    <div class="faq-accordion-list">
+      <!-- 官方 Q1 -->
+      <div class="faq-accordion-card active">
+        <button class="faq-q-btn">
+          <div style="display:flex; align-items:center; gap:14px;">
+            <span class="badge-q">Q</span>
+            <span>第一次去日本推薦去哪裡？</span>
+          </div>
+          <i class="fas fa-chevron-down faq-arrow"></i>
+        </button>
+        <div class="faq-a-body">
+          <p>
+            <strong>A：如果是第一次前往日本，可以考慮東京、大阪或京都，景點豐富且交通相對便利。</strong>
+          </p>
+          <p style="margin-top:8px;">
+            東京擁有現代化都會景觀、潮流商場與完善的地鐵系統；京都則能深刻感受千本鳥居、清水寺等千年歷史世界遺產；大阪則以道頓堀道地小吃與熱情洋溢的市井氛圍著稱。這三大城市的大眾運輸站點皆有清晰的繁體中文標示，店家也普遍具備外語服務或退稅櫃台，自由行上手難度極低！
+          </p>
+        </div>
+      </div>
+
+      <!-- 官方 Q2 -->
+      <div class="faq-accordion-card active">
+        <button class="faq-q-btn">
+          <div style="display:flex; align-items:center; gap:14px;">
+            <span class="badge-q">Q</span>
+            <span>什麼季節適合去日本？</span>
+          </div>
+          <i class="fas fa-chevron-down faq-arrow"></i>
+        </button>
+        <div class="faq-a-body">
+          <p>
+            <strong>A：春季適合賞櫻，夏季適合戶外活動，秋季適合賞楓，冬季則可以欣賞雪景與體驗滑雪。</strong>
+          </p>
+          <ul style="margin-top:8px; padding-left:20px; list-style:disc;">
+            <li><strong>3月下旬至4月中旬：</strong>東京、京都、大阪櫻花盛開，落櫻繽紛最浪漫。</li>
+            <li><strong>7月至8月：</strong>沖繩碧藍海水水上浮潛、北海道富良野七彩花田與日本夏日祭典花火大會。</li>
+            <li><strong>10月下旬至11月下旬：</strong>京都寺廟紅葉如火，河口湖畔紅葉迴廊倒映富士山。</li>
+            <li><strong>12月至2月：</strong>北海道札幌雪祭、白川鄉合掌村夢幻點燈，以及在露天溫泉中享受飄雪泡湯。</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 官方 Q3 -->
+      <div class="faq-accordion-card active">
+        <button class="faq-q-btn">
+          <div style="display:flex; align-items:center; gap:14px;">
+            <span class="badge-q">Q</span>
+            <span>日本有哪些必吃美食？</span>
+          </div>
+          <i class="fas fa-chevron-down faq-arrow"></i>
+        </button>
+        <div class="faq-a-body">
+          <p>
+            <strong>A：壽司、拉麵、天婦羅、和牛、章魚燒與抹茶甜點都是許多旅客喜愛的日本特色美食。</strong>
+          </p>
+          <p style="margin-top:8px;">
+            此外，各個地區亦有專屬的在地靈魂料理，例如：
+          </p>
+          <ul style="margin-top:8px; padding-left:20px; list-style:disc;">
+            <li><strong>東京：</strong>江戶前握壽司、月島文字燒、下町炸蝦天婦羅丼。</li>
+            <li><strong>京都：</strong>宇治抹茶聖代甜點、南禪寺傳統湯豆腐、精緻懷石料理。</li>
+            <li><strong>大阪：</strong>道頓堀現烤章魚燒、關西大阪燒、新世界元祖串炸。</li>
+            <li><strong>北海道：</strong>小樽三角市場現切豪華海鮮丼、札幌香濃野菜湯咖哩、成吉思汗烤羊肉。</li>
+            <li><strong>沖繩：</strong>石垣牛炭火燒肉、沖繩排骨麵、海葡萄與宮古島雪鹽霜淇淋。</li>
+            <li><strong>富士山周邊：</strong>山梨甲州名物南瓜餺飥麵、桔梗信玄餅。</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 實用 Q4: 日本購物退稅 -->
+      <div class="faq-accordion-card">
+        <button class="faq-q-btn">
+          <div style="display:flex; align-items:center; gap:14px;">
+            <span class="badge-q">Q</span>
+            <span>日本購物如何辦理免稅 (Tax-Free)？</span>
+          </div>
+          <i class="fas fa-chevron-down faq-arrow"></i>
+        </button>
+        <div class="faq-a-body">
+          <p>
+            在貼有「Japan Tax-Free Shop」標誌的商店，同一天於同一家店購買一般物品（衣飾、電器）或消耗品（藥妝、食品），未稅金額達 <strong>5,000 日圓以上</strong>即可享有 10% 消費稅免稅。
+          </p>
+          <p style="margin-top:6px;">
+            結帳時出示護照正本（或 Visit Japan Web 免稅二維碼），消耗品會以特殊防撕封袋包裝，出境日本前請勿拆封！
+          </p>
+        </div>
+      </div>
+
+      <!-- 實用 Q5: 搭乘計程車 -->
+      <div class="faq-accordion-card">
+        <button class="faq-q-btn">
+          <div style="display:flex; align-items:center; gap:14px;">
+            <span class="badge-q">Q</span>
+            <span>在日本搭乘計程車有什麼需要注意的禮貌？</span>
+          </div>
+          <i class="fas fa-chevron-down faq-arrow"></i>
+        </button>
+        <div class="faq-a-body">
+          <p>
+            <strong>日本計程車後座車門由司機自動控制開關！</strong>上車或下車時請不要用手主動去拉或推車門，司機會操作把手自動為您開門與關閉。下車付款時大多支援信用卡或交通 IC 卡，亦無需支付額外小費。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 全站頁尾 Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="site-logo">
+            <div class="logo-icon"><i class="fas fa-torii-gate"></i></div>
+            <div class="logo-text-group">
+              <span class="logo-title">日本旅遊誌</span>
+              <span class="logo-sub">JAPAN TRAVEL JOURNAL</span>
+            </div>
+          </div>
+          <p class="footer-desc">「日本旅遊誌」陪伴您掌握每一次行前的關鍵資訊，讓旅途中的每一步都安心無憂！</p>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">推薦地區</h4>
+          <ul class="footer-links">
+            <li><a href="tokyo.html"><i class="fas fa-angle-right"></i> 東京 Tokyo</a></li>
+            <li><a href="kyoto.html"><i class="fas fa-angle-right"></i> 京都 Kyoto</a></li>
+            <li><a href="osaka.html"><i class="fas fa-angle-right"></i> 大阪 Osaka</a></li>
+            <li><a href="hokkaido.html"><i class="fas fa-angle-right"></i> 北海道 Hokkaido</a></li>
+            <li><a href="okinawa.html"><i class="fas fa-angle-right"></i> 沖繩 Okinawa</a></li>
+            <li><a href="fuji.html"><i class="fas fa-angle-right"></i> 富士山 Mt. Fuji</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">網站導覽</h4>
+          <ul class="footer-links">
+            <li><a href="index.html"><i class="fas fa-angle-right"></i> 首頁</a></li>
+            <li><a href="itinerary.html"><i class="fas fa-angle-right"></i> 行程推薦</a></li>
+            <li><a href="food.html"><i class="fas fa-angle-right"></i> 特色美食</a></li>
+            <li><a href="guide.html"><i class="fas fa-angle-right"></i> 旅遊須知 & Q&A</a></li>
+            <li><a href="contact.html"><i class="fas fa-angle-right"></i> 聯絡我們</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">聯絡我們</h4>
+          <div class="footer-contact-item"><i class="fas fa-map-marker-alt"></i><div>地址：台北市 XX 區 XX 路 XX 號</div></div>
+          <div class="footer-contact-item"><i class="fas fa-phone-alt"></i><div>電話：02-1234-5678</div></div>
+          <div class="footer-contact-item"><i class="fas fa-envelope"></i><div>Email：japantravel@example.com</div></div>
+          <div class="footer-contact-item"><i class="far fa-clock"></i><div>營業時間：週二至週日 11:00 - 21:00 (週一公休)</div></div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>© 2026 日本旅遊誌 Japan Travel Journal. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="fav-drawer-overlay" id="fav-drawer-overlay"></div>
+  <aside class="fav-drawer" id="fav-drawer">
+    <div class="fav-drawer-header">
+      <h3 class="fav-drawer-title"><i class="fas fa-heart" style="color:var(--color-torii);"></i> 我的收藏地點</h3>
+      <button class="close-drawer-btn" id="fav-close-btn"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="fav-drawer-body" id="fav-drawer-body"></div>
+    <div class="fav-drawer-footer">
+      <button class="btn btn-outline" id="clear-fav-btn" style="padding:6px 14px; font-size:0.85rem;"><i class="fas fa-trash-alt"></i> 全部清空</button>
+      <a href="itinerary.html" class="btn btn-primary" style="padding:6px 16px; font-size:0.85rem;"><i class="fas fa-route"></i> 帶入行程規劃</a>
+    </div>
+  </aside>
+
+  <script src="js/common.js"></script>
+  <script src="js/guide.js"></script>
+</body>
+</html>
+

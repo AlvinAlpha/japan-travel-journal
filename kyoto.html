@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>京都旅遊指南 ｜ 世界遺產古寺、宇治抹茶美食與漫遊行程 - 日本旅遊誌</title>
+  <meta name="description" content="造訪千年古都京都！探索清水寺、伏見稻荷千本鳥居、嵐山渡月橋、金閣寺。品嚐正宗宇治抹茶聖代、清爽湯豆腐與精緻懷石料理。">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/kyoto.css">
+</head>
+<body>
+
+  <canvas id="sakura-canvas"></canvas>
+  <button id="sakura-toggle-btn" class="sakura-toggle-btn"><span>🌸 櫻花：開</span></button>
+  <button id="back-to-top" class="back-to-top"><i class="fas fa-chevron-up"></i></button>
+
+  <!-- 頂部導航 -->
+  <header class="site-header">
+    <div class="header-container">
+      <a href="index.html" class="site-logo">
+        <div class="logo-icon"><i class="fas fa-torii-gate"></i></div>
+        <div class="logo-text-group">
+          <span class="logo-title">日本旅遊誌</span>
+          <span class="logo-sub">JAPAN TRAVEL JOURNAL</span>
+        </div>
+      </a>
+
+      <nav class="main-nav" id="main-nav">
+        <ul class="nav-list">
+          <li><a href="index.html" class="nav-link"><i class="fas fa-home"></i> 首頁</a></li>
+          <li class="dropdown">
+            <a href="javascript:void(0)" class="nav-link active">
+              <i class="fas fa-map-marked-alt"></i> 推薦地區 <i class="fas fa-angle-down" style="font-size:0.75rem;"></i>
+            </a>
+            <div class="dropdown-menu">
+              <a href="tokyo.html" class="dropdown-item"><span>🗼 東京 Tokyo</span> <span class="badge">現代繁華</span></a>
+              <a href="kyoto.html" class="dropdown-item" style="color:var(--color-matcha); font-weight:700;"><span>⛩️ 京都 Kyoto</span> <span class="badge">當前地區</span></a>
+              <a href="osaka.html" class="dropdown-item"><span>🏯 大阪 Osaka</span> <span class="badge">美食熱情</span></a>
+              <a href="hokkaido.html" class="dropdown-item"><span>❄️ 北海道 Hokkaido</span> <span class="badge">純白浪漫</span></a>
+              <a href="okinawa.html" class="dropdown-item"><span>🌺 沖繩 Okinawa</span> <span class="badge">度假蔚藍</span></a>
+              <a href="fuji.html" class="dropdown-item"><span>🗻 富士山 Fuji</span> <span class="badge">壯麗神山</span></a>
+            </div>
+          </li>
+          <li><a href="itinerary.html" class="nav-link"><i class="fas fa-route"></i> 行程推薦</a></li>
+          <li><a href="food.html" class="nav-link"><i class="fas fa-utensils"></i> 特色美食</a></li>
+          <li><a href="guide.html" class="nav-link"><i class="fas fa-compass"></i> 旅遊須知 & Q&A</a></li>
+          <li><a href="contact.html" class="nav-link"><i class="fas fa-envelope"></i> 聯絡我們</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button class="fav-btn" id="fav-open-btn">
+          <i class="fas fa-heart" style="color:var(--color-torii);"></i>
+          <span>我的收藏</span>
+          <span class="fav-count">0</span>
+        </button>
+        <button class="mobile-menu-toggle" id="mobile-menu-toggle"><i class="fas fa-bars"></i></button>
+      </div>
+    </div>
+  </header>
+
+  <!-- 麵包屑導航 -->
+  <div class="breadcrumb-section">
+    <div class="breadcrumb-container">
+      <a href="index.html"><i class="fas fa-home"></i> 首頁</a>
+      <span class="breadcrumb-separator"><i class="fas fa-chevron-right"></i></span>
+      <span>推薦地區</span>
+      <span class="breadcrumb-separator"><i class="fas fa-chevron-right"></i></span>
+      <span class="breadcrumb-current">京都 Kyoto</span>
+    </div>
+  </div>
+
+  <!-- 京都 Hero 橫幅 -->
+  <section class="region-hero kyoto-hero">
+    <div class="region-hero-content">
+      <div class="region-hero-title-group">
+        <span class="region-badge-pill kyoto-badge"><i class="fas fa-torii-gate"></i> 千年古都與幽靜禪意</span>
+        <h1 class="region-hero-title">京都 <span>きょうと · KYOTO</span></h1>
+        <p class="region-hero-desc">
+          欣賞日本最純粹的古都風情。走訪十七座聯合國教科文組織世界文化遺產，穿過清水寺懸空木造舞台、伏見稻荷綿延數公里的千本鳥居，在嵐山蒼翠竹林裡聆聽風聲，品一口宇治抹茶的甘冽餘香。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 頁面內部錨點導航 -->
+  <div class="region-nav-bar">
+    <div class="region-nav-container">
+      <a href="#spots" class="region-nav-item active"><i class="fas fa-camera"></i> 京都名勝古剎</a>
+      <a href="#foods" class="region-nav-item"><i class="fas fa-utensils"></i> 京都傳統美食</a>
+      <a href="#plans" class="region-nav-item"><i class="fas fa-calendar-alt"></i> 古都散策行程</a>
+      <a href="#traffic" class="region-nav-item"><i class="fas fa-bus"></i> 市內公車地鐵</a>
+    </div>
+  </div>
+
+  <!-- 一、京都旅遊景點介紹 -->
+  <section class="region-spots-section" id="spots">
+    <div class="region-container">
+      <div class="section-header-center">
+        <span class="section-badge" style="background:var(--color-matcha-light); color:var(--color-matcha);"><i class="fas fa-landmark"></i> 歷史遺產</span>
+        <h2 class="section-title">京都必訪名勝寺院</h2>
+        <p class="section-subtitle">走訪古色古香的經典神社與寺院，沉浸於京都獨有的幽靜與歲月靜好。</p>
+      </div>
+
+      <div class="kyoto-spots-grid">
+        <!-- 1. 清水寺 -->
+        <article class="kyoto-card" id="spot-kiyomizu">
+          <div class="kyoto-card-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=800&auto=format&fit=crop&q=80" alt="京都清水寺舞台" class="kyoto-card-img" loading="lazy">
+            <span class="kyoto-card-tag">世界文化遺產</span>
+            <button class="spot-fav-btn" data-fav-id="kyoto-spot-kiyomizu" data-fav-name="京都清水寺" data-fav-region="京都" data-fav-type="景點" data-fav-image="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=600&auto=format&fit=crop&q=80">
+              <i class="far fa-heart"></i>
+            </button>
+          </div>
+          <div class="kyoto-card-body">
+            <h3 class="kyoto-card-title">⛩️ 清水寺 (Kiyomizu-dera)</h3>
+            <span class="kyoto-card-sub">東山區 · 懸空木造本堂舞台與音羽靈泉</span>
+            <p class="kyoto-card-desc">
+              依懸崖峭壁而建的國寶級木造建築，未動用任何一根釘子。春天被櫻花浪潮淹沒，秋季被滿山火紅楓葉環抱，極其壯麗。
+            </p>
+            <div class="kyoto-card-footer">
+              <span style="color:var(--color-wood);"><i class="fas fa-bus"></i> 五條坂站步行10分</span>
+              <button class="btn btn-outline" style="padding:4px 12px; font-size:0.82rem;" data-kyoto-spot="kyoto-kiyomizu">查看詳情</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- 2. 伏見稻荷大社 -->
+        <article class="kyoto-card" id="spot-fushimi">
+          <div class="kyoto-card-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1478436127897-769e00d2c715?w=800&auto=format&fit=crop&q=80" alt="伏見稻荷大社千本鳥居" class="kyoto-card-img" loading="lazy">
+            <span class="kyoto-card-tag">全日本稻荷總本宮</span>
+            <button class="spot-fav-btn" data-fav-id="kyoto-spot-fushimi" data-fav-name="伏見稻荷大社" data-fav-region="京都" data-fav-type="景點" data-fav-image="https://images.unsplash.com/photo-1478436127897-769e00d2c715?w=600&auto=format&fit=crop&q=80">
+              <i class="far fa-heart"></i>
+            </button>
+          </div>
+          <div class="kyoto-card-body">
+            <h3 class="kyoto-card-title">🦊 伏見稻荷大社 (Fushimi Inari)</h3>
+            <span class="kyoto-card-sub">伏見區 · 數千座朱紅千本鳥居穿梭神聖山丘</span>
+            <p class="kyoto-card-desc">
+              祈求五穀豐收與商業興旺。信徒奉獻的朱紅鳥居沿整座稻荷山綿延數公里，陽光灑落神祕迷人，是京都最具識別度的地標。
+            </p>
+            <div class="kyoto-card-footer">
+              <span style="color:var(--color-wood);"><i class="fas fa-subway"></i> JR稻荷站即達</span>
+              <button class="btn btn-outline" style="padding:4px 12px; font-size:0.82rem;" data-kyoto-spot="kyoto-fushimi">查看詳情</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- 3. 嵐山竹林之道 -->
+        <article class="kyoto-card" id="spot-arashiyama">
+          <div class="kyoto-card-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1528164344705-475426879c0d?w=800&auto=format&fit=crop&q=80" alt="嵐山竹林之道" class="kyoto-card-img" loading="lazy">
+            <span class="kyoto-card-tag">清幽自然勝地</span>
+            <button class="spot-fav-btn" data-fav-id="kyoto-spot-arashiyama" data-fav-name="嵐山竹林之道" data-fav-region="京都" data-fav-type="景點" data-fav-image="https://images.unsplash.com/photo-1528164344705-475426879c0d?w=600&auto=format&fit=crop&q=80">
+              <i class="far fa-heart"></i>
+            </button>
+          </div>
+          <div class="kyoto-card-body">
+            <h3 class="kyoto-card-title">🎋 嵐山竹林之道 & 渡月橋</h3>
+            <span class="kyoto-card-sub">右京區 · 翠綠挺拔之竹海幽徑與平安貴族渡月橋</span>
+            <p class="kyoto-card-desc">
+              走進長達數百公尺的高聳綠竹步道，微風掠過時沙沙竹葉聲令人心神沉靜，秋季搭乘嵯峨野觀光小火車賞楓更是一絕。
+            </p>
+            <div class="kyoto-card-footer">
+              <span style="color:var(--color-wood);"><i class="fas fa-train"></i> 嵐電嵐山站步5分</span>
+              <button class="btn btn-outline" style="padding:4px 12px; font-size:0.82rem;" data-kyoto-spot="kyoto-arashiyama">查看詳情</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- 4. 金閣寺 -->
+        <article class="kyoto-card" id="spot-kinkakuji">
+          <div class="kyoto-card-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1503899036084-c55cdd92da26?w=800&auto=format&fit=crop&q=80" alt="金閣寺" class="kyoto-card-img" loading="lazy">
+            <span class="kyoto-card-tag">世界文化遺產</span>
+            <button class="spot-fav-btn" data-fav-id="kyoto-spot-kinkakuji" data-fav-name="金閣寺" data-fav-region="京都" data-fav-type="景點" data-fav-image="https://images.unsplash.com/photo-1503899036084-c55cdd92da26?w=600&auto=format&fit=crop&q=80">
+              <i class="far fa-heart"></i>
+            </button>
+          </div>
+          <div class="kyoto-card-body">
+            <h3 class="kyoto-card-title">✨ 金閣寺 鹿苑寺 (Kinkaku-ji)</h3>
+            <span class="kyoto-card-sub">北區 · 純金金箔閃耀於鏡湖池上的將軍離宮</span>
+            <p class="kyoto-card-desc">
+              三層樓閣貼滿耀眼金箔，倒映在清澈鏡湖池中，襯托著遠方衣笠山，展現出室町時代北山文化的奢華與禪意交融之美。
+            </p>
+            <div class="kyoto-card-footer">
+              <span style="color:var(--color-wood);"><i class="fas fa-bus"></i> 金閣寺道站下車</span>
+              <button class="btn btn-outline" style="padding:4px 12px; font-size:0.82rem;" data-kyoto-spot="kyoto-kinkakuji">查看詳情</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- 5. 祇園花見小路 -->
+        <article class="kyoto-card" id="spot-gion">
+          <div class="kyoto-card-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=800&auto=format&fit=crop&q=80" alt="祇園花見小路" class="kyoto-card-img" loading="lazy">
+            <span class="kyoto-card-tag">傳統花街町家</span>
+            <button class="spot-fav-btn" data-fav-id="kyoto-spot-gion" data-fav-name="祇園花見小路" data-fav-region="京都" data-fav-type="景點" data-fav-image="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=600&auto=format&fit=crop&q=80">
+              <i class="far fa-heart"></i>
+            </button>
+          </div>
+          <div class="kyoto-card-body">
+            <h3 class="kyoto-card-title">🏮 祇園花見小路 (Gion)</h3>
+            <span class="kyoto-card-sub">東山區 · 古色古香的石疊小徑與藝妓文化街區</span>
+            <p class="kyoto-card-desc">
+              保存良好的江戶木造町家建築，入夜後紅燈籠亮起，充滿神祕韻味，沿途更有許多隱密米其林割烹料亭與傳統茶屋。
+            </p>
+            <div class="kyoto-card-footer">
+              <span style="color:var(--color-wood);"><i class="fas fa-subway"></i> 祇園四條站步3分</span>
+              <button class="btn btn-outline" style="padding:4px 12px; font-size:0.82rem;" data-kyoto-spot="kyoto-gion">查看詳情</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- 6. 元離宮二條城 -->
+        <article class="kyoto-card" id="spot-nijo">
+          <div class="kyoto-card-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1478436127897-769e00d2c715?w=800&auto=format&fit=crop&q=80" alt="京都二條城" class="kyoto-card-img" loading="lazy">
+            <span class="kyoto-card-tag">世界文化遺產</span>
+            <button class="spot-fav-btn" data-fav-id="kyoto-spot-nijo" data-fav-name="元離宮二條城" data-fav-region="京都" data-fav-type="景點" data-fav-image="https://images.unsplash.com/photo-1478436127897-769e00d2c715?w=600&auto=format&fit=crop&q=80">
+              <i class="far fa-heart"></i>
+            </button>
+          </div>
+          <div class="kyoto-card-body">
+            <h3 class="kyoto-card-title">🏯 元離宮二條城 (Nijo Castle)</h3>
+            <span class="kyoto-card-sub">中京區 · 德川幕府大政奉還的關鍵歷史舞台</span>
+            <p class="kyoto-card-desc">
+              城內二之丸御殿擁有防刺客的「鶺鴒鶯鳴地板」與國寶狩野派障壁畫，庭園巧奪天工，秋季賞夜楓更是一大盛事。
+            </p>
+            <div class="kyoto-card-footer">
+              <span style="color:var(--color-wood);"><i class="fas fa-subway"></i> 二條城前站直達</span>
+              <button class="btn btn-outline" style="padding:4px 12px; font-size:0.82rem;" data-kyoto-spot="kyoto-nijo">查看詳情</button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 二、京都必吃特色美食 (皆附圖片並搭配京都景點) -->
+  <section class="region-foods-section" id="foods">
+    <div class="region-container">
+      <div class="section-header-center">
+        <span class="section-badge" style="background:var(--color-matcha-light); color:var(--color-matcha);"><i class="fas fa-utensils"></i> 京都甘味與京料理</span>
+        <h2 class="section-title">京都必吃特色美食推薦</h2>
+        <p class="section-subtitle">品味純淨水質孕育出的宇治抹茶、溫潤湯豆腐與四季懷石料理，皆搭配鄰近寺院名勝！</p>
+      </div>
+
+      <div class="kyoto-foods-grid">
+        <!-- 抹茶聖代 -->
+        <article class="kyoto-card">
+          <div class="kyoto-card-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1536256263959-770b48d82b0a?w=800&auto=format&fit=crop&q=80" alt="京都宇治抹茶聖代" class="kyoto-card-img" loading="lazy">
+            <button class="spot-fav-btn" data-fav-id="kyoto-food-matcha" data-fav-name="宇治抹茶聖代" data-fav-region="京都" data-fav-type="美食" data-fav-image="https://images.unsplash.com/photo-1536256263959-770b48d82b0a?w=600&auto=format&fit=crop&q=80">
+              <i class="far fa-heart"></i>
+            </button>
+          </div>
+          <div class="kyoto-card-body">
+            <h3 class="kyoto-card-title">🍵 宇治特濃抹茶聖代 (Matcha Parfait)</h3>
+            <span class="kyoto-card-sub">う治抹茶パフェ · 濃醇微苦回甘的京都之味</span>
+            <p class="kyoto-card-desc">
+              選用京都宇治一番茶磨製的特濃抹茶冰淇淋，搭配手工手捏白玉糰子、十勝紅豆泥與抹茶寒天，清香宜人。
+            </p>
+            <div class="kyoto-pairing-box">
+              <strong><i class="fas fa-link"></i> 搭配推薦景點：</strong>
+              參拜完 <a href="javascript:void(0)" data-target-spot="spot-kiyomizu" style="color:var(--color-matcha); font-weight:700; text-decoration:underline;">清水寺</a> 漫步三年坂老街，在茶寮享用一份抹茶聖代！
+            </div>
+          </div>
+        </article>
+
+        <!-- 湯豆腐 -->
+        <article class="kyoto-card">
+          <div class="kyoto-card-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80" alt="京都湯豆腐" class="kyoto-card-img" loading="lazy">
+            <button class="spot-fav-btn" data-fav-id="kyoto-food-yudofu" data-fav-name="京都湯豆腐料理" data-fav-region="京都" data-fav-type="美食" data-fav-image="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600&auto=format&fit=crop&q=80">
+              <i class="far fa-heart"></i>
+            </button>
+          </div>
+          <div class="kyoto-card-body">
+            <h3 class="kyoto-card-title">🍲 嵐山/南禪寺 傳統湯豆腐 (Yudofu)</h3>
+            <span class="kyoto-card-sub">ゆどうふ · 百年精進料理的極致甘純</span>
+            <p class="kyoto-card-desc">
+              京都地下名水與精選大豆製成的豆腐，放入昆布高湯中溫熱慢滾，沾上生薑泥、細蔥花與淡口醬油，入口滑順豆香濃醇。
+            </p>
+            <div class="kyoto-pairing-box">
+              <strong><i class="fas fa-link"></i> 搭配推薦景點：</strong>
+              漫步完 <a href="javascript:void(0)" data-target-spot="spot-arashiyama" style="color:var(--color-matcha); font-weight:700; text-decoration:underline;">嵐山竹林之道</a> 後，於渡月橋畔日式庭園名店享用熱騰騰湯豆腐！
+            </div>
+          </div>
+        </article>
+
+        <!-- 懷石料理 -->
+        <article class="kyoto-card">
+          <div class="kyoto-card-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1611143669185-af224c5e3252?w=800&auto=format&fit=crop&q=80" alt="京都精緻懷石料理" class="kyoto-card-img" loading="lazy">
+            <button class="spot-fav-btn" data-fav-id="kyoto-food-kaiseki" data-fav-name="京都懷石料理" data-fav-region="京都" data-fav-type="美食" data-fav-image="https://images.unsplash.com/photo-1611143669185-af224c5e3252?w=600&auto=format&fit=crop&q=80">
+              <i class="far fa-heart"></i>
+            </button>
+          </div>
+          <div class="kyoto-card-body">
+            <h3 class="kyoto-card-title">🍱 祇園極上京懷石 (Kaiseki)</h3>
+            <span class="kyoto-card-sub">かいせきりょうり · 融入四季風土的視覺味覺藝術</span>
+            <p class="kyoto-card-desc">
+              依循節氣選用在地京野菜與鮮魚，先付、八寸、向付、燒物到御飯，以精緻陶器擺盤，宛如一道道優雅的庭園詩畫。
+            </p>
+            <div class="kyoto-pairing-box">
+              <strong><i class="fas fa-link"></i> 搭配推薦景點：</strong>
+              傍晚走訪 <a href="javascript:void(0)" data-target-spot="spot-gion" style="color:var(--color-matcha); font-weight:700; text-decoration:underline;">祇園花見小路</a> 欣賞町家古韻後，在百年料亭享受頂級懷石料理。
+            </div>
+          </div>
+        </article>
+
+        <!-- 豆皮壽司與烤鰻魚 -->
+        <article class="kyoto-card">
+          <div class="kyoto-card-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=800&auto=format&fit=crop&q=80" alt="伏見稻荷壽司" class="kyoto-card-img" loading="lazy">
+            <button class="spot-fav-btn" data-fav-id="kyoto-food-inari" data-fav-name="伏見稻荷壽司" data-fav-region="京都" data-fav-type="美食" data-fav-image="https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=600&auto=format&fit=crop&q=80">
+              <i class="far fa-heart"></i>
+            </button>
+          </div>
+          <div class="kyoto-card-body">
+            <h3 class="kyoto-card-title">🦊 伏見稻荷甘煮豆皮壽司 (Inari)</h3>
+            <span class="kyoto-card-sub">いなりずし · 狐狸大神使者最愛的祈福名產</span>
+            <p class="kyoto-card-desc">
+              以甘甜醬汁慢火煨煮的特選三角形豆腐皮，包裹著混合黑芝麻與牛蒡絲的香Q醋飯，甘甜多汁，是登山參拜最佳補充體力的美食。
+            </p>
+            <div class="kyoto-pairing-box">
+              <strong><i class="fas fa-link"></i> 搭配推薦景點：</strong>
+              登上 <a href="javascript:void(0)" data-target-spot="spot-fushimi" style="color:var(--color-matcha); font-weight:700; text-decoration:underline;">伏見稻荷千本鳥居</a> 山徑前，在參道老店外帶一盒現包豆皮壽司！
+            </div>
+          </div>
+        </article>
+
+        <!-- 甜醬油烤糰子 -->
+        <article class="kyoto-card">
+          <div class="kyoto-card-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1582293041079-7814c2f12063?w=800&auto=format&fit=crop&q=80" alt="日式御手洗糰子" class="kyoto-card-img" loading="lazy">
+            <button class="spot-fav-btn" data-fav-id="kyoto-food-dango" data-fav-name="御手洗糰子" data-fav-region="京都" data-fav-type="美食" data-fav-image="https://images.unsplash.com/photo-1582293041079-7814c2f12063?w=600&auto=format&fit=crop&q=80">
+              <i class="far fa-heart"></i>
+            </button>
+          </div>
+          <div class="kyoto-card-body">
+            <h3 class="kyoto-card-title">🍡 御手洗醬油烤糰子 (Mitarashi)</h3>
+            <span class="kyoto-card-sub">みたらし団子 · 炭烤微焦與濃稠甜醬油的美妙交織</span>
+            <p class="kyoto-card-desc">
+              起源於下鴨神社御手洗祭的傳統點心。圓潤白玉丸子在炭火上烤至微焦香脆，裹上一層溫熱滑潤的鹹甜葛粉醬油膏，Q彈可口。
+            </p>
+            <div class="kyoto-pairing-box">
+              <strong><i class="fas fa-link"></i> 搭配推薦景點：</strong>
+              參訪完 <a href="javascript:void(0)" data-target-spot="spot-kinkakuji" style="color:var(--color-matcha); font-weight:700; text-decoration:underline;">金閣寺</a> 或二條城後，在傳統和風茶屋來一串暖暖烤丸子。
+            </div>
+          </div>
+        </article>
+
+        <!-- 鴨川炭火烤鰻魚飯 -->
+        <article class="kyoto-card">
+          <div class="kyoto-card-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&auto=format&fit=crop&q=80" alt="炭烤鰻魚重" class="kyoto-card-img" loading="lazy">
+            <button class="spot-fav-btn" data-fav-id="kyoto-food-unagi" data-fav-name="京都炭烤鰻魚飯" data-fav-region="京都" data-fav-type="美食" data-fav-image="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&auto=format&fit=crop&q=80">
+              <i class="far fa-heart"></i>
+            </button>
+          </div>
+          <div class="kyoto-card-body">
+            <h3 class="kyoto-card-title">🐟 鴨川名物 炭烤鰻魚重 (Unaju)</h3>
+            <span class="kyoto-card-sub">うな重 · 備長炭炙燒醬香撲鼻的極品盛宴</span>
+            <p class="kyoto-card-desc">
+              現殺新鮮活鰻經過備長炭反覆翻烤，刷上幾十年的老滷蒲燒醬汁，魚皮酥脆、魚肉肥美鬆軟，淋在吸飽醬汁的越光米上無比下飯。
+            </p>
+            <div class="kyoto-pairing-box">
+              <strong><i class="fas fa-link"></i> 搭配推薦景點：</strong>
+              參觀完 <a href="javascript:void(0)" data-target-spot="spot-nijo" style="color:var(--color-matcha); font-weight:700; text-decoration:underline;">二條城</a> 散步至鴨川河畔，夏季還能在露天納涼床上愜意品嚐！
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 三、京都推薦旅遊行程建議 -->
+  <section class="region-plans-section" id="plans">
+    <div class="region-container">
+      <div class="section-header-center">
+        <span class="section-badge"><i class="fas fa-route"></i> 經典路線</span>
+        <h2 class="section-title">京都推薦漫遊行程規劃</h2>
+        <p class="section-subtitle">依照古都步調設計的文藝古蹟行程，讓你避開洶湧人潮，靜心感受京都時光。</p>
+      </div>
+
+      <div class="plan-cards-grid">
+        <div class="plan-card">
+          <span class="plan-card-tag"><i class="far fa-clock"></i> 一日散策 · 世界遺產經典</span>
+          <h3 class="plan-card-title">清水寺與伏見鳥居一日遊</h3>
+          <div class="plan-timeline">
+            <div class="timeline-row">
+              <div class="timeline-hour">07:30</div>
+              <div class="timeline-text">
+                <strong>伏見稻荷大社（清晨晨光）</strong>
+                <p>趁著遊客尚未湧入時登上千本鳥居，拍攝無人空景絕美神道。</p>
+              </div>
+            </div>
+            <div class="timeline-row">
+              <div class="timeline-hour">11:00</div>
+              <div class="timeline-text">
+                <strong>清水寺參拜 & 二年坂三年坂</strong>
+                <p>眺望清水舞台全景，漫步石板老街，享用宇治抹茶聖代與湯豆腐午餐。</p>
+              </div>
+            </div>
+            <div class="timeline-row">
+              <div class="timeline-hour">15:30</div>
+              <div class="timeline-text">
+                <strong>八坂神社 & 祇園花見小路</strong>
+                <p>走過四條大通八坂神社祈求良緣，傍晚漫步在花見小路欣賞傳統町家夕色。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="plan-card">
+          <span class="plan-card-tag"><i class="far fa-clock"></i> 三日漫遊 · 古都自然全景</span>
+          <h3 class="plan-card-title">嵐山竹海與金閣寺三日深度</h3>
+          <div class="plan-timeline">
+            <div class="timeline-row">
+              <div class="timeline-hour">Day 1</div>
+              <div class="timeline-text">
+                <strong>東山歷史古蹟巡禮</strong>
+                <p>伏見稻荷大社 ➔ 清水寺 ➔ 三年坂 ➔ 祇園懷石料理</p>
+              </div>
+            </div>
+            <div class="timeline-row">
+              <div class="timeline-hour">Day 2</div>
+              <div class="timeline-text">
+                <strong>嵐山自然與嵯峨野小火車</strong>
+                <p>渡月橋 ➔ 嵐山竹林 ➔ 天龍寺曹源池庭園 ➔ 湯豆腐美饌</p>
+              </div>
+            </div>
+            <div class="timeline-row">
+              <div class="timeline-hour">Day 3</div>
+              <div class="timeline-text">
+                <strong>將軍府第與古都水岸</strong>
+                <p>金閣寺金碧輝煌 ➔ 二條城鶯鳴地板 ➔ 鴨川散步吹風買伴手禮</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 四、京都交通須知 -->
+  <section class="region-spots-section" id="traffic" style="background:#FAF3EB;">
+    <div class="region-container">
+      <div class="section-header-center">
+        <span class="section-badge"><i class="fas fa-bus"></i> 乘車指南</span>
+        <h2 class="section-title">京都交通小撇步</h2>
+        <p class="section-subtitle">京都以「公車」和「地鐵」為主，靈活搭配可以大幅省去塞車時間！</p>
+      </div>
+
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:24px;">
+        <div style="background:#fff; padding:24px; border-radius:var(--radius-md); border:1px solid var(--border-color);">
+          <h4 style="font-family:var(--font-serif); font-size:1.15rem; margin-bottom:10px; color:var(--text-main);"><i class="fas fa-bus-alt" style="color:var(--color-matcha);"></i> 地鐵·公車一日券 (Subway & Bus Pass)</h4>
+          <p style="font-size:0.88rem; color:var(--text-muted); line-height:1.7;">
+            售價 1,100 日圓，可在當日內不限次數搭乘京都市營地下鐵全線與京都市營巴士、京都巴士。旺季（櫻花/紅葉）避開路面塞車的最佳法寶是「搭地鐵再轉公車」！
+          </p>
+        </div>
+
+        <div style="background:#fff; padding:24px; border-radius:var(--radius-md); border:1px solid var(--border-color);">
+          <h4 style="font-family:var(--font-serif); font-size:1.15rem; margin-bottom:10px; color:var(--text-main);"><i class="fas fa-train" style="color:var(--color-torii);"></i> 關西私鐵系統 (京阪 / 阪急)</h4>
+          <p style="font-size:0.88rem; color:var(--text-muted); line-height:1.7;">
+            若從大阪往返京都，「京阪電車」直達伏見稻荷與祇園四條；「阪急電鐵」直通河原町與嵐山，速度快、班次多且票價親民，強烈推薦善加利用。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 全站頁尾 Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="site-logo">
+            <div class="logo-icon"><i class="fas fa-torii-gate"></i></div>
+            <div class="logo-text-group">
+              <span class="logo-title">日本旅遊誌</span>
+              <span class="logo-sub">JAPAN TRAVEL JOURNAL</span>
+            </div>
+          </div>
+          <p class="footer-desc">「日本旅遊誌」帶領您細細品味京都的古意、花香與茶韻，讓每一次遠行都化作心靈的沉澱。</p>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">推薦地區</h4>
+          <ul class="footer-links">
+            <li><a href="tokyo.html"><i class="fas fa-angle-right"></i> 東京 Tokyo</a></li>
+            <li><a href="kyoto.html"><i class="fas fa-angle-right"></i> 京都 Kyoto</a></li>
+            <li><a href="osaka.html"><i class="fas fa-angle-right"></i> 大阪 Osaka</a></li>
+            <li><a href="hokkaido.html"><i class="fas fa-angle-right"></i> 北海道 Hokkaido</a></li>
+            <li><a href="okinawa.html"><i class="fas fa-angle-right"></i> 沖繩 Okinawa</a></li>
+            <li><a href="fuji.html"><i class="fas fa-angle-right"></i> 富士山 Mt. Fuji</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">網站導覽</h4>
+          <ul class="footer-links">
+            <li><a href="index.html"><i class="fas fa-angle-right"></i> 首頁</a></li>
+            <li><a href="itinerary.html"><i class="fas fa-angle-right"></i> 行程推薦</a></li>
+            <li><a href="food.html"><i class="fas fa-angle-right"></i> 特色美食</a></li>
+            <li><a href="guide.html"><i class="fas fa-angle-right"></i> 旅遊須知 & Q&A</a></li>
+            <li><a href="contact.html"><i class="fas fa-angle-right"></i> 聯絡我們</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">聯絡我們</h4>
+          <div class="footer-contact-item"><i class="fas fa-map-marker-alt"></i><div>地址：台北市 XX 區 XX 路 XX 號</div></div>
+          <div class="footer-contact-item"><i class="fas fa-phone-alt"></i><div>電話：02-1234-5678</div></div>
+          <div class="footer-contact-item"><i class="fas fa-envelope"></i><div>Email：japantravel@example.com</div></div>
+          <div class="footer-contact-item"><i class="far fa-clock"></i><div>營業時間：週二至週日 11:00 - 21:00 (週一公休)</div></div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>© 2026 日本旅遊誌 Japan Travel Journal. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 收藏清單 Drawer -->
+  <div class="fav-drawer-overlay" id="fav-drawer-overlay"></div>
+  <aside class="fav-drawer" id="fav-drawer">
+    <div class="fav-drawer-header">
+      <h3 class="fav-drawer-title"><i class="fas fa-heart" style="color:var(--color-torii);"></i> 我的收藏地點</h3>
+      <button class="close-drawer-btn" id="fav-close-btn"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="fav-drawer-body" id="fav-drawer-body"></div>
+    <div class="fav-drawer-footer">
+      <button class="btn btn-outline" id="clear-fav-btn" style="padding:6px 14px; font-size:0.85rem;"><i class="fas fa-trash-alt"></i> 全部清空</button>
+      <a href="itinerary.html" class="btn btn-primary" style="padding:6px 16px; font-size:0.85rem;"><i class="fas fa-route"></i> 帶入行程規劃</a>
+    </div>
+  </aside>
+
+  <!-- 詳情 Modal -->
+  <div class="modal-overlay" id="detail-modal">
+    <div class="modal-content-wrapper">
+      <button class="modal-close-btn" id="modal-close-btn"><i class="fas fa-times"></i></button>
+      <img src="" alt="" class="modal-hero-img" id="modal-img">
+      <div class="modal-body">
+        <span class="section-badge" id="modal-badge">京都推薦</span>
+        <h2 style="font-family:var(--font-serif); font-size:1.6rem; margin-top:8px; margin-bottom:4px;" id="modal-title">標題</h2>
+        <div style="font-size:0.85rem; color:var(--color-wood); margin-bottom:16px;" id="modal-subtitle">副標題</div>
+        <p style="color:var(--text-muted); line-height:1.8; font-size:0.95rem;" id="modal-desc">說明內容</p>
+        <div id="modal-extra-info"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/common.js"></script>
+  <script src="js/kyoto.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>聯絡我們 ｜ 諮詢服務與營業時間 - 日本旅遊誌</title>
+  <meta name="description" content="歡迎透過「日本旅遊誌」探索日本，找到下一個想出發的目的地！歡迎隨時與我們聯繫，提供自由行諮詢與行程規劃建議。">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/contact.css">
+</head>
+<body>
+
+  <canvas id="sakura-canvas"></canvas>
+  <button id="sakura-toggle-btn" class="sakura-toggle-btn"><span>🌸 櫻花：開</span></button>
+  <button id="back-to-top" class="back-to-top"><i class="fas fa-chevron-up"></i></button>
+
+  <header class="site-header">
+    <div class="header-container">
+      <a href="index.html" class="site-logo">
+        <div class="logo-icon"><i class="fas fa-torii-gate"></i></div>
+        <div class="logo-text-group">
+          <span class="logo-title">日本旅遊誌</span>
+          <span class="logo-sub">JAPAN TRAVEL JOURNAL</span>
+        </div>
+      </a>
+
+      <nav class="main-nav" id="main-nav">
+        <ul class="nav-list">
+          <li><a href="index.html" class="nav-link"><i class="fas fa-home"></i> 首頁</a></li>
+          <li class="dropdown">
+            <a href="javascript:void(0)" class="nav-link">
+              <i class="fas fa-map-marked-alt"></i> 推薦地區 <i class="fas fa-angle-down" style="font-size:0.75rem;"></i>
+            </a>
+            <div class="dropdown-menu">
+              <a href="tokyo.html" class="dropdown-item"><span>🗼 東京 Tokyo</span> <span class="badge">現代繁華</span></a>
+              <a href="kyoto.html" class="dropdown-item"><span>⛩️ 京都 Kyoto</span> <span class="badge">古都古韻</span></a>
+              <a href="osaka.html" class="dropdown-item"><span>🏯 大阪 Osaka</span> <span class="badge">美食熱情</span></a>
+              <a href="hokkaido.html" class="dropdown-item"><span>❄️ 北海道 Hokkaido</span> <span class="badge">純白浪漫</span></a>
+              <a href="okinawa.html" class="dropdown-item"><span>🌺 沖繩 Okinawa</span> <span class="badge">度假蔚藍</span></a>
+              <a href="fuji.html" class="dropdown-item"><span>🗻 富士山 Fuji</span> <span class="badge">壯麗神山</span></a>
+            </div>
+          </li>
+          <li><a href="itinerary.html" class="nav-link"><i class="fas fa-route"></i> 行程推薦</a></li>
+          <li><a href="food.html" class="nav-link"><i class="fas fa-utensils"></i> 特色美食</a></li>
+          <li><a href="guide.html" class="nav-link"><i class="fas fa-compass"></i> 旅遊須知 & Q&A</a></li>
+          <li><a href="contact.html" class="nav-link active"><i class="fas fa-envelope"></i> 聯絡我們</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button class="fav-btn" id="fav-open-btn">
+          <i class="fas fa-heart" style="color:var(--color-torii);"></i>
+          <span>我的收藏</span>
+          <span class="fav-count">0</span>
+        </button>
+        <button class="mobile-menu-toggle" id="mobile-menu-toggle"><i class="fas fa-bars"></i></button>
+      </div>
+    </div>
+  </header>
+
+  <!-- 麵包屑導航 -->
+  <div class="breadcrumb-section">
+    <div class="breadcrumb-container">
+      <a href="index.html"><i class="fas fa-home"></i> 首頁</a>
+      <span class="breadcrumb-separator"><i class="fas fa-chevron-right"></i></span>
+      <span class="breadcrumb-current">聯絡我們</span>
+    </div>
+  </div>
+
+  <!-- Hero 橫幅 -->
+  <section class="contact-hero-section">
+    <div class="contact-hero-container">
+      <span class="section-badge" style="background:rgba(255,255,255,0.25); color:#fff; border-color:rgba(255,255,255,0.4);"><i class="fas fa-paper-plane"></i> 交流與諮詢</span>
+      <h1 style="font-family:var(--font-serif); font-size:clamp(2.2rem, 4vw, 3.5rem); margin-bottom:12px;">聯絡我們</h1>
+      <p style="font-size:1.05rem; color:#F0ECE6; max-width:700px; line-height:1.8;">
+        歡迎透過「日本旅遊誌」探索日本，找到下一個想出發的目的地！無論是行程規劃建議、商務合作或讀者反饋，我們隨時傾聽您的聲音。
+      </p>
+    </div>
+  </section>
+
+  <!-- 雙欄主板塊 -->
+  <section class="contact-main-section">
+    <div class="contact-layout-grid">
+      
+      <!-- 左側：詳細聯絡資訊 -->
+      <div class="contact-info-panel">
+        <span class="section-badge"><i class="fas fa-info-circle"></i> 服務資訊</span>
+        <h2>歡迎與我們聯繫</h2>
+        <p class="contact-intro-text">
+          歡迎透過「日本旅遊誌」探索日本，找到下一個想出發的目的地！若您在規劃自由行時有任何疑問，或需要更進一步的行程靈感，歡迎隨時透過下方方式與我們聯繫。
+        </p>
+
+        <div class="contact-cards-list">
+          <!-- 地址 -->
+          <div class="contact-item-box">
+            <div class="contact-icon-circle"><i class="fas fa-map-marker-alt"></i></div>
+            <div class="contact-detail-text">
+              <h4>門市據點</h4>
+              <p>📍 地址：台北市 XX 區 XX 路 XX 號</p>
+            </div>
+          </div>
+
+          <!-- 電話 -->
+          <div class="contact-item-box">
+            <div class="contact-icon-circle"><i class="fas fa-phone-alt"></i></div>
+            <div class="contact-detail-text">
+              <h4>諮詢專線</h4>
+              <p>📞 電話：02-1234-5678</p>
+            </div>
+          </div>
+
+          <!-- Email -->
+          <div class="contact-item-box">
+            <div class="contact-icon-circle"><i class="fas fa-envelope"></i></div>
+            <div class="contact-detail-text">
+              <h4>電子郵件</h4>
+              <p>✉️ Email：<a href="mailto:japantravel@example.com" style="color:var(--color-torii); text-decoration:underline;">japantravel@example.com</a></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 營業時間 -->
+        <div class="business-hours-badge">
+          <h4><i class="far fa-clock"></i> 服務與營業時間</h4>
+          <p><strong>週二至週日：</strong>11:00 - 21:00</p>
+          <p style="color:var(--color-torii); font-weight:600; margin-top:4px;">週一公休</p>
+        </div>
+      </div>
+
+      <!-- 右側：線上預約與行程諮詢表單 -->
+      <div class="contact-form-panel">
+        <h3>填寫諮詢需求表單</h3>
+        <p class="form-sub-desc">請留下您的旅遊規劃意向，我們的專業日本旅遊編輯將竭誠為您服務。</p>
+
+        <form id="consultation-form">
+          <div class="form-group-row">
+            <div class="form-field">
+              <label for="contact-name">您的稱呼 <span class="req">*</span></label>
+              <input type="text" id="contact-name" class="form-input" placeholder="例：林小姐 / 陳先生" required>
+            </div>
+
+            <div class="form-field">
+              <label for="contact-email">電子信箱 <span class="req">*</span></label>
+              <input type="email" id="contact-email" class="form-input" placeholder="例：user@example.com" required>
+            </div>
+          </div>
+
+          <div class="form-group-row">
+            <div class="form-field">
+              <label for="contact-region">想探索的日本地區</label>
+              <select id="contact-region" class="form-select">
+                <option value="">請選擇目的地</option>
+                <option value="東京 (Tokyo)">🗼 東京 (Tokyo)</option>
+                <option value="京都 (Kyoto)">⛩️ 京都 (Kyoto)</option>
+                <option value="大阪 (Osaka)">🏯 大阪 (Osaka)</option>
+                <option value="北海道 (Hokkaido)">❄️ 北海道 (Hokkaido)</option>
+                <option value="沖繩 (Okinawa)">🌺 沖繩 (Okinawa)</option>
+                <option value="富士山周邊 (Mt. Fuji)">🗻 富士山周邊 (Mt. Fuji)</option>
+                <option value="多個地區 / 尚未決定">🇯🇵 多個地區跨區遊 / 尚未決定</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label for="contact-type">旅遊成員與型態</label>
+              <select id="contact-type" class="form-select">
+                <option value="情侶與朋友出遊">情侶與朋友出遊</option>
+                <option value="第一次前往日本">第一次前往日本</option>
+                <option value="自由行上班族">規劃自由行的上班族</option>
+                <option value="家庭親子旅行">家庭親子同樂</option>
+                <option value="文化與美食深度漫遊">文化與美食深度漫遊</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-field">
+            <label for="contact-message">諮詢內容或想了解的事項 <span class="req">*</span></label>
+            <textarea id="contact-message" class="form-textarea" placeholder="請告訴我們您預計出發的月份、天數、或特別想吃的美食與景點..." required></textarea>
+          </div>
+
+          <p class="form-privacy-note">
+            <i class="fas fa-lock"></i> 我們非常重視您的隱私，所有資訊僅作為日本旅遊誌回覆與諮詢建議使用。
+          </p>
+
+          <button type="submit" class="btn btn-primary" id="form-submit-btn" style="width:100%; padding:14px; font-size:1rem;">
+            <i class="fas fa-paper-plane"></i> 送出諮詢需求
+          </button>
+        </form>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 全站頁尾 Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="site-logo">
+            <div class="logo-icon"><i class="fas fa-torii-gate"></i></div>
+            <div class="logo-text-group">
+              <span class="logo-title">日本旅遊誌</span>
+              <span class="logo-sub">JAPAN TRAVEL JOURNAL</span>
+            </div>
+          </div>
+          <p class="footer-desc">
+            歡迎透過「日本旅遊誌」探索日本，找到下一個想出發的目的地！用心陪伴每一位喜愛日本的旅人。
+          </p>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">推薦地區</h4>
+          <ul class="footer-links">
+            <li><a href="tokyo.html"><i class="fas fa-angle-right"></i> 東京 Tokyo</a></li>
+            <li><a href="kyoto.html"><i class="fas fa-angle-right"></i> 京都 Kyoto</a></li>
+            <li><a href="osaka.html"><i class="fas fa-angle-right"></i> 大阪 Osaka</a></li>
+            <li><a href="hokkaido.html"><i class="fas fa-angle-right"></i> 北海道 Hokkaido</a></li>
+            <li><a href="okinawa.html"><i class="fas fa-angle-right"></i> 沖繩 Okinawa</a></li>
+            <li><a href="fuji.html"><i class="fas fa-angle-right"></i> 富士山 Mt. Fuji</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">網站導覽</h4>
+          <ul class="footer-links">
+            <li><a href="index.html"><i class="fas fa-angle-right"></i> 首頁</a></li>
+            <li><a href="itinerary.html"><i class="fas fa-angle-right"></i> 行程推薦</a></li>
+            <li><a href="food.html"><i class="fas fa-angle-right"></i> 特色美食</a></li>
+            <li><a href="guide.html"><i class="fas fa-angle-right"></i> 旅遊須知 & Q&A</a></li>
+            <li><a href="contact.html"><i class="fas fa-angle-right"></i> 聯絡我們</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">聯絡我們</h4>
+          <div class="footer-contact-item"><i class="fas fa-map-marker-alt"></i><div>地址：台北市 XX 區 XX 路 XX 號</div></div>
+          <div class="footer-contact-item"><i class="fas fa-phone-alt"></i><div>電話：02-1234-5678</div></div>
+          <div class="footer-contact-item"><i class="fas fa-envelope"></i><div>Email：japantravel@example.com</div></div>
+          <div class="footer-contact-item"><i class="far fa-clock"></i><div>營業時間：週二至週日 11:00 - 21:00 (週一公休)</div></div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>© 2026 日本旅遊誌 Japan Travel Journal. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="fav-drawer-overlay" id="fav-drawer-overlay"></div>
+  <aside class="fav-drawer" id="fav-drawer">
+    <div class="fav-drawer-header">
+      <h3 class="fav-drawer-title"><i class="fas fa-heart" style="color:var(--color-torii);"></i> 我的收藏地點</h3>
+      <button class="close-drawer-btn" id="fav-close-btn"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="fav-drawer-body" id="fav-drawer-body"></div>
+    <div class="fav-drawer-footer">
+      <button class="btn btn-outline" id="clear-fav-btn" style="padding:6px 14px; font-size:0.85rem;"><i class="fas fa-trash-alt"></i> 全部清空</button>
+      <a href="itinerary.html" class="btn btn-primary" style="padding:6px 16px; font-size:0.85rem;"><i class="fas fa-route"></i> 帶入行程規劃</a>
+    </div>
+  </aside>
+
+  <div class="modal-overlay" id="detail-modal">
+    <div class="modal-content-wrapper">
+      <button class="modal-close-btn" id="modal-close-btn"><i class="fas fa-times"></i></button>
+      <img src="" alt="" class="modal-hero-img" id="modal-img">
+      <div class="modal-body">
+        <span class="section-badge" id="modal-badge">諮詢回覆</span>
+        <h2 style="font-family:var(--font-serif); font-size:1.6rem; margin-top:8px; margin-bottom:4px;" id="modal-title">標題</h2>
+        <div style="font-size:0.85rem; color:var(--color-wood); margin-bottom:16px;" id="modal-subtitle">副標題</div>
+        <p style="color:var(--text-muted); line-height:1.8; font-size:0.95rem;" id="modal-desc">說明內容</p>
+        <div id="modal-extra-info"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/common.js"></script>
+  <script src="js/contact.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,230 @@
+/**
+ * 日本旅遊誌 - 美食特輯專頁樣式 (food.css)
+ */
+
+.food-hero-section {
+  background: linear-gradient(135deg, rgba(38, 25, 20, 0.65) 0%, rgba(55, 30, 25, 0.8) 100%),
+              url('https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=1800&auto=format&fit=crop&q=80') center/cover no-repeat;
+  min-height: 46vh;
+  display: flex;
+  align-items: center;
+  color: #fff;
+  padding: 60px 24px;
+}
+
+.food-hero-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* 篩選與搜尋控制器 */
+.food-control-bar {
+  background: #ffffff;
+  border-bottom: 1px solid var(--border-color);
+  padding: 20px 24px;
+  position: sticky;
+  top: 65px;
+  z-index: 850;
+  box-shadow: var(--shadow-sm);
+}
+
+.food-control-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.food-region-tabs {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+.food-region-btn {
+  padding: 8px 16px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-color);
+  background: #fff;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-main);
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.food-region-btn:hover, .food-region-btn.active {
+  background: var(--color-torii);
+  color: #fff;
+  border-color: var(--color-torii);
+  box-shadow: 0 4px 12px rgba(200, 70, 48, 0.25);
+}
+
+.food-search-box {
+  position: relative;
+  min-width: 260px;
+}
+
+.food-search-input {
+  width: 100%;
+  padding: 8px 16px 8px 38px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-full);
+  background: var(--bg-primary);
+  font-size: 0.9rem;
+  font-family: inherit;
+  outline: none;
+  transition: all var(--transition-fast);
+}
+
+.food-search-input:focus {
+  border-color: var(--color-torii);
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(200, 70, 48, 0.15);
+}
+
+.food-search-icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-light);
+  font-size: 0.85rem;
+}
+
+/* 美食卡片網格 */
+.food-catalog-section {
+  padding: 60px 24px 90px;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.food-catalog-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+.food-item-card {
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  transition: all var(--transition-normal);
+}
+
+.food-item-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-hover);
+  border-color: var(--color-sakura);
+}
+
+.food-img-holder {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+}
+
+.food-img-holder img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.food-item-card:hover .food-img-holder img {
+  transform: scale(1.08);
+}
+
+.food-region-tag {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: rgba(44, 40, 37, 0.85);
+  color: #fff;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.food-content-body {
+  padding: 22px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.food-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 4px;
+}
+
+.food-name {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.food-jp-sub {
+  font-size: 0.8rem;
+  color: var(--color-wood);
+  margin-bottom: 12px;
+  font-family: var(--font-jp);
+}
+
+.food-summary {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+  margin-bottom: 16px;
+  flex: 1;
+}
+
+/* 搭配推薦景點標籤盒 */
+.paired-spot-container {
+  background: var(--color-sakura-light);
+  border-left: 3px solid var(--color-torii);
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  font-size: 0.84rem;
+  line-height: 1.6;
+  margin-top: auto;
+}
+
+.paired-spot-container strong {
+  color: var(--color-torii);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+
+@media (max-width: 1024px) {
+  .food-catalog-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .food-catalog-grid {
+    grid-template-columns: 1fr;
+  }
+  .food-control-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+

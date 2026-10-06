@@ -1,0 +1,841 @@
+/**
+ * 日本旅遊誌 - 首頁專屬樣式 (index.css)
+ */
+
+/* 英雄巨幕 Banner / Hero Section */
+.hero-section {
+  position: relative;
+  min-height: 85vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(30, 24, 20, 0.45) 0%, rgba(44, 40, 37, 0.6) 100%),
+              url('https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=1800&auto=format&fit=crop&q=85') center/cover no-repeat;
+  color: #fff;
+  text-align: center;
+  padding: 80px 24px;
+}
+
+.hero-overlay-pattern {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, transparent 20%, rgba(0,0,0,0.3) 100%);
+  pointer-events: none;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 860px;
+  animation: heroFadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes heroFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  padding: 6px 18px;
+  border-radius: var(--radius-full);
+  font-size: 0.88rem;
+  letter-spacing: 0.15em;
+  margin-bottom: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.hero-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1.25;
+  margin-bottom: 20px;
+  text-shadow: 0 4px 18px rgba(0, 0, 0, 0.4);
+}
+
+.hero-title .highlight {
+  color: #FFE5D9;
+  position: relative;
+}
+
+.hero-desc {
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  line-height: 1.85;
+  color: #F7F5F2;
+  margin-bottom: 36px;
+  font-weight: 300;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.hero-actions {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.hero-audience-chips {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.audience-chip {
+  background: rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  padding: 5px 14px;
+  border-radius: var(--radius-full);
+  font-size: 0.8rem;
+  color: #FFF;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all var(--transition-fast);
+}
+
+.audience-chip:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+/* 關於我們區塊 */
+.about-section {
+  padding: 90px 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.about-card {
+  background: #FFFFFF;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 50px 40px;
+  box-shadow: var(--shadow-md);
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+}
+
+.about-text-col h2 {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  margin-bottom: 16px;
+  color: var(--text-main);
+  line-height: 1.4;
+}
+
+.about-text-col p {
+  color: var(--text-muted);
+  line-height: 1.85;
+  margin-bottom: 18px;
+  font-size: 1.02rem;
+}
+
+.about-features {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.about-feature-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 500;
+  color: var(--color-wood-dark);
+}
+
+.about-feature-item i {
+  color: var(--color-torii);
+  font-size: 1.1rem;
+}
+
+.about-img-col {
+  position: relative;
+}
+
+.about-main-img {
+  width: 100%;
+  height: 380px;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+}
+
+.about-accent-badge {
+  position: absolute;
+  bottom: -20px;
+  left: -20px;
+  background: var(--bg-card);
+  padding: 16px 22px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.accent-badge-icon {
+  width: 44px;
+  height: 44px;
+  background: var(--color-sakura-light);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  color: var(--color-torii);
+}
+
+/* 熱門景點區塊 */
+.popular-spots-section {
+  padding: 80px 24px;
+  background: var(--bg-secondary);
+}
+
+.popular-container {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.spots-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 28px;
+}
+
+.spot-card {
+  background: var(--bg-card);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-normal);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.spot-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-hover);
+  border-color: var(--color-sakura);
+}
+
+.spot-card-img-wrapper {
+  position: relative;
+  width: 100%;
+  height: 230px;
+  overflow: hidden;
+}
+
+.spot-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.spot-card:hover .spot-card-img {
+  transform: scale(1.08);
+}
+
+.spot-region-pill {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  background: rgba(44, 40, 37, 0.8);
+  backdrop-filter: blur(6px);
+  color: #fff;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  font-size: 0.78rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.spot-fav-btn {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--text-muted);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  transition: all var(--transition-fast);
+}
+
+.spot-fav-btn:hover, .spot-fav-btn.active {
+  color: var(--color-torii);
+  background: #ffffff;
+  transform: scale(1.1);
+}
+
+.spot-card-body {
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.spot-header-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 8px;
+}
+
+.spot-title {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.spot-jp-name {
+  font-size: 0.8rem;
+  color: var(--color-wood);
+  font-family: var(--font-jp);
+}
+
+.spot-desc {
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  line-height: 1.7;
+  margin-bottom: 16px;
+  flex: 1;
+}
+
+.spot-meta {
+  border-top: 1px dashed var(--border-color);
+  padding-top: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.85rem;
+}
+
+.spot-highlight-tag {
+  color: var(--color-matcha);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.spot-link-btn {
+  color: var(--color-torii);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.88rem;
+}
+
+.spot-link-btn:hover {
+  text-decoration: underline;
+}
+
+/* 推薦旅遊地區分類專區 */
+.regions-section {
+  padding: 90px 24px;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.regions-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+.region-card {
+  position: relative;
+  height: 380px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-normal);
+  display: flex;
+  align-items: flex-end;
+  text-decoration: none;
+  color: #fff;
+}
+
+.region-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+}
+
+.region-card-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.region-card:hover .region-card-bg {
+  transform: scale(1.1);
+}
+
+.region-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(18, 16, 14, 0.88) 85%);
+  transition: opacity var(--transition-fast);
+}
+
+.region-card:hover .region-card-overlay {
+  background: linear-gradient(180deg, rgba(0,0,0,0.05) 0%, rgba(18, 16, 14, 0.92) 80%);
+}
+
+.region-card-content {
+  position: relative;
+  z-index: 2;
+  padding: 28px;
+  width: 100%;
+}
+
+.region-badge {
+  display: inline-block;
+  background: var(--color-sakura);
+  color: #fff;
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  letter-spacing: 0.05em;
+}
+
+.region-card-title {
+  font-family: var(--font-serif);
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.region-card-title i {
+  font-size: 1.2rem;
+  transform: translateX(-4px);
+  transition: transform var(--transition-fast);
+}
+
+.region-card:hover .region-card-title i {
+  transform: translateX(4px);
+  color: var(--color-sakura);
+}
+
+.region-card-desc {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #E2DBD4;
+  margin-bottom: 14px;
+}
+
+.region-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  padding-top: 10px;
+  font-size: 0.82rem;
+  color: #D3CAC2;
+}
+
+/* 美食推薦精選預覽 */
+.food-preview-section {
+  padding: 85px 24px;
+  background: #FAF3EB;
+}
+
+.food-container {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.food-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.food-card {
+  background: #fff;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-normal);
+  display: flex;
+  flex-direction: column;
+}
+
+.food-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-hover);
+  border-color: var(--color-sakura);
+}
+
+.food-card-img-wrap {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+
+.food-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.food-card:hover .food-card-img {
+  transform: scale(1.08);
+}
+
+.food-pairing-badge {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  background: rgba(44, 40, 37, 0.85);
+  color: #fff;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  font-size: 0.76rem;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.food-card-body {
+  padding: 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.food-card-title {
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: var(--text-main);
+}
+
+.food-card-desc {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+  margin-bottom: 14px;
+  flex: 1;
+}
+
+.food-matched-spot {
+  background: var(--color-sakura-light);
+  border-left: 3px solid var(--color-torii);
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 0.82rem;
+  color: var(--color-wood-dark);
+}
+
+.food-matched-spot strong {
+  color: var(--color-torii);
+}
+
+/* 行程推薦概覽 */
+.itinerary-section {
+  padding: 90px 24px;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.itinerary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+.itinerary-card {
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 32px 26px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: all var(--transition-normal);
+}
+
+.itinerary-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--color-torii);
+}
+
+.itinerary-header {
+  border-bottom: 1px dashed var(--border-color);
+  padding-bottom: 18px;
+  margin-bottom: 20px;
+}
+
+.itinerary-days-tag {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--color-torii);
+  background: var(--color-sakura-light);
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+.itinerary-title {
+  font-family: var(--font-serif);
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 6px;
+}
+
+.itinerary-target {
+  font-size: 0.84rem;
+  color: var(--color-wood);
+}
+
+.itinerary-route-list {
+  margin-bottom: 24px;
+  flex: 1;
+}
+
+.itinerary-route-step {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 14px;
+  position: relative;
+}
+
+.step-marker {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--bg-secondary);
+  color: var(--color-wood-dark);
+  font-size: 0.75rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.step-content strong {
+  display: block;
+  font-size: 0.92rem;
+  color: var(--text-main);
+}
+
+.step-content span {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+/* 旅遊小提醒區塊 */
+.tips-section {
+  padding: 80px 24px;
+  background: var(--bg-secondary);
+}
+
+.tips-container {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.tips-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.tip-card {
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 28px 22px;
+  box-shadow: var(--shadow-sm);
+  text-align: center;
+  transition: transform var(--transition-fast);
+}
+
+.tip-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--color-wood);
+}
+
+.tip-icon {
+  font-size: 2.5rem;
+  margin-bottom: 16px;
+}
+
+.tip-title {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: var(--text-main);
+}
+
+.tip-desc {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
+/* Q&A 常見問答區塊 */
+.faq-section {
+  padding: 90px 24px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.faq-item {
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: border-color var(--transition-fast);
+}
+
+.faq-item.active {
+  border-color: var(--color-torii);
+}
+
+.faq-question {
+  width: 100%;
+  padding: 20px 24px;
+  text-align: left;
+  background: none;
+  border: none;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  cursor: pointer;
+}
+
+.faq-question .q-icon {
+  width: 28px;
+  height: 28px;
+  background: var(--color-sakura-light);
+  color: var(--color-torii);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.faq-question .arrow {
+  color: var(--text-light);
+  transition: transform var(--transition-fast);
+}
+
+.faq-item.active .arrow {
+  transform: rotate(180deg);
+  color: var(--color-torii);
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease, padding 0.35s ease;
+  padding: 0 24px;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.8;
+  background: var(--bg-card-subtle);
+}
+
+.faq-item.active .faq-answer {
+  padding: 0 24px 20px 24px;
+  max-height: 240px;
+}
+
+/* 響應式佈局調整 */
+@media (max-width: 1024px) {
+  .regions-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .itinerary-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .tips-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .about-card {
+    grid-template-columns: 1fr;
+    padding: 30px 20px;
+  }
+  .about-accent-badge {
+    position: static;
+    margin-top: 16px;
+  }
+  .regions-grid, .itinerary-grid, .tips-grid {
+    grid-template-columns: 1fr;
+  }
+}
+

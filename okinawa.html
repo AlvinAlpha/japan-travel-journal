@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>沖繩旅遊指南 ｜ 美麗海水族館、蔚藍海灘與琉球美食 - 日本旅遊誌</title>
+  <meta name="description" content="飛往陽光之島沖繩！親臨美麗海水族館黑潮之海、萬座毛象鼻海蝕崖、古宇利跨海大橋。大啖石垣牛、沖繩排骨麵、海葡萄與雪鹽冰淇淋。">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/okinawa.css">
+</head>
+<body>
+
+  <canvas id="sakura-canvas"></canvas>
+  <button id="sakura-toggle-btn" class="sakura-toggle-btn"><span>🌸 櫻花：開</span></button>
+  <button id="back-to-top" class="back-to-top"><i class="fas fa-chevron-up"></i></button>
+
+  <header class="site-header">
+    <div class="header-container">
+      <a href="index.html" class="site-logo">
+        <div class="logo-icon"><i class="fas fa-torii-gate"></i></div>
+        <div class="logo-text-group">
+          <span class="logo-title">日本旅遊誌</span>
+          <span class="logo-sub">JAPAN TRAVEL JOURNAL</span>
+        </div>
+      </a>
+
+      <nav class="main-nav" id="main-nav">
+        <ul class="nav-list">
+          <li><a href="index.html" class="nav-link"><i class="fas fa-home"></i> 首頁</a></li>
+          <li class="dropdown">
+            <a href="javascript:void(0)" class="nav-link active">
+              <i class="fas fa-map-marked-alt"></i> 推薦地區 <i class="fas fa-angle-down" style="font-size:0.75rem;"></i>
+            </a>
+            <div class="dropdown-menu">
+              <a href="tokyo.html" class="dropdown-item"><span>🗼 東京 Tokyo</span> <span class="badge">現代繁華</span></a>
+              <a href="kyoto.html" class="dropdown-item"><span>⛩️ 京都 Kyoto</span> <span class="badge">古都古韻</span></a>
+              <a href="osaka.html" class="dropdown-item"><span>🏯 大阪 Osaka</span> <span class="badge">美食熱情</span></a>
+              <a href="hokkaido.html" class="dropdown-item"><span>❄️ 北海道 Hokkaido</span> <span class="badge">純白浪漫</span></a>
+              <a href="okinawa.html" class="dropdown-item" style="color:#00897B; font-weight:700;"><span>🌺 沖繩 Okinawa</span> <span class="badge">當前地區</span></a>
+              <a href="fuji.html" class="dropdown-item"><span>🗻 富士山 Fuji</span> <span class="badge">壯麗神山</span></a>
+            </div>
+          </li>
+          <li><a href="itinerary.html" class="nav-link"><i class="fas fa-route"></i> 行程推薦</a></li>
+          <li><a href="food.html" class="nav-link"><i class="fas fa-utensils"></i> 特色美食</a></li>
+          <li><a href="guide.html" class="nav-link"><i class="fas fa-compass"></i> 旅遊須知 & Q&A</a></li>
+          <li><a href="contact.html" class="nav-link"><i class="fas fa-envelope"></i> 聯絡我們</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button class="fav-btn" id="fav-open-btn">
+          <i class="fas fa-heart" style="color:var(--color-torii);"></i>
+          <span>我的收藏</span>
+          <span class="fav-count">0</span>
+        </button>
+        <button class="mobile-menu-toggle" id="mobile-menu-toggle"><i class="fas fa-bars"></i></button>
+      </div>
+    </div>
+  </header>
+
+  <!-- 麵包屑導航 -->
+  <div class="breadcrumb-section">
+    <div class="breadcrumb-container">
+      <a href="index.html"><i class="fas fa-home"></i> 首頁</a>
+      <span class="breadcrumb-separator"><i class="fas fa-chevron-right"></i></span>
+      <span>推薦地區</span>
+      <span class="breadcrumb-separator"><i class="fas fa-chevron-right"></i></span>
+      <span class="breadcrumb-current">沖繩 Okinawa</span>
+    </div>
+  </div>
+
+  <!-- 沖繩 Hero 橫幅 -->
+  <section class="region-hero okinawa-hero">
+    <div class="region-hero-content">
+      <div class="region-hero-title-group">
+        <span class="region-badge-pill okinawa-badge"><i class="fas fa-sun"></i> 碧藍海景與度假海島風情</span>
+        <h1 class="region-hero-title">沖繩 <span>おきなわ · OKINAWA</span></h1>
+        <p class="region-hero-desc">
+          享受陽光、沙灘與海洋，體驗與日本本島截然不同的悠閒度假氣氛。在清澈透明的漸層果凍海邊自駕吹風，探訪美麗海水族館的巨型鯨鯊，品嚐香氣溢滿的石垣牛燒肉與甘醇沖繩麵。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 頁面內部錨點導航 -->
+  <div class="region-nav-bar">
+    <div class="region-nav-container">
+      <a href="#spots" class="region-nav-item active"><i class="fas fa-camera"></i> 沖繩海景勝地</a>
+      <a href="#foods" class="region-nav-item"><i class="fas fa-utensils"></i> 琉球特色美食</a>
+      <a href="#plans" class="region-nav-item"><i class="fas fa-calendar-alt"></i> 度假行程規劃</a>
+      <a href="#traffic" class="region-nav-item"><i class="fas fa-car"></i> 單軌與自駕攻略</a>
+    </div>
+  </div>
+
+  <!-- 一、沖繩旅遊景點介紹 -->
+  <section class="region-spots-section" id="spots">
+    <div class="region-container">
+      <div class="section-header-center">
+        <span class="section-badge" style="background:#E0F2F1; color:#00796B;"><i class="fas fa-water"></i> 蔚藍島嶼</span>
+        <h2 class="section-title">沖繩代表性旅遊景點</h2>
+        <p class="section-subtitle">沉浸於浩瀚黑潮之海、象鼻海蝕斷崖、愛心跨海大橋與繁華國際通。</p>
+      </div>
+
+      <div class="okinawa-spots-grid">
+        <!-- 1. 美麗海水族館 -->
+        <article class="okinawa-card" id="spot-churaumi">
+          <div class="okinawa-card-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&auto=format&fit=crop&q=80" alt="沖繩美麗海水族館" class="okinawa-card-img" loading="lazy">
+            <span class="okinawa-card-tag">世界級海洋奇蹟</span>
+            <button class="spot-fav-btn" data-fav-id="okinawa-spot-churaumi" data-fav-name="美麗海水族館" data-fav-region="沖繩" data-fav-type="景點" data-fav-image="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&auto=format&fit=crop&q=80">
+              <i class="far fa-heart"></i>
+            </button>
+          </div>
+          <div class="okinawa-card-body">
+            <h3 class="okinawa-card-title">🌺 沖繩美麗海水族館</h3>
+            <span class="okinawa-card-sub">本部町 · 世界最大級水槽「黑潮之海」與巨大鯨鯊</span>
+            <p class="okinawa-card-desc">
+              沖繩擁有美麗的海岸與碧藍海水，巨大鯨鯊與鬼蝠魟在眼前悠然游弋，戶外更有海豚劇場與翡翠沙灘，極富療癒魅力。
+            </p>
+            <div class="okinawa-card-footer">
+              <span style="color:var(--color-wood);"><i class="fas fa-car"></i> 那霸自駕約2小時</span>
+              <button class="btn btn-outline" style="padding:4px 12px; font-size:0.82rem;" data-okinawa-spot="okinawa-churaumi">查看詳情</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- 2. 萬座毛 -->
+        <article class="okinawa-card" id="spot-manzamo">
+          <div class="okinawa-card-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&auto=format&fit=crop&q=80" alt="萬座毛象鼻岩" class="okinawa-card-img" loading="lazy">
+            <span class="okinawa-card-tag">天然象鼻海蝕斷崖</span>
+            <button class="spot-fav-btn" data-fav-id="okinawa-spot-manzamo" data-fav-name="萬座毛" data-fav-region="沖繩" data-fav-type="景點" data-fav-image="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&auto=format&fit=crop&q=80">
+              <i class="far fa-heart"></i>
+            </button>
+          </div>
+          <div class="okinawa-card-body">
+            <h3 class="okinawa-card-title">🐘 萬座毛 (Manzamo)</h3>
+            <span class="okinawa-card-sub">恩納村 · 象鼻天然奇岩與可供萬人齊坐之遼闊草坪</span>
+            <p class="okinawa-card-desc">
+              宛如象鼻般的巨石矗立在琉球藍大海中，海風徐徐吹過廣袤綠草地，夕陽將整片東海染成金黃色，是沖繩最具代表性的自然景觀。
+            </p>
+            <div class="okinawa-card-footer">
+              <span style="color:var(--color-wood);"><i class="fas fa-car"></i> 國道58號恩納村段</span>
+              <button class="btn btn-outline" style="padding:4px 12px; font-size:0.82rem;" data-okinawa-spot="okinawa-manzamo">查看詳情</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- 3. 那霸國際通 -->
+        <article class="okinawa-card" id="spot-kokusai">
+          <div class="okinawa-card-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800&auto=format&fit=crop&q=80" alt="國際通" class="okinawa-card-img" loading="lazy">
+            <span class="okinawa-card-tag">繁華奇蹟一英里</span>
+            <button class="spot-fav-btn" data-fav-id="okinawa-spot-kokusai" data-fav-name="那霸國際通" data-fav-region="沖繩" data-fav-type="景點" data-fav-image="https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=600&auto=format&fit=crop&q=80">
+              <i class="far fa-heart"></i>
+            </button>
+          </div>
+          <div class="okinawa-card-body">
+            <h3 class="okinawa-card-title">🛍️ 那霸國際通 (Kokusai Dori)</h3>
+            <span class="okinawa-card-sub">那霸市 · 匯聚土產、居酒屋三線琴與熱鬧商店街</span>
+            <p class="okinawa-card-desc">
+              長達1.6公里的商店街，從黑糖泡盛、紅芋塔、雪鹽點心到琉球傳統工藝應有盡有，是回國前購買伴手禮的最夯勝地。
+            </p>
+            <div class="okinawa-card-footer">
+              <span style="color:var(--color-wood);"><i class="fas fa-subway"></i> 縣廳前/牧志站直達</span>
+              <button class="btn btn-outline" style="padding:4px 12px; font-size:0.82rem;" data-okinawa-spot="okinawa-kokusai">查看詳情</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- 4. 古宇利大橋與心形岩 -->
+        <article class="okinawa-card" id="spot-kouri">
+          <div class="okinawa-card-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&auto=format&fit=crop&q=80" alt="古宇利大橋" class="okinawa-card-img" loading="lazy">
+            <span class="okinawa-card-tag">神之戀之島</span>
+            <button class="spot-fav-btn" data-fav-id="okinawa-spot-kouri" data-fav-name="古宇利大橋" data-fav-region="沖繩" data-fav-type="景點" data-fav-image="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&auto=format&fit=crop&q=80">
+              <i class="far fa-heart"></i>
+            </button>
+          </div>
+          <div class="okinawa-card-body">
+            <h3 class="okinawa-card-title">🌉 古宇利大橋 & 心形岩</h3>
+            <span class="okinawa-card-sub">今歸仁村 · 奔馳於全日本最清澈透明的古宇利藍海面</span>
+            <p class="okinawa-card-desc">
+              筆直跨海大橋長達近2公里，海水呈現如果凍般的極致翠綠色，島上還有著名的天然心形石岩，情侶必訪打卡！
+            </p>
+            <div class="okinawa-card-footer">
+              <span style="color:var(--color-wood);"><i class="fas fa-car"></i> 水族館自駕25分</span>
+              <button class="btn btn-outline" style="padding:4px 12px; font-size:0.82rem;" data-okinawa-spot="okinawa-kouri">查看詳情</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- 5. 波上宮 -->
+        <article class="okinawa-card" id="spot-naminoue">
+          <div class="okinawa-card-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1478436127897-769e00d2c715?w=800&auto=format&fit=crop&q=80" alt="波上宮神社" class="okinawa-card-img" loading="lazy">
+            <span class="okinawa-card-tag">琉球第一神社</span>
+            <button class="spot-fav-btn" data-fav-id="okinawa-spot-naminoue" data-fav-name="波上宮" data-fav-region="沖繩" data-fav-type="景點" data-fav-image="https://images.unsplash.com/photo-1478436127897-769e00d2c715?w=600&auto=format&fit=crop&q=80">
+              <i class="far fa-heart"></i>
+            </button>
+          </div>
+          <div class="okinawa-card-body">
+            <h3 class="okinawa-card-title">⛩️ 波上宮 (Naminoue)</h3>
+            <span class="okinawa-card-sub">那霸市 · 懸空矗立於海蝕珊瑚礁崖之上的琉球信仰中心</span>
+            <p class="okinawa-card-desc">
+              紅瓦主殿巍峨高聳於懸崖，從鄰近波之上海灘仰望極富震撼美感。祈求航海安全與良緣，更有可愛小巧的書包交通御守。
+            </p>
+            <div class="okinawa-card-footer">
+              <span style="color:var(--color-wood);"><i class="fas fa-subway"></i> 旭橋站步行15分</span>
+              <button class="btn btn-outline" style="padding:4px 12px; font-size:0.82rem;" data-okinawa-spot="okinawa-naminoue">查看詳情</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- 6. 美國村 -->
+        <article class="okinawa-card" id="spot-american">
+          <div class="okinawa-card-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1503899036084-c55cdd92da26?w=800&auto=format&fit=crop&q=80" alt="美國村落日海灘" class="okinawa-card-img" loading="lazy">
+            <span class="okinawa-card-tag">異國西岸渡假感</span>
+            <button class="spot-fav-btn" data-fav-id="okinawa-spot-american" data-fav-name="美濱美國村" data-fav-region="沖繩" data-fav-type="景點" data-fav-image="https://images.unsplash.com/photo-1503899036084-c55cdd92da26?w=600&auto=format&fit=crop&q=80">
+              <i class="far fa-heart"></i>
+            </button>
+          </div>
+          <div class="okinawa-card-body">
+            <h3 class="okinawa-card-title">🎡 美濱美國村 (American Village)</h3>
+            <span class="okinawa-card-sub">北谷町 · 融合美式街頭文化、日落沙灘與濱海景觀餐廳</span>
+            <p class="okinawa-card-desc">
+              繽紛洋房街道、古著服飾店與大型露天廣場，傍晚在 Sunset Beach 坐在階梯吹海風看金色夕陽，浪漫滿點。
+            </p>
+            <div class="okinawa-card-footer">
+              <span style="color:var(--color-wood);"><i class="fas fa-car"></i> 那霸自駕約35分</span>
+              <button class="btn btn-outline" style="padding:4px 12px; font-size:0.82rem;" data-okinawa-spot="okinawa-american">查看詳情</button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 二、沖繩必吃特色美食 (每道皆附照片並搭配景點) -->
+  <section class="region-foods-section" id="foods">
+    <div class="region-container">
+      <div class="section-header-center">
+        <span class="section-badge" style="background:#E0F2F1; color:#00796B;"><i class="fas fa-utensils"></i> 琉球滋味</span>
+        <h2 class="section-title">沖繩必吃特色美食推薦</h2>
+        <p class="section-subtitle">每道名物皆附上實拍圖片與特色解說，並貼心搭配相鄰的推薦沖繩景點！</p>
+      </div>
+
+      <div class="okinawa-foods-grid">
+        <!-- 石垣牛炭火燒肉 -->
+        <article class="okinawa-card">
+          <div class="okinawa-card-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1558030006-450675393462?w=800&auto=format&fit=crop&q=80" alt="石垣牛燒肉" class="okinawa-card-img" loading="lazy">
+            <button class="spot-fav-btn" data-fav-id="okinawa-food-wagyu" data-fav-name="頂級石垣牛燒肉" data-fav-region="沖繩" data-fav-type="美食" data-fav-image="https://images.unsplash.com/photo-1558030006-450675393462?w=600&auto=format&fit=crop&q=80">
+              <i class="far fa-heart"></i>
+            </button>
+          </div>
+          <div class="okinawa-card-body">
+            <h3 class="okinawa-card-title">🥩 頂級黑毛石垣牛炭火燒肉</h3>
+            <span class="okinawa-card-sub">いしがきぎゅう · 海風天然牧草飼育的甘美霜降油脂</span>
+            <p class="okinawa-card-desc">
+              在溫暖陽光與清澈海風中培育的日本國寶級黑毛和牛。大理石花紋細密均勻，炭火微烤兩面，沾上些許沖繩天然海鹽，肉汁在口中瞬間爆發。
+            </p>
+            <div class="okinawa-pairing-box">
+              <strong><i class="fas fa-link"></i> 搭配推薦景點：</strong>
+              參觀完 <a href="javascript:void(0)" data-target-spot="spot-churaumi" style="color:#00796B; font-weight:700; text-decoration:underline;">美麗海水族館</a> 後，於本部町知名牧場燒肉店享用奢華晚餐！
+            </div>
+          </div>
+        </article>
+
+        <!-- 沖繩排骨麵 -->
+        <article class="okinawa-card">
+          <div class="okinawa-card-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1557872943-16a5ac26437e?w=800&auto=format&fit=crop&q=80" alt="沖繩麵" class="okinawa-card-img" loading="lazy">
+            <button class="spot-fav-btn" data-fav-id="okinawa-food-soba" data-fav-name="沖繩排骨麵" data-fav-region="沖繩" data-fav-type="美食" data-fav-image="https://images.unsplash.com/photo-1557872943-16a5ac26437e?w=600&auto=format&fit=crop&q=80">
+              <i class="far fa-heart"></i>
+            </button>
+          </div>
+          <div class="okinawa-card-body">
+            <h3 class="okinawa-card-title">🍜 沖繩軟骨排骨麵 (Okinawa Soba)</h3>
+            <span class="okinawa-card-sub">ソーキそば · 熬煮至入口即化的透光軟骨與柴魚高湯</span>
+            <p class="okinawa-card-desc">
+              非蕎麥製成的小麥粗麵，口感富有嚼勁。搭配以柴魚片與豬骨熬製的清澈甘醇湯頭，放上滷得晶瑩軟嫩的整塊軟骨豬排，滴幾滴泡盛辣油更提味！
+            </p>
+            <div class="okinawa-pairing-box">
+              <strong><i class="fas fa-link"></i> 搭配推薦景點：</strong>
+              走訪 <a href="javascript:void(0)" data-target-spot="spot-manzamo" style="color:#00796B; font-weight:700; text-decoration:underline;">萬座毛象鼻岩</a> 迎著海風漫步後，來一碗熱騰騰的軟骨排骨麵！
+            </div>
+          </div>
+        </article>
+
+        <!-- 海葡萄蓋飯 -->
+        <article class="okinawa-card">
+          <div class="okinawa-card-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1563245372-f21724e3856d?w=800&auto=format&fit=crop&q=80" alt="沖繩海葡萄蓋飯" class="okinawa-card-img" loading="lazy">
+            <button class="spot-fav-btn" data-fav-id="okinawa-food-umibudo" data-fav-name="海葡萄蓋飯" data-fav-region="沖繩" data-fav-type="美食" data-fav-image="https://images.unsplash.com/photo-1563245372-f21724e3856d?w=600&auto=format&fit=crop&q=80">
+              <i class="far fa-heart"></i>
+            </button>
+          </div>
+          <div class="okinawa-card-body">
+            <h3 class="okinawa-card-title">🌿 綠色魚子醬 海葡萄丼 (Umibudo)</h3>
+            <span class="okinawa-card-sub">海ぶどう丼 · 顆粒在齒間啵啵作響的清新海味</span>
+            <p class="okinawa-card-desc">
+              生長在沖繩純淨淺海的天然海藻，一串串晶瑩剔透宛如綠色小葡萄。咬破時散發海洋清香與微鹹甘甜，鋪在熱飯上淋特調三杯醋或橘醋醬，開胃無比。
+            </p>
+            <div class="okinawa-pairing-box">
+              <strong><i class="fas fa-link"></i> 搭配推薦景點：</strong>
+              開車兜風至 <a href="javascript:void(0)" data-target-spot="spot-kouri" style="color:#00796B; font-weight:700; text-decoration:underline;">古宇利大橋</a> 旁的海景咖啡館，品嚐海葡萄海鮮丼！
+            </div>
+          </div>
+        </article>
+
+        <!-- 苦瓜炒島豆腐 -->
+        <article class="okinawa-card">
+          <div class="okinawa-card-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80" alt="苦瓜炒豆腐" class="okinawa-card-img" loading="lazy">
+            <button class="spot-fav-btn" data-fav-id="okinawa-food-goya" data-fav-name="苦瓜炒島豆腐" data-fav-region="沖繩" data-fav-type="美食" data-fav-image="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600&auto=format&fit=crop&q=80">
+              <i class="far fa-heart"></i>
+            </button>
+          </div>
+          <div class="okinawa-card-body">
+            <h3 class="okinawa-card-title">🥒 沖繩長壽元氣 苦瓜炒豆腐 (Goya)</h3>
+            <span class="okinawa-card-sub">ゴーヤーチャンプルー · 扎實島豆腐與嫩蛋火腿的完美結合</span>
+            <p class="okinawa-card-desc">
+              沖繩翠綠山苦瓜薄片，與質地扎實不易碎的島豆腐、雞蛋與薄片午餐肉大火翻炒，苦中帶甘、清脆爽口，是琉球家庭與居酒屋的第一家常招牌。
+            </p>
+            <div class="okinawa-pairing-box">
+              <strong><i class="fas fa-link"></i> 搭配推薦景點：</strong>
+              參拜完海蝕崖上的 <a href="javascript:void(0)" data-target-spot="spot-naminoue" style="color:#00796B; font-weight:700; text-decoration:underline;">波上宮神社</a> 後，在周邊在地定食小館品嚐道地苦瓜炒雜碎。
+            </div>
+          </div>
+        </article>
+
+        <!-- 沖繩雪鹽冰淇淋 -->
+        <article class="okinawa-card">
+          <div class="okinawa-card-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&auto=format&fit=crop&q=80" alt="沖繩雪鹽冰淇淋" class="okinawa-card-img" loading="lazy">
+            <button class="spot-fav-btn" data-fav-id="okinawa-food-salt-ice" data-fav-name="宮古島雪鹽冰淇淋" data-fav-region="沖繩" data-fav-type="美食" data-fav-image="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&auto=format&fit=crop&q=80">
+              <i class="far fa-heart"></i>
+            </button>
+          </div>
+          <div class="okinawa-card-body">
+            <h3 class="okinawa-card-title">🍦 宮古島雪鹽霜淇淋 (Snow Salt Ice)</h3>
+            <span class="okinawa-card-sub">雪塩ソフトクリーム · 撒上柚子鹽、抹茶鹽的驚艷層次</span>
+            <p class="okinawa-card-desc">
+              以珊瑚礁石灰岩過濾提煉出的宮古島雪鹽，礦物質世界第一。融入香濃牛乳霜淇淋中，微鹹更襯托奶香甘純，現場還能自由灑上辣椒鹽或黑芝麻鹽！
+            </p>
+            <div class="okinawa-pairing-box">
+              <strong><i class="fas fa-link"></i> 搭配推薦景點：</strong>
+              在大太陽下逛熱鬧的 <a href="javascript:void(0)" data-target-spot="spot-kokusai" style="color:#00796B; font-weight:700; text-decoration:underline;">那霸國際通</a> 時，人手一支清爽解暑！
+            </div>
+          </div>
+        </article>
+
+        <!-- 御菓子御殿紅芋塔 -->
+        <article class="okinawa-card">
+          <div class="okinawa-card-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1582293041079-7814c2f12063?w=800&auto=format&fit=crop&q=80" alt="沖繩紅芋塔" class="okinawa-card-img" loading="lazy">
+            <button class="spot-fav-btn" data-fav-id="okinawa-food-beniimo" data-fav-name="沖繩紅芋塔" data-fav-region="沖繩" data-fav-type="美食" data-fav-image="https://images.unsplash.com/photo-1582293041079-7814c2f12063?w=600&auto=format&fit=crop&q=80">
+              <i class="far fa-heart"></i>
+            </button>
+          </div>
+          <div class="okinawa-card-body">
+            <h3 class="okinawa-card-title">🍠 元祖琉球紫薯紅芋塔 (Beni-imo)</h3>
+            <span class="okinawa-card-sub">紅いもタルト · 百分之百沖繩產紫心地瓜的天然香甜</span>
+            <p class="okinawa-card-desc">
+              船型酥皮塔上擠著優雅旋轉波浪花紋的紫薯泥，無添加任何人工色素，呈現天然夢幻的深紫色。烤箱微烤後熱熱吃，外皮酥脆內餡綿密香醇。
+            </p>
+            <div class="okinawa-pairing-box">
+              <strong><i class="fas fa-link"></i> 搭配推薦景點：</strong>
+              傍晚造訪 <a href="javascript:void(0)" data-target-spot="spot-american" style="color:#00796B; font-weight:700; text-decoration:underline;">北谷美國村</a> 伴手禮旗艦館，現場觀賞生產線並試吃剛出爐紅芋塔！
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 三、沖繩行程推薦規劃 -->
+  <section class="region-plans-section" id="plans">
+    <div class="region-container">
+      <div class="section-header-center">
+        <span class="section-badge"><i class="fas fa-route"></i> 自在渡假</span>
+        <h2 class="section-title">沖繩推薦旅遊行程規劃</h2>
+        <p class="section-subtitle">專為情侶、家庭與自由行朋友規劃的無壓海島玩樂節奏。</p>
+      </div>
+
+      <div class="plan-cards-grid">
+        <div class="plan-card">
+          <span class="plan-card-tag"><i class="far fa-clock"></i> 三日放鬆 · 南中部精華</span>
+          <h3 class="plan-card-title">陽光海島輕旅行三日遊</h3>
+          <div class="plan-timeline">
+            <div class="timeline-row">
+              <div class="timeline-hour">Day 1</div>
+              <div class="timeline-text">
+                <strong>抵達那霸與市區祈福</strong>
+                <p>那霸機場 ➔ 懸崖神社波上宮 ➔ 國際通逛街血拼 ➔ 晚餐石垣牛燒肉</p>
+              </div>
+            </div>
+            <div class="timeline-row">
+              <div class="timeline-hour">Day 2</div>
+              <div class="timeline-text">
+                <strong>中北部巨浪與水族奇觀</strong>
+                <p>萬座毛大象岩 ➔ 美麗海水族館黑潮之海 ➔ 古宇利大橋海景下午茶</p>
+              </div>
+            </div>
+            <div class="timeline-row">
+              <div class="timeline-hour">Day 3</div>
+              <div class="timeline-text">
+                <strong>美式復古與夕陽漫步</strong>
+                <p>美國村美式早午餐 ➔ 日落海灘吹風 ➔ 牧志公設市場吃生魚片 ➔ 滿載歸國</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="plan-card">
+          <span class="plan-card-tag"><i class="far fa-clock"></i> 五日自駕 · 環海全島全景</span>
+          <h3 class="plan-card-title">沖繩蔚藍自駕五日全覽</h3>
+          <div class="plan-timeline">
+            <div class="timeline-row">
+              <div class="timeline-hour">Day 1-2</div>
+              <div class="timeline-text">
+                <strong>北部自然神山與跨海大橋</strong>
+                <p>美麗海水族館深入體驗、今歸仁城跡世界遺產、古宇利心形岩海景</p>
+              </div>
+            </div>
+            <div class="timeline-row">
+              <div class="timeline-hour">Day 3-4</div>
+              <div class="timeline-text">
+                <strong>中部渡假飯店與水上浮潛</strong>
+                <p>恩納村青之洞窟潛水、萬座毛、美國村夜景漫步享用巨大漢堡</p>
+              </div>
+            </div>
+            <div class="timeline-row">
+              <div class="timeline-hour">Day 5</div>
+              <div class="timeline-text">
+                <strong>南部文化古蹟與免稅採購</strong>
+                <p>齋場御嶽、瀨長島小希臘看飛機起降、奧特萊斯購物中心最後血拼</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 四、沖繩交通須知 -->
+  <section class="region-spots-section" id="traffic" style="background:#FAF3EB;">
+    <div class="region-container">
+      <div class="section-header-center">
+        <span class="section-badge"><i class="fas fa-car"></i> 交通指南</span>
+        <h2 class="section-title">沖繩自駕與單軌電車攻略</h2>
+        <p class="section-subtitle">那霸市區搭單軌，跨區中北部推薦租車自駕最愜意！</p>
+      </div>
+
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:24px;">
+        <div style="background:#fff; padding:24px; border-radius:var(--radius-md); border:1px solid var(--border-color);">
+          <h4 style="font-family:var(--font-serif); font-size:1.15rem; margin-bottom:10px; color:var(--text-main);"><i class="fas fa-subway" style="color:#00796B;"></i> 那霸單軌電車 (Yui Rail)</h4>
+          <p style="font-size:0.88rem; color:var(--text-muted); line-height:1.7;">
+            連接那霸機場、旭橋（巴士總站）、縣廳前（國際通入口）、牧志至首里城，市區移動免塞車，可購買24小時通票（¥800），進出站刷 QR Code 即可。
+          </p>
+        </div>
+
+        <div style="background:#fff; padding:24px; border-radius:var(--radius-md); border:1px solid var(--border-color);">
+          <h4 style="font-family:var(--font-serif); font-size:1.15rem; margin-bottom:10px; color:var(--text-main);"><i class="fas fa-car-side" style="color:var(--color-torii);"></i> 沖繩自駕租車小技巧</h4>
+          <p style="font-size:0.88rem; color:var(--text-muted); line-height:1.7;">
+            台灣旅客需攜帶「台灣駕照正本」與「日文駕照譯本」（在台灣監理所申辦）。日本為右駕靠左行駛，轉彎記得「右轉大彎、左轉小彎」，導航直接輸入目的地電話號碼或 MapCode 超方便！
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 全站頁尾 Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="site-logo">
+            <div class="logo-icon"><i class="fas fa-torii-gate"></i></div>
+            <div class="logo-text-group">
+              <span class="logo-title">日本旅遊誌</span>
+              <span class="logo-sub">JAPAN TRAVEL JOURNAL</span>
+            </div>
+          </div>
+          <p class="footer-desc">「日本旅遊誌」陪伴您在沖繩的碧海藍天下，享受悠閒漫步與熱帶滋味的極致假期！</p>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">推薦地區</h4>
+          <ul class="footer-links">
+            <li><a href="tokyo.html"><i class="fas fa-angle-right"></i> 東京 Tokyo</a></li>
+            <li><a href="kyoto.html"><i class="fas fa-angle-right"></i> 京都 Kyoto</a></li>
+            <li><a href="osaka.html"><i class="fas fa-angle-right"></i> 大阪 Osaka</a></li>
+            <li><a href="hokkaido.html"><i class="fas fa-angle-right"></i> 北海道 Hokkaido</a></li>
+            <li><a href="okinawa.html"><i class="fas fa-angle-right"></i> 沖繩 Okinawa</a></li>
+            <li><a href="fuji.html"><i class="fas fa-angle-right"></i> 富士山 Mt. Fuji</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">網站導覽</h4>
+          <ul class="footer-links">
+            <li><a href="index.html"><i class="fas fa-angle-right"></i> 首頁</a></li>
+            <li><a href="itinerary.html"><i class="fas fa-angle-right"></i> 行程推薦</a></li>
+            <li><a href="food.html"><i class="fas fa-angle-right"></i> 特色美食</a></li>
+            <li><a href="guide.html"><i class="fas fa-angle-right"></i> 旅遊須知 & Q&A</a></li>
+            <li><a href="contact.html"><i class="fas fa-angle-right"></i> 聯絡我們</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">聯絡我們</h4>
+          <div class="footer-contact-item"><i class="fas fa-map-marker-alt"></i><div>地址：台北市 XX 區 XX 路 XX 號</div></div>
+          <div class="footer-contact-item"><i class="fas fa-phone-alt"></i><div>電話：02-1234-5678</div></div>
+          <div class="footer-contact-item"><i class="fas fa-envelope"></i><div>Email：japantravel@example.com</div></div>
+          <div class="footer-contact-item"><i class="far fa-clock"></i><div>營業時間：週二至週日 11:00 - 21:00 (週一公休)</div></div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>© 2026 日本旅遊誌 Japan Travel Journal. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="fav-drawer-overlay" id="fav-drawer-overlay"></div>
+  <aside class="fav-drawer" id="fav-drawer">
+    <div class="fav-drawer-header">
+      <h3 class="fav-drawer-title"><i class="fas fa-heart" style="color:var(--color-torii);"></i> 我的收藏地點</h3>
+      <button class="close-drawer-btn" id="fav-close-btn"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="fav-drawer-body" id="fav-drawer-body"></div>
+    <div class="fav-drawer-footer">
+      <button class="btn btn-outline" id="clear-fav-btn" style="padding:6px 14px; font-size:0.85rem;"><i class="fas fa-trash-alt"></i> 全部清空</button>
+      <a href="itinerary.html" class="btn btn-primary" style="padding:6px 16px; font-size:0.85rem;"><i class="fas fa-route"></i> 帶入行程規劃</a>
+    </div>
+  </aside>
+
+  <div class="modal-overlay" id="detail-modal">
+    <div class="modal-content-wrapper">
+      <button class="modal-close-btn" id="modal-close-btn"><i class="fas fa-times"></i></button>
+      <img src="" alt="" class="modal-hero-img" id="modal-img">
+      <div class="modal-body">
+        <span class="section-badge" id="modal-badge">沖繩推薦</span>
+        <h2 style="font-family:var(--font-serif); font-size:1.6rem; margin-top:8px; margin-bottom:4px;" id="modal-title">標題</h2>
+        <div style="font-size:0.85rem; color:var(--color-wood); margin-bottom:16px;" id="modal-subtitle">副標題</div>
+        <p style="color:var(--text-muted); line-height:1.8; font-size:0.95rem;" id="modal-desc">說明內容</p>
+        <div id="modal-extra-info"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/common.js"></script>
+  <script src="js/okinawa.js"></script>
+</body>
+</html>
+

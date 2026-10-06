@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>日本各地特色美食大鑑 ｜ 美食推薦與景點搭配指南 - 日本旅遊誌</title>
+  <meta name="description" content="全日本特色美食大鑑！江戶前壽司、道地拉麵、黑毛和牛燒肉、大阪章魚燒、宇治抹茶甜點、北海道海鮮丼與湯咖哩，每道美食均搭配推薦旅遊景點。">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/food.css">
+</head>
+<body>
+
+  <canvas id="sakura-canvas"></canvas>
+  <button id="sakura-toggle-btn" class="sakura-toggle-btn"><span>🌸 櫻花：開</span></button>
+  <button id="back-to-top" class="back-to-top"><i class="fas fa-chevron-up"></i></button>
+
+  <header class="site-header">
+    <div class="header-container">
+      <a href="index.html" class="site-logo">
+        <div class="logo-icon"><i class="fas fa-torii-gate"></i></div>
+        <div class="logo-text-group">
+          <span class="logo-title">日本旅遊誌</span>
+          <span class="logo-sub">JAPAN TRAVEL JOURNAL</span>
+        </div>
+      </a>
+
+      <nav class="main-nav" id="main-nav">
+        <ul class="nav-list">
+          <li><a href="index.html" class="nav-link"><i class="fas fa-home"></i> 首頁</a></li>
+          <li class="dropdown">
+            <a href="javascript:void(0)" class="nav-link">
+              <i class="fas fa-map-marked-alt"></i> 推薦地區 <i class="fas fa-angle-down" style="font-size:0.75rem;"></i>
+            </a>
+            <div class="dropdown-menu">
+              <a href="tokyo.html" class="dropdown-item"><span>🗼 東京 Tokyo</span> <span class="badge">現代繁華</span></a>
+              <a href="kyoto.html" class="dropdown-item"><span>⛩️ 京都 Kyoto</span> <span class="badge">古都古韻</span></a>
+              <a href="osaka.html" class="dropdown-item"><span>🏯 大阪 Osaka</span> <span class="badge">美食熱情</span></a>
+              <a href="hokkaido.html" class="dropdown-item"><span>❄️ 北海道 Hokkaido</span> <span class="badge">純白浪漫</span></a>
+              <a href="okinawa.html" class="dropdown-item"><span>🌺 沖繩 Okinawa</span> <span class="badge">度假蔚藍</span></a>
+              <a href="fuji.html" class="dropdown-item"><span>🗻 富士山 Fuji</span> <span class="badge">壯麗神山</span></a>
+            </div>
+          </li>
+          <li><a href="itinerary.html" class="nav-link"><i class="fas fa-route"></i> 行程推薦</a></li>
+          <li><a href="food.html" class="nav-link active"><i class="fas fa-utensils"></i> 特色美食</a></li>
+          <li><a href="guide.html" class="nav-link"><i class="fas fa-compass"></i> 旅遊須知 & Q&A</a></li>
+          <li><a href="contact.html" class="nav-link"><i class="fas fa-envelope"></i> 聯絡我們</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button class="fav-btn" id="fav-open-btn">
+          <i class="fas fa-heart" style="color:var(--color-torii);"></i>
+          <span>我的收藏</span>
+          <span class="fav-count">0</span>
+        </button>
+        <button class="mobile-menu-toggle" id="mobile-menu-toggle"><i class="fas fa-bars"></i></button>
+      </div>
+    </div>
+  </header>
+
+  <!-- 麵包屑導航 -->
+  <div class="breadcrumb-section">
+    <div class="breadcrumb-container">
+      <a href="index.html"><i class="fas fa-home"></i> 首頁</a>
+      <span class="breadcrumb-separator"><i class="fas fa-chevron-right"></i></span>
+      <span class="breadcrumb-current">特色美食</span>
+    </div>
+  </div>
+
+  <!-- Hero 橫幅 -->
+  <section class="food-hero-section">
+    <div class="food-hero-container">
+      <span class="section-badge" style="background:rgba(255,255,255,0.25); color:#fff; border-color:rgba(255,255,255,0.4);"><i class="fas fa-utensils"></i> 日本靈魂滋味</span>
+      <h1 style="font-family:var(--font-serif); font-size:clamp(2.2rem, 4vw, 3.5rem); margin-bottom:12px;">全日本特色美食大鑑</h1>
+      <p style="font-size:1.05rem; color:#F0ECE6; max-width:700px; line-height:1.8;">
+        味蕾是旅行中最深沉的記憶！我們匯集日本各地著名代表美食，每道美食均搭配推薦旅遊景點，讓您在探訪名勝的同時，不錯過最道地的極致饗宴。
+      </p>
+    </div>
+  </section>
+
+  <!-- 篩選與搜尋控制器 -->
+  <div class="food-control-bar">
+    <div class="food-control-container">
+      <div class="food-region-tabs">
+        <button class="food-region-btn active" data-region="all">全日本 (全部)</button>
+        <button class="food-region-btn" data-region="tokyo">東京</button>
+        <button class="food-region-btn" data-region="kyoto">京都</button>
+        <button class="food-region-btn" data-region="osaka">大阪</button>
+        <button class="food-region-btn" data-region="hokkaido">北海道</button>
+        <button class="food-region-btn" data-region="okinawa">沖繩</button>
+        <button class="food-region-btn" data-region="fuji">富士山周邊</button>
+      </div>
+
+      <div class="food-search-box">
+        <i class="fas fa-search food-search-icon"></i>
+        <input type="text" class="food-search-input" id="food-search-input" placeholder="搜尋美食名稱、料理或景點..." aria-label="搜尋美食">
+      </div>
+    </div>
+  </div>
+
+  <!-- 美食卡片網格 -->
+  <section class="food-catalog-section">
+    <div class="food-catalog-grid">
+
+      <!-- 1. 江戶前握壽司 (東京) -->
+      <article class="food-item-card" data-region="tokyo">
+        <div class="food-img-holder">
+          <img src="https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=800&auto=format&fit=crop&q=80" alt="江戶前握壽司" loading="lazy">
+          <span class="food-region-tag"><i class="fas fa-map-marker-alt"></i> 東京</span>
+          <button class="spot-fav-btn" data-fav-id="food-sushi" data-fav-name="江戶前握壽司" data-fav-region="東京" data-fav-type="特色美食" data-fav-image="https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=600&auto=format&fit=crop&q=80">
+            <i class="far fa-heart"></i>
+          </button>
+        </div>
+        <div class="food-content-body">
+          <div class="food-title-row">
+            <h3 class="food-name">🍣 江戶前握壽司 (Sushi)</h3>
+          </div>
+          <div class="food-jp-sub">えどまえずし · 職人手握與熟成海味</div>
+          <p class="food-summary">
+            嚴選當季海味，透過昆布醃漬、醬油浸泡等傳統江戶前熟成手法，搭配溫度恰如體溫的赤醋飯，鮪魚大腹入口即化，餘韻悠長。
+          </p>
+          <div class="paired-spot-container">
+            <strong><i class="fas fa-compass"></i> 搭配推薦景點：</strong>
+            參訪完 <a href="tokyo.html#spot-sensoji" style="color:var(--color-torii); font-weight:700; text-decoration:underline;">淺草寺雷門</a> 或 <a href="tokyo.html#spot-skytree" style="color:var(--color-torii); font-weight:700; text-decoration:underline;">東京晴空塔</a> 後，前往築地場外市場或銀座名店品嚐！
+          </div>
+        </div>
+      </article>
+
+      <!-- 2. 道地日式拉麵 (東京/全日本) -->
+      <article class="food-item-card" data-region="tokyo">
+        <div class="food-img-holder">
+          <img src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=800&auto=format&fit=crop&q=80" alt="日式拉麵" loading="lazy">
+          <span class="food-region-tag"><i class="fas fa-map-marker-alt"></i> 東京 / 激戰區</span>
+          <button class="spot-fav-btn" data-fav-id="food-ramen" data-fav-name="東京拉麵" data-fav-region="東京" data-fav-type="特色美食" data-fav-image="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=600&auto=format&fit=crop&q=80">
+            <i class="far fa-heart"></i>
+          </button>
+        </div>
+        <div class="food-content-body">
+          <div class="food-title-row">
+            <h3 class="food-name">🍜 東京濃厚豚骨/醬油拉麵</h3>
+          </div>
+          <div class="food-jp-sub">ラーメン · 熬煮十餘小時的靈魂湯頭</div>
+          <p class="food-summary">
+            以雞骨、柴魚和秘製醬油調和的香醇湯底，或是濃厚豚骨白湯，配上大片炙燒叉燒、半熟溏心蛋與彈牙手工細麵，深夜暖心第一選擇。
+          </p>
+          <div class="paired-spot-container">
+            <strong><i class="fas fa-compass"></i> 搭配推薦景點：</strong>
+            在 <a href="tokyo.html#spot-shibuya" style="color:var(--color-torii); font-weight:700; text-decoration:underline;">澀谷十字路口</a> 或新宿血拼散步後，走進巷弄拉麵小館大快朵頤！
+          </div>
+        </div>
+      </article>
+
+      <!-- 3. 黑毛和牛炭火燒肉 (沖繩/關西) -->
+      <article class="food-item-card" data-region="okinawa">
+        <div class="food-img-holder">
+          <img src="https://images.unsplash.com/photo-1558030006-450675393462?w=800&auto=format&fit=crop&q=80" alt="和牛燒肉" loading="lazy">
+          <span class="food-region-tag"><i class="fas fa-map-marker-alt"></i> 沖繩 / 石垣</span>
+          <button class="spot-fav-btn" data-fav-id="food-wagyu" data-fav-name="頂級黑毛和牛" data-fav-region="沖繩" data-fav-type="特色美食" data-fav-image="https://images.unsplash.com/photo-1558030006-450675393462?w=600&auto=format&fit=crop&q=80">
+            <i class="far fa-heart"></i>
+          </button>
+        </div>
+        <div class="food-content-body">
+          <div class="food-title-row">
+            <h3 class="food-name">🥩 頂級黑毛和牛 (Wagyu)</h3>
+          </div>
+          <div class="food-jp-sub">黒毛和牛 · 霜降油花與入口即化的奢華</div>
+          <p class="food-summary">
+            如大理石般細密的均勻油花，在備長炭上滋滋作響，散發誘人牛油焦香，輕沾海鹽或現磨山葵，肉質柔嫩香甜多汁，犒賞旅程之最。
+          </p>
+          <div class="paired-spot-container">
+            <strong><i class="fas fa-compass"></i> 搭配推薦景點：</strong>
+            參觀完 <a href="okinawa.html#spot-churaumi" style="color:var(--color-torii); font-weight:700; text-decoration:underline;">沖繩美麗海水族館</a> 後，於本部海景餐廳享用炭火石垣牛排！
+          </div>
+        </div>
+      </article>
+
+      <!-- 4. 大阪章魚燒 (大阪) -->
+      <article class="food-item-card" data-region="osaka">
+        <div class="food-img-holder">
+          <img src="https://images.unsplash.com/photo-1541544741938-0af808871cc0?w=800&auto=format&fit=crop&q=80" alt="大阪章魚燒" loading="lazy">
+          <span class="food-region-tag"><i class="fas fa-map-marker-alt"></i> 大阪</span>
+          <button class="spot-fav-btn" data-fav-id="food-takoyaki" data-fav-name="大阪章魚燒" data-fav-region="大阪" data-fav-type="特色美食" data-fav-image="https://images.unsplash.com/photo-1541544741938-0af808871cc0?w=600&auto=format&fit=crop&q=80">
+            <i class="far fa-heart"></i>
+          </button>
+        </div>
+        <div class="food-content-body">
+          <div class="food-title-row">
+            <h3 class="food-name">🐙 道頓堀元祖章魚燒 (Takoyaki)</h3>
+          </div>
+          <div class="food-jp-sub">たこ焼き · 外酥內爆漿的關西庶民之魂</div>
+          <p class="food-summary">
+            金黃鐵板上高溫烘烤，外皮微焦酥香，內部高湯麵糊滾燙軟嫩，包裹著大塊彈牙章魚腳，淋上特製濃黑醬與柴魚片，香氣撲鼻。
+          </p>
+          <div class="paired-spot-container">
+            <strong><i class="fas fa-compass"></i> 搭配推薦景點：</strong>
+            走訪 <a href="osaka.html#spot-dotonbori" style="color:var(--color-torii); font-weight:700; text-decoration:underline;">道頓堀跑跑人招牌</a> 與 <a href="osaka.html#spot-castle" style="color:var(--color-torii); font-weight:700; text-decoration:underline;">大阪城天守閣</a>，買一盒熱騰騰章魚燒邊走邊吃！
+          </div>
+        </div>
+      </article>
+
+      <!-- 5. 宇治抹茶聖代 (京都) -->
+      <article class="food-item-card" data-region="kyoto">
+        <div class="food-img-holder">
+          <img src="https://images.unsplash.com/photo-1536256263959-770b48d82b0a?w=800&auto=format&fit=crop&q=80" alt="抹茶甜點" loading="lazy">
+          <span class="food-region-tag"><i class="fas fa-map-marker-alt"></i> 京都 / 宇治</span>
+          <button class="spot-fav-btn" data-fav-id="food-matcha" data-fav-name="宇治抹茶聖代" data-fav-region="京都" data-fav-type="特色美食" data-fav-image="https://images.unsplash.com/photo-1536256263959-770b48d82b0a?w=600&auto=format&fit=crop&q=80">
+            <i class="far fa-heart"></i>
+          </button>
+        </div>
+        <div class="food-content-body">
+          <div class="food-title-row">
+            <h3 class="food-name">🍵 宇治特濃抹茶聖代 (Matcha)</h3>
+          </div>
+          <div class="food-jp-sub">抹茶パフェ · 清雅微苦回甘的古都甘味</div>
+          <p class="food-summary">
+            嚴選京都宇治頂級茶園的一番茶，翠綠濃郁的抹茶冰淇淋，搭配手工現捏白玉糰子、十勝紅豆泥與抹茶寒天凍，層次豐富清雅迷人。
+          </p>
+          <div class="paired-spot-container">
+            <strong><i class="fas fa-compass"></i> 搭配推薦景點：</strong>
+            參拜完 <a href="kyoto.html#spot-kiyomizu" style="color:var(--color-torii); font-weight:700; text-decoration:underline;">京都清水寺</a> 後漫步二年坂三年坂老街，在町家茶寮享用一份抹茶聖代。
+          </div>
+        </div>
+      </article>
+
+      <!-- 6. 北國豪華海鮮丼 (北海道) -->
+      <article class="food-item-card" data-region="hokkaido">
+        <div class="food-img-holder">
+          <img src="https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?w=800&auto=format&fit=crop&q=80" alt="豪華海鮮丼" loading="lazy">
+          <span class="food-region-tag"><i class="fas fa-map-marker-alt"></i> 北海道 / 小樽</span>
+          <button class="spot-fav-btn" data-fav-id="food-kaisen" data-fav-name="小樽豪華海鮮丼" data-fav-region="北海道" data-fav-type="特色美食" data-fav-image="https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?w=600&auto=format&fit=crop&q=80">
+            <i class="far fa-heart"></i>
+          </button>
+        </div>
+        <div class="food-content-body">
+          <div class="food-title-row">
+            <h3 class="food-name">🦀 小樽極品海鮮丼 (Kaisen-don)</h3>
+          </div>
+          <div class="food-jp-sub">かいせんどん · 海膽鮭魚卵帝王蟹的大海盛宴</div>
+          <p class="food-summary">
+            北國純淨海域直送！鋪滿整碗的金色馬糞海膽、晶瑩剔透的醬油漬鮭魚卵、鮮甜大干貝與帝王蟹肉，每一口都是大海的天然鮮甜精華。
+          </p>
+          <div class="paired-spot-container">
+            <strong><i class="fas fa-compass"></i> 搭配推薦景點：</strong>
+            漫步清晨的 <a href="hokkaido.html#spot-otaru" style="color:var(--color-torii); font-weight:700; text-decoration:underline;">小樽運河</a> 之後，前往三角市場點一碗現切澎湃海鮮丼！
+          </div>
+        </div>
+      </article>
+
+      <!-- 7. 山梨鄉土餺飥麵 (富士山) -->
+      <article class="food-item-card" data-region="fuji">
+        <div class="food-img-holder">
+          <img src="https://images.unsplash.com/photo-1618449840665-9ed506d73a34?w=800&auto=format&fit=crop&q=80" alt="山梨餺飥麵" loading="lazy">
+          <span class="food-region-tag"><i class="fas fa-map-marker-alt"></i> 富士山周邊</span>
+          <button class="spot-fav-btn" data-fav-id="food-hoto" data-fav-name="山梨餺飥麵" data-fav-region="富士山周邊" data-fav-type="特色美食" data-fav-image="https://images.unsplash.com/photo-1618449840665-9ed506d73a34?w=600&auto=format&fit=crop&q=80">
+            <i class="far fa-heart"></i>
+          </button>
+        </div>
+        <div class="food-content-body">
+          <div class="food-title-row">
+            <h3 class="food-name">🍲 甲州名物 餺飥麵 (Hoto)</h3>
+          </div>
+          <div class="food-jp-sub">ほうとう · 南瓜味噌與大鐵鍋扁寬手打麵</div>
+          <p class="food-summary">
+            武田信玄傳下的野戰名糧！濃郁味噌與鬆軟香甜南瓜燉煮出黃金高湯，手切扁寬麵條吸飽湯汁，滿滿山菜與豚肉，大鐵鍋滾燙暖胃。
+          </p>
+          <div class="paired-spot-container">
+            <strong><i class="fas fa-compass"></i> 搭配推薦景點：</strong>
+            欣賞完 <a href="fuji.html#spot-kawaguchiko" style="color:var(--color-torii); font-weight:700; text-decoration:underline;">河口湖逆富士</a> 與 <a href="fuji.html#spot-chureito" style="color:var(--color-torii); font-weight:700; text-decoration:underline;">新倉山五重塔</a> 後，在湖畔名店享用熱騰騰餺飥麵！
+          </div>
+        </div>
+      </article>
+
+      <!-- 8. 下町鐵板文字燒 (東京) -->
+      <article class="food-item-card" data-region="tokyo">
+        <div class="food-img-holder">
+          <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&auto=format&fit=crop&q=80" alt="文字燒" loading="lazy">
+          <span class="food-region-tag"><i class="fas fa-map-marker-alt"></i> 東京 / 月島</span>
+          <button class="spot-fav-btn" data-fav-id="food-monja" data-fav-name="下町文字燒" data-fav-region="東京" data-fav-type="特色美食" data-fav-image="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&auto=format&fit=crop&q=80">
+            <i class="far fa-heart"></i>
+          </button>
+        </div>
+        <div class="food-content-body">
+          <div class="food-title-row">
+            <h3 class="food-name">🥘 月島鐵板文字燒 (Monjayaki)</h3>
+          </div>
+          <div class="food-jp-sub">もんじゃ焼き · 明太子麻糬與焦香小鐵鏟鍋巴</div>
+          <p class="food-summary">
+            將高湯麵糊、高麗菜絲、明太子與起司在鐵板翻炒築起土手，用小鐵鏟刮起底部微焦香脆的鍋巴送入口中，體驗東京下町傳統歡聚樂趣。
+          </p>
+          <div class="paired-spot-container">
+            <strong><i class="fas fa-compass"></i> 搭配推薦景點：</strong>
+            登高 <a href="tokyo.html#spot-skytree" style="color:var(--color-torii); font-weight:700; text-decoration:underline;">東京晴空塔</a> 之後，順道前往晴空商場或月島老街體驗文字燒DIY！
+          </div>
+        </div>
+      </article>
+
+      <!-- 9. 沖繩軟骨排骨麵 (沖繩) -->
+      <article class="food-item-card" data-region="okinawa">
+        <div class="food-img-holder">
+          <img src="https://images.unsplash.com/photo-1557872943-16a5ac26437e?w=800&auto=format&fit=crop&q=80" alt="沖繩麵" loading="lazy">
+          <span class="food-region-tag"><i class="fas fa-map-marker-alt"></i> 沖繩</span>
+          <button class="spot-fav-btn" data-fav-id="food-okinawa-soba" data-fav-name="沖繩排骨麵" data-fav-region="沖繩" data-fav-type="特色美食" data-fav-image="https://images.unsplash.com/photo-1557872943-16a5ac26437e?w=600&auto=format&fit=crop&q=80">
+            <i class="far fa-heart"></i>
+          </button>
+        </div>
+        <div class="food-content-body">
+          <div class="food-title-row">
+            <h3 class="food-name">🍜 沖繩軟骨排骨麵 (Soba)</h3>
+          </div>
+          <div class="food-jp-sub">ソーキそば · 軟骨晶瑩滑嫩與澄澈柴魚高湯</div>
+          <p class="food-summary">
+            富有嚼勁的特製小麥粗麵，配上熬煮得骨肉完全軟化如果凍般透明的豬軟骨肉，湯頭清甜回甘，加幾滴泡盛辣椒油風味絕佳。
+          </p>
+          <div class="paired-spot-container">
+            <strong><i class="fas fa-compass"></i> 搭配推薦景點：</strong>
+            走訪 <a href="okinawa.html#spot-manzamo" style="color:var(--color-torii); font-weight:700; text-decoration:underline;">萬座毛象鼻岩</a> 吹海風後，在恩納村海景小店品嚐熱騰騰排骨麵。
+          </div>
+        </div>
+      </article>
+
+      <!-- 10. 札幌香濃湯咖哩 (北海道) -->
+      <article class="food-item-card" data-region="hokkaido">
+        <div class="food-img-holder">
+          <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80" alt="札幌湯咖哩" loading="lazy">
+          <span class="food-region-tag"><i class="fas fa-map-marker-alt"></i> 北海道 / 札幌</span>
+          <button class="spot-fav-btn" data-fav-id="food-soup-curry" data-fav-name="札幌湯咖哩" data-fav-region="北海道" data-fav-type="特色美食" data-fav-image="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600&auto=format&fit=crop&q=80">
+            <i class="far fa-heart"></i>
+          </button>
+        </div>
+        <div class="food-content-body">
+          <div class="food-title-row">
+            <h3 class="food-name">🍛 札幌香濃野菜湯咖哩</h3>
+          </div>
+          <div class="food-jp-sub">スープカレー · 辛香藥膳辛香料與大塊北海道地產蔬菜</div>
+          <p class="food-summary">
+            融合印度與東南亞香料精華的清爽高湯，大塊酥炸南瓜、彩椒、茄子與燉至骨肉分離的嫩雞腿，香辣過癮，冬夜雪國必吃暖胃聖品。
+          </p>
+          <div class="paired-spot-container">
+            <strong><i class="fas fa-compass"></i> 搭配推薦景點：</strong>
+            在 <a href="hokkaido.html#spot-sapporo" style="color:var(--color-torii); font-weight:700; text-decoration:underline;">札幌大通公園與電視塔</a> 賞完雪景後，前往薄野名店享用一碗熱呼呼湯咖哩！
+          </div>
+        </div>
+      </article>
+
+      <!-- 11. 關西大阪燒 (大阪) -->
+      <article class="food-item-card" data-region="osaka">
+        <div class="food-img-holder">
+          <img src="https://images.unsplash.com/photo-1552611052-33e04de081de?w=800&auto=format&fit=crop&q=80" alt="大阪燒" loading="lazy">
+          <span class="food-region-tag"><i class="fas fa-map-marker-alt"></i> 大阪</span>
+          <button class="spot-fav-btn" data-fav-id="food-okonomiyaki" data-fav-name="關西大阪燒" data-fav-region="大阪" data-fav-type="特色美食" data-fav-image="https://images.unsplash.com/photo-1552611052-33e04de081de?w=600&auto=format&fit=crop&q=80">
+            <i class="far fa-heart"></i>
+          </button>
+        </div>
+        <div class="food-content-body">
+          <div class="food-title-row">
+            <h3 class="food-name">🥘 關西風鐵板大阪燒 (Okonomiyaki)</h3>
+          </div>
+          <div class="food-jp-sub">お好み焼き · 酥脆五花肉、甘甜高麗菜與濃醬</div>
+          <p class="food-summary">
+            高麗菜絲、山藥高湯麵糊、五花肉、鮮蝦與花枝在鐵板上慢火煎至外脆內軟，抹上濃郁大阪燒黑醬與美乃滋，撒上跳動柴魚片，香氣撲鼻。
+          </p>
+          <div class="paired-spot-container">
+            <strong><i class="fas fa-compass"></i> 搭配推薦景點：</strong>
+            參觀完 <a href="osaka.html#spot-castle" style="color:var(--color-torii); font-weight:700; text-decoration:underline;">大阪城天守閣</a> 後，於難波商圈圍著鐵板享受大快朵頤！
+          </div>
+        </div>
+      </article>
+
+      <!-- 12. 桔梗信玄餅 (富士山) -->
+      <article class="food-item-card" data-region="fuji">
+        <div class="food-img-holder">
+          <img src="https://images.unsplash.com/photo-1582293041079-7814c2f12063?w=800&auto=format&fit=crop&q=80" alt="信玄餅" loading="lazy">
+          <span class="food-region-tag"><i class="fas fa-map-marker-alt"></i> 富士山周邊</span>
+          <button class="spot-fav-btn" data-fav-id="food-shingen-mochi" data-fav-name="桔梗信玄餅" data-fav-region="富士山周邊" data-fav-type="特色美食" data-fav-image="https://images.unsplash.com/photo-1582293041079-7814c2f12063?w=600&auto=format&fit=crop&q=80">
+            <i class="far fa-heart"></i>
+          </button>
+        </div>
+        <div class="food-content-body">
+          <div class="food-title-row">
+            <h3 class="food-name">🍡 山梨名產 桔梗信玄餅</h3>
+          </div>
+          <div class="food-jp-sub">信玄餅 · 醇厚黑糖蜜與噴香黃豆粉的軟Q和菓子</div>
+          <p class="food-summary">
+            軟Q適口的小麻糬包裹在日式風呂敷包裝中，撒上厚厚的香醇黃豆粉，淋上一整罐濃郁黑糖蜜，甜香溫潤，是山梨縣最著名名產伴手禮。
+          </p>
+          <div class="paired-spot-container">
+            <strong><i class="fas fa-compass"></i> 搭配推薦景點：</strong>
+            登上 <a href="fuji.html#spot-chureito" style="color:var(--color-torii); font-weight:700; text-decoration:underline;">新倉山淺間公園</a> 拍完五重塔富士山後，買一盒信玄餅在樹下享用！
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- 搜尋無結果提示 -->
+    <div id="food-no-results" style="display:none; text-align:center; padding:60px 20px; color:var(--text-muted);">
+      <i class="fas fa-utensils" style="font-size:3rem; color:var(--border-color); margin-bottom:16px;"></i>
+      <h3 style="font-size:1.2rem; color:var(--text-main); margin-bottom:8px;">未找到符合的美食</h3>
+      <p style="font-size:0.9rem;">請嘗試其他關鍵字（如：壽司、拉麵、和牛、章魚燒、抹茶、富士山等）</p>
+    </div>
+  </section>
+
+  <!-- 全站頁尾 Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="site-logo">
+            <div class="logo-icon"><i class="fas fa-torii-gate"></i></div>
+            <div class="logo-text-group">
+              <span class="logo-title">日本旅遊誌</span>
+              <span class="logo-sub">JAPAN TRAVEL JOURNAL</span>
+            </div>
+          </div>
+          <p class="footer-desc">「日本旅遊誌」帶領您用味蕾深度探索日本，讓每一次出發都是極致好味的幸福旅程！</p>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">推薦地區</h4>
+          <ul class="footer-links">
+            <li><a href="tokyo.html"><i class="fas fa-angle-right"></i> 東京 Tokyo</a></li>
+            <li><a href="kyoto.html"><i class="fas fa-angle-right"></i> 京都 Kyoto</a></li>
+            <li><a href="osaka.html"><i class="fas fa-angle-right"></i> 大阪 Osaka</a></li>
+            <li><a href="hokkaido.html"><i class="fas fa-angle-right"></i> 北海道 Hokkaido</a></li>
+            <li><a href="okinawa.html"><i class="fas fa-angle-right"></i> 沖繩 Okinawa</a></li>
+            <li><a href="fuji.html"><i class="fas fa-angle-right"></i> 富士山 Mt. Fuji</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">網站導覽</h4>
+          <ul class="footer-links">
+            <li><a href="index.html"><i class="fas fa-angle-right"></i> 首頁</a></li>
+            <li><a href="itinerary.html"><i class="fas fa-angle-right"></i> 行程推薦</a></li>
+            <li><a href="food.html"><i class="fas fa-angle-right"></i> 特色美食</a></li>
+            <li><a href="guide.html"><i class="fas fa-angle-right"></i> 旅遊須知 & Q&A</a></li>
+            <li><a href="contact.html"><i class="fas fa-angle-right"></i> 聯絡我們</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">聯絡我們</h4>
+          <div class="footer-contact-item"><i class="fas fa-map-marker-alt"></i><div>地址：台北市 XX 區 XX 路 XX 號</div></div>
+          <div class="footer-contact-item"><i class="fas fa-phone-alt"></i><div>電話：02-1234-5678</div></div>
+          <div class="footer-contact-item"><i class="fas fa-envelope"></i><div>Email：japantravel@example.com</div></div>
+          <div class="footer-contact-item"><i class="far fa-clock"></i><div>營業時間：週二至週日 11:00 - 21:00 (週一公休)</div></div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>© 2026 日本旅遊誌 Japan Travel Journal. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="fav-drawer-overlay" id="fav-drawer-overlay"></div>
+  <aside class="fav-drawer" id="fav-drawer">
+    <div class="fav-drawer-header">
+      <h3 class="fav-drawer-title"><i class="fas fa-heart" style="color:var(--color-torii);"></i> 我的收藏地點</h3>
+      <button class="close-drawer-btn" id="fav-close-btn"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="fav-drawer-body" id="fav-drawer-body"></div>
+    <div class="fav-drawer-footer">
+      <button class="btn btn-outline" id="clear-fav-btn" style="padding:6px 14px; font-size:0.85rem;"><i class="fas fa-trash-alt"></i> 全部清空</button>
+      <a href="itinerary.html" class="btn btn-primary" style="padding:6px 16px; font-size:0.85rem;"><i class="fas fa-route"></i> 帶入行程規劃</a>
+    </div>
+  </aside>
+
+  <script src="js/common.js"></script>
+  <script src="js/food.js"></script>
+</body>
+</html>
+

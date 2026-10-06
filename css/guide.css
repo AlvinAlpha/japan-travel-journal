@@ -1,0 +1,180 @@
+/**
+ * 日本旅遊誌 - 旅遊須知與 Q&A 專頁樣式 (guide.css)
+ */
+
+.guide-hero-section {
+  background: linear-gradient(135deg, rgba(30, 35, 42, 0.7) 0%, rgba(45, 40, 35, 0.8) 100%),
+              url('https://images.unsplash.com/photo-1478436127897-769e00d2c715?w=1800&auto=format&fit=crop&q=80') center/cover no-repeat;
+  min-height: 46vh;
+  display: flex;
+  align-items: center;
+  color: #fff;
+  padding: 60px 24px;
+}
+
+.guide-hero-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* 須知四大核心卡片網格 */
+.tips-container-block {
+  padding: 70px 24px 50px;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.guide-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+  margin-bottom: 60px;
+}
+
+.guide-rule-card {
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 36px 30px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  gap: 24px;
+  transition: all var(--transition-normal);
+}
+
+.guide-rule-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-hover);
+  border-color: var(--color-sakura);
+}
+
+.guide-rule-icon {
+  font-size: 2.8rem;
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+
+.guide-rule-content h3 {
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  color: var(--text-main);
+  margin-bottom: 12px;
+}
+
+.guide-rule-content p {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  line-height: 1.8;
+  margin-bottom: 12px;
+}
+
+.guide-sub-points {
+  padding-left: 20px;
+  list-style: disc;
+  font-size: 0.88rem;
+  color: var(--color-wood-dark);
+  line-height: 1.7;
+}
+
+.guide-sub-points li {
+  margin-bottom: 6px;
+}
+
+/* Q&A 手風琴專區 */
+.guide-faq-section {
+  padding: 60px 24px 90px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.faq-header-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.faq-accordion-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.faq-accordion-card {
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: border-color var(--transition-fast);
+}
+
+.faq-accordion-card.active {
+  border-color: var(--color-torii);
+}
+
+.faq-q-btn {
+  width: 100%;
+  padding: 22px 24px;
+  text-align: left;
+  background: none;
+  border: none;
+  font-size: 1.08rem;
+  font-weight: 600;
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  gap: 16px;
+}
+
+.faq-q-btn .badge-q {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--color-sakura-light);
+  color: var(--color-torii);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
+.faq-accordion-card.active .faq-arrow {
+  transform: rotate(180deg);
+  color: var(--color-torii);
+}
+
+.faq-arrow {
+  color: var(--text-light);
+  transition: transform var(--transition-fast);
+}
+
+.faq-a-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease, padding 0.35s ease;
+  padding: 0 24px;
+  font-size: 0.95rem;
+  line-height: 1.85;
+  color: var(--text-muted);
+  background: var(--bg-card-subtle);
+}
+
+.faq-accordion-card.active .faq-a-body {
+  padding: 0 24px 24px 24px;
+  max-height: 400px;
+}
+
+@media (max-width: 900px) {
+  .guide-cards-grid {
+    grid-template-columns: 1fr;
+  }
+}
+

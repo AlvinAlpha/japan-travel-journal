@@ -1,0 +1,12 @@
+# 系統與編輯器臨時檔
+.DS_Store
+Thumbs.db
+*.log
+
+# 編輯器配置
+.vscode/
+.idea/
+
+# 暫存與備份檔
+*.tmp
+*.bak

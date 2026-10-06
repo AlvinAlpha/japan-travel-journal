@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>北海道旅遊指南 ｜ 小樽運河、富良野花海與北國美食 - 日本旅遊誌</title>
+  <meta name="description" content="探索日本北國雪境北海道！漫步小樽運河、俯瞰函館山百萬夜景、探訪美瑛青池與富良野花海。品嚐札幌湯咖哩、成吉思汗烤羊肉與小樽豪華海鮮丼。">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/hokkaido.css">
+</head>
+<body>
+
+  <canvas id="sakura-canvas"></canvas>
+  <button id="sakura-toggle-btn" class="sakura-toggle-btn"><span>🌸 櫻花：開</span></button>
+  <button id="back-to-top" class="back-to-top"><i class="fas fa-chevron-up"></i></button>
+
+  <header class="site-header">
+    <div class="header-container">
+      <a href="index.html" class="site-logo">
+        <div class="logo-icon"><i class="fas fa-torii-gate"></i></div>
+        <div class="logo-text-group">
+          <span class="logo-title">日本旅遊誌</span>
+          <span class="logo-sub">JAPAN TRAVEL JOURNAL</span>
+        </div>
+      </a>
+
+      <nav class="main-nav" id="main-nav">
+        <ul class="nav-list">
+          <li><a href="index.html" class="nav-link"><i class="fas fa-home"></i> 首頁</a></li>
+          <li class="dropdown">
+            <a href="javascript:void(0)" class="nav-link active">
+              <i class="fas fa-map-marked-alt"></i> 推薦地區 <i class="fas fa-angle-down" style="font-size:0.75rem;"></i>
+            </a>
+            <div class="dropdown-menu">
+              <a href="tokyo.html" class="dropdown-item"><span>🗼 東京 Tokyo</span> <span class="badge">現代繁華</span></a>
+              <a href="kyoto.html" class="dropdown-item"><span>⛩️ 京都 Kyoto</span> <span class="badge">古都古韻</span></a>
+              <a href="osaka.html" class="dropdown-item"><span>🏯 大阪 Osaka</span> <span class="badge">美食熱情</span></a>
+              <a href="hokkaido.html" class="dropdown-item" style="color:#5C7B9E; font-weight:700;"><span>❄️ 北海道 Hokkaido</span> <span class="badge">當前地區</span></a>
+              <a href="okinawa.html" class="dropdown-item"><span>🌺 沖繩 Okinawa</span> <span class="badge">度假蔚藍</span></a>
+              <a href="fuji.html" class="dropdown-item"><span>🗻 富士山 Fuji</span> <span class="badge">壯麗神山</span></a>
+            </div>
+          </li>
+          <li><a href="itinerary.html" class="nav-link"><i class="fas fa-route"></i> 行程推薦</a></li>
+          <li><a href="food.html" class="nav-link"><i class="fas fa-utensils"></i> 特色美食</a></li>
+          <li><a href="guide.html" class="nav-link"><i class="fas fa-compass"></i> 旅遊須知 & Q&A</a></li>
+          <li><a href="contact.html" class="nav-link"><i class="fas fa-envelope"></i> 聯絡我們</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button class="fav-btn" id="fav-open-btn">
+          <i class="fas fa-heart" style="color:var(--color-torii);"></i>
+          <span>我的收藏</span>
+          <span class="fav-count">0</span>
+        </button>
+        <button class="mobile-menu-toggle" id="mobile-menu-toggle"><i class="fas fa-bars"></i></button>
+      </div>
+    </div>
+  </header>
+
+  <!-- 麵包屑導航 -->
+  <div class="breadcrumb-section">
+    <div class="breadcrumb-container">
+      <a href="index.html"><i class="fas fa-home"></i> 首頁</a>
+      <span class="breadcrumb-separator"><i class="fas fa-chevron-right"></i></span>
+      <span>推薦地區</span>
+      <span class="breadcrumb-separator"><i class="fas fa-chevron-right"></i></span>
+      <span class="breadcrumb-current">北海道 Hokkaido</span>
+    </div>
+  </div>
+
+  <!-- 北海道 Hero 橫幅 -->
+  <section class="region-hero hokkaido-hero">
+    <div class="region-hero-content">
+      <div class="region-hero-title-group">
+        <span class="region-badge-pill hokkaido-badge"><i class="fas fa-snowflake"></i> 四季純白之國與大自然雄景</span>
+        <h1 class="region-hero-title">北海道 <span>ほっかいどう · HOKKAIDO</span></h1>
+        <p class="region-hero-desc">
+          欣賞自然風景與四季美景，體驗札幌、小樽運河與富良野花海的北國魅力。冬季漫步於覆雪的小樽運河瓦斯燈下，夏季馳騁在美瑛與富良野的七彩大地，更不能錯過滿滿海膽魚卵的豪華海鮮丼與香濃熱辣的湯咖哩！
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 頁面內部錨點導航 -->
+  <div class="region-nav-bar">
+    <div class="region-nav-container">
+      <a href="#spots" class="region-nav-item active"><i class="fas fa-camera"></i> 北海道著名景點</a>
+      <a href="#foods" class="region-nav-item"><i class="fas fa-utensils"></i> 北國特色美食</a>
+      <a href="#plans" class="region-nav-item"><i class="fas fa-calendar-alt"></i> 推薦遊程規劃</a>
+      <a href="#traffic" class="region-nav-item"><i class="fas fa-train"></i> 鐵道自駕攻略</a>
+    </div>
+  </div>
+
+  <!-- 一、北海道旅遊景點介紹 -->
+  <section class="region-spots-section" id="spots">
+    <div class="region-container">
+      <div class="section-header-center">
+        <span class="section-badge" style="background:#EEF4F8; color:#385E86;"><i class="fas fa-snowflake"></i> 絕美雪國大地</span>
+        <h2 class="section-title">北海道代表性旅遊景點</h2>
+        <p class="section-subtitle">探索小樽懷舊運河、函館米其林三星夜景、美瑛青池與彩虹花毯。</p>
+      </div>
+
+      <div class="hokkaido-spots-grid">
+        <!-- 1. 小樽運河 -->
+        <article class="hokkaido-card" id="spot-otaru">
+          <div class="hokkaido-card-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1545569341-9eb8b30979d9?w=800&auto=format&fit=crop&q=80" alt="小樽運河" class="hokkaido-card-img" loading="lazy">
+            <span class="hokkaido-card-tag">浪漫雪景運河</span>
+            <button class="spot-fav-btn" data-fav-id="hokkaido-spot-otaru" data-fav-name="小樽運河" data-fav-region="北海道" data-fav-type="景點" data-fav-image="https://images.unsplash.com/photo-1545569341-9eb8b30979d9?w=600&auto=format&fit=crop&q=80">
+              <i class="far fa-heart"></i>
+            </button>
+          </div>
+          <div class="hokkaido-card-body">
+            <h3 class="hokkaido-card-title">❄️ 小樽運河 (Otaru Canal)</h3>
+            <span class="hokkaido-card-sub">小樽市 · 歷史石造紅磚倉庫與黃昏瓦斯煤油燈</span>
+            <p class="hokkaido-card-desc">
+              以運河、百年歷史街道與極致浪漫氛圍聞名。冬季雪景搭配運河倒影，入夜後瓦斯燈點亮，呈現充滿日式北國風情的純淨浪漫。
+            </p>
+            <div class="hokkaido-card-footer">
+              <span style="color:var(--color-wood);"><i class="fas fa-train"></i> JR小樽站步行8分</span>
+              <button class="btn btn-outline" style="padding:4px 12px; font-size:0.82rem;" data-hokkaido-spot="hokkaido-otaru">查看詳情</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- 2. 函館山夜景 -->
+        <article class="hokkaido-card" id="spot-hakodate">
+          <div class="hokkaido-card-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1503899036084-c55cdd92da26?w=800&auto=format&fit=crop&q=80" alt="函館山夜景" class="hokkaido-card-img" loading="lazy">
+            <span class="hokkaido-card-tag">世界三大夜景</span>
+            <button class="spot-fav-btn" data-fav-id="hokkaido-spot-hakodate" data-fav-name="函館山夜景" data-fav-region="北海道" data-fav-type="景點" data-fav-image="https://images.unsplash.com/photo-1503899036084-c55cdd92da26?w=600&auto=format&fit=crop&q=80">
+              <i class="far fa-heart"></i>
+            </button>
+          </div>
+          <div class="hokkaido-card-body">
+            <h3 class="hokkaido-card-title">🌃 函館山夜景 (Mt. Hakodate)</h3>
+            <span class="hokkaido-card-sub">函館市 · 米其林三星雙曲弧線百萬璀璨鑽石夜景</span>
+            <p class="hokkaido-card-desc">
+              搭乘纜車登上海拔334公尺山頂，津輕海峽與函館灣夾著如細腰般的繁華市街，入夜後璀璨燈火宛如打翻的珠寶盒。
+            </p>
+            <div class="hokkaido-card-footer">
+              <span style="color:var(--color-wood);"><i class="fas fa-tram"></i> 函館市電十字街站</span>
+              <button class="btn btn-outline" style="padding:4px 12px; font-size:0.82rem;" data-hokkaido-spot="hokkaido-hakodate">查看詳情</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- 3. 札幌大通公園與電視塔 -->
+        <article class="hokkaido-card" id="spot-sapporo">
+          <div class="hokkaido-card-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1542051841857-5f90071e7989?w=800&auto=format&fit=crop&q=80" alt="札幌電視塔與大通公園" class="hokkaido-card-img" loading="lazy">
+            <span class="hokkaido-card-tag">雪祭主舞台</span>
+            <button class="spot-fav-btn" data-fav-id="hokkaido-spot-sapporo" data-fav-name="札幌大通公園" data-fav-region="北海道" data-fav-type="景點" data-fav-image="https://images.unsplash.com/photo-1542051841857-5f90071e7989?w=600&auto=format&fit=crop&q=80">
+              <i class="far fa-heart"></i>
+            </button>
+          </div>
+          <div class="hokkaido-card-body">
+            <h3 class="hokkaido-card-title">🗼 札幌大通公園 & 電視塔</h3>
+            <span class="hokkaido-card-sub">札幌市 · 市中心的綠色森林與冬季雪祭巨型冰雕</span>
+            <p class="hokkaido-card-desc">
+              綿延1.5公里的中央景觀帶，春夏綠意盎然、秋季銀杏金黃、冬季雪雕林立，登上電視塔俯瞰整座棋盤式北國大都會。
+            </p>
+            <div class="hokkaido-card-footer">
+              <span style="color:var(--color-wood);"><i class="fas fa-subway"></i> 地鐵大通站直達</span>
+              <button class="btn btn-outline" style="padding:4px 12px; font-size:0.82rem;" data-hokkaido-spot="hokkaido-sapporo">查看詳情</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- 4. 富良野四季彩之丘 -->
+        <article class="hokkaido-card" id="spot-furano">
+          <div class="hokkaido-card-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=800&auto=format&fit=crop&q=80" alt="富良野七彩花田" class="hokkaido-card-img" loading="lazy">
+            <span class="hokkaido-card-tag">彩虹花海拼布</span>
+            <button class="spot-fav-btn" data-fav-id="hokkaido-spot-furano" data-fav-name="富良野四季彩之丘" data-fav-region="北海道" data-fav-type="景點" data-fav-image="https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=600&auto=format&fit=crop&q=80">
+              <i class="far fa-heart"></i>
+            </button>
+          </div>
+          <div class="hokkaido-card-body">
+            <h3 class="hokkaido-card-title">🌸 富良野四季彩之丘</h3>
+            <span class="hokkaido-card-sub">美瑛/富良野 · 鋪滿整座連綿丘陵的彩虹花毯</span>
+            <p class="hokkaido-card-desc">
+              夏日盛開的紫色薰衣草、向日葵與波斯菊，在寬闊起伏的大地上如波浪般交織，遠眺十勝岳連峰，是北海道最經典的明信片絕景。
+            </p>
+            <div class="hokkaido-card-footer">
+              <span style="color:var(--color-wood);"><i class="fas fa-car"></i> 美馬牛站車程5分</span>
+              <button class="btn btn-outline" style="padding:4px 12px; font-size:0.82rem;" data-hokkaido-spot="hokkaido-furano">查看詳情</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- 5. 美瑛白金青池 -->
+        <article class="hokkaido-card" id="spot-aoiike">
+          <div class="hokkaido-card-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1503899036084-c55cdd92da26?w=800&auto=format&fit=crop&q=80" alt="美瑛白金青池" class="hokkaido-card-img" loading="lazy">
+            <span class="hokkaido-card-tag">神秘仙境之湖</span>
+            <button class="spot-fav-btn" data-fav-id="hokkaido-spot-aoiike" data-fav-name="美瑛青池" data-fav-region="北海道" data-fav-type="景點" data-fav-image="https://images.unsplash.com/photo-1503899036084-c55cdd92da26?w=600&auto=format&fit=crop&q=80">
+              <i class="far fa-heart"></i>
+            </button>
+          </div>
+          <div class="hokkaido-card-body">
+            <h3 class="hokkaido-card-title">💧 美瑛白金青池 (Blue Pond)</h3>
+            <span class="hokkaido-card-sub">美瑛町 · 天藍色夢幻水波與靜止落葉松倒影</span>
+            <p class="hokkaido-card-desc">
+              富含礦物微粒的湖水在日光折射下散發神秘翡翠青藍色，枯立的水中落葉松透出靜謐哀愁，四季展現截然不同的奇幻魔力。
+            </p>
+            <div class="hokkaido-card-footer">
+              <span style="color:var(--color-wood);"><i class="fas fa-bus"></i> 美瑛站搭巴士20分</span>
+              <button class="btn btn-outline" style="padding:4px 12px; font-size:0.82rem;" data-hokkaido-spot="hokkaido-aoiike">查看詳情</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- 6. 登別地獄谷 -->
+        <article class="hokkaido-card" id="spot-noboribetsu">
+          <div class="hokkaido-card-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1570535608479-2a9941ebb203?w=800&auto=format&fit=crop&q=80" alt="登別地獄谷溫泉" class="hokkaido-card-img" loading="lazy">
+            <span class="hokkaido-card-tag">北國第一溫泉鄉</span>
+            <button class="spot-fav-btn" data-fav-id="hokkaido-spot-noboribetsu" data-fav-name="登別地獄谷" data-fav-region="北海道" data-fav-type="景點" data-fav-image="https://images.unsplash.com/photo-1570535608479-2a9941ebb203?w=600&auto=format&fit=crop&q=80">
+              <i class="far fa-heart"></i>
+            </button>
+          </div>
+          <div class="hokkaido-card-body">
+            <h3 class="hokkaido-card-title">♨️ 登別地獄谷 (Jigokudani)</h3>
+            <span class="hokkaido-card-sub">登別市 · 白煙蒸騰滾滾硫磺溫泉源頭火山口</span>
+            <p class="hokkaido-card-desc">
+              火山口遺跡中不斷冒出滾燙熱泉與白煙，赤紅岩壁極具視覺震撼力，夜晚木棧道「鬼火之路」點燈別具神祕奇趣。
+            </p>
+            <div class="hokkaido-card-footer">
+              <span style="color:var(--color-wood);"><i class="fas fa-bus"></i> 登別站搭巴士15分</span>
+              <button class="btn btn-outline" style="padding:4px 12px; font-size:0.82rem;" data-hokkaido-spot="hokkaido-noboribetsu">查看詳情</button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 二、北海道必吃特色美食 (每道皆附照片並搭配景點) -->
+  <section class="region-foods-section" id="foods">
+    <div class="region-container">
+      <div class="section-header-center">
+        <span class="section-badge" style="background:#EEF4F8; color:#385E86;"><i class="fas fa-utensils"></i> 北國味蕾</span>
+        <h2 class="section-title">北海道必吃特色美食推薦</h2>
+        <p class="section-subtitle">每道名物皆附上實拍圖片與特色解說，並貼心搭配相鄰的推薦北海道景點！</p>
+      </div>
+
+      <div class="hokkaido-foods-grid">
+        <!-- 札幌湯咖哩 -->
+        <article class="hokkaido-card">
+          <div class="hokkaido-card-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80" alt="札幌湯咖哩" class="hokkaido-card-img" loading="lazy">
+            <button class="spot-fav-btn" data-fav-id="hokkaido-food-curry" data-fav-name="札幌湯咖哩" data-fav-region="北海道" data-fav-type="美食" data-fav-image="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600&auto=format&fit=crop&q=80">
+              <i class="far fa-heart"></i>
+            </button>
+          </div>
+          <div class="hokkaido-card-body">
+            <h3 class="hokkaido-card-title">🍛 札幌香濃湯咖哩 (Soup Curry)</h3>
+            <span class="hokkaido-card-sub">スープカレー · 辛香藥膳辛香料與大塊北海道產野菜</span>
+            <p class="hokkaido-card-desc">
+              不濃稠的香料高湯底，浸滿慢燉酥爛的嫩雞腿，搭配北海道產酥炸南瓜、蓮藕、茄子與青椒，舀一匙白飯浸入湯汁，暖身暖胃。
+            </p>
+            <div class="hokkaido-pairing-box">
+              <strong><i class="fas fa-link"></i> 搭配推薦景點：</strong>
+              走訪完 <a href="javascript:void(0)" data-target-spot="spot-sapporo" style="color:#385E86; font-weight:700; text-decoration:underline;">札幌大通公園與電視塔</a> 後，在薄野商圈名店享用一碗熱呼呼湯咖哩！
+            </div>
+          </div>
+        </article>
+
+        <!-- 成吉思汗烤肉 -->
+        <article class="hokkaido-card">
+          <div class="hokkaido-card-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=800&auto=format&fit=crop&q=80" alt="成吉思汗烤羊肉" class="hokkaido-card-img" loading="lazy">
+            <button class="spot-fav-btn" data-fav-id="hokkaido-food-jingisukan" data-fav-name="成吉思汗烤羊肉" data-fav-region="北海道" data-fav-type="美食" data-fav-image="https://images.unsplash.com/photo-1544025162-d76694265947?w=600&auto=format&fit=crop&q=80">
+              <i class="far fa-heart"></i>
+            </button>
+          </div>
+          <div class="hokkaido-card-body">
+            <h3 class="hokkaido-card-title">🥩 炭火成吉思汗烤羊肉 (Jingisukan)</h3>
+            <span class="hokkaido-card-sub">ジンギスカン · 圓頂鐵盔炭烤無騷嫩羊肉</span>
+            <p class="hokkaido-card-desc">
+              在隆起的鐵帽形烤盤上，羊油順著紋路流向周圍的洋蔥與豆芽菜，中央炙烤鮮嫩無羶味的生羔羊肉片，沾特調醬汁配冰啤酒無比暢快。
+            </p>
+            <div class="hokkaido-pairing-box">
+              <strong><i class="fas fa-link"></i> 搭配推薦景點：</strong>
+              泡完 <a href="javascript:void(0)" data-target-spot="spot-noboribetsu" style="color:#385E86; font-weight:700; text-decoration:underline;">登別地獄谷溫泉</a> 後，在溫泉街居酒屋圍爐享受炭火烤肉！
+            </div>
+          </div>
+        </article>
+
+        <!-- 小樽豪華海鮮丼 -->
+        <article class="hokkaido-card">
+          <div class="hokkaido-card-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?w=800&auto=format&fit=crop&q=80" alt="北海道海鮮丼" class="hokkaido-card-img" loading="lazy">
+            <button class="spot-fav-btn" data-fav-id="hokkaido-food-kaisen" data-fav-name="小樽豪華海鮮丼" data-fav-region="北海道" data-fav-type="美食" data-fav-image="https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?w=600&auto=format&fit=crop&q=80">
+              <i class="far fa-heart"></i>
+            </button>
+          </div>
+          <div class="hokkaido-card-body">
+            <h3 class="hokkaido-card-title">🦀 小樽三角市場極品海鮮丼 (Kaisen-don)</h3>
+            <span class="hokkaido-card-sub">かいせんどん · 滿溢海膽、鮭魚卵與帝王蟹腳</span>
+            <p class="hokkaido-card-desc">
+              北國純淨冷冽海水孕育的頂級水產！金色馬糞海膽入口化作甘甜乳香，晶瑩鮭魚卵在齒間爆破，搭配整隻飽滿帝王蟹肉，視覺與味覺的奢華巔峰。
+            </p>
+            <div class="hokkaido-pairing-box">
+              <strong><i class="fas fa-link"></i> 搭配推薦景點：</strong>
+              漫步清晨的 <a href="javascript:void(0)" data-target-spot="spot-otaru" style="color:#385E86; font-weight:700; text-decoration:underline;">小樽運河</a> 之後，走進車站旁三角市場現點現殺！
+            </div>
+          </div>
+        </article>
+
+        <!-- 札幌味噌拉麵 -->
+        <article class="hokkaido-card">
+          <div class="hokkaido-card-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=800&auto=format&fit=crop&q=80" alt="札幌味噌拉麵" class="hokkaido-card-img" loading="lazy">
+            <button class="spot-fav-btn" data-fav-id="hokkaido-food-ramen" data-fav-name="札幌味噌拉麵" data-fav-region="北海道" data-fav-type="美食" data-fav-image="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=600&auto=format&fit=crop&q=80">
+              <i class="far fa-heart"></i>
+            </button>
+          </div>
+          <div class="hokkaido-card-body">
+            <h3 class="hokkaido-card-title">🍜 札幌濃郁味噌拉麵 (Miso Ramen)</h3>
+            <span class="hokkaido-card-sub">みそラーメン · 豬油封湯熱度不減的黃色捲麵</span>
+            <p class="hokkaido-card-desc">
+              以大火熱炒洋蔥、豆芽菜與絞肉，注入熟成赤味噌豚骨高湯，表面浮著薄薄一層熱豬油鎖住熱氣，麵條彈牙吸汁，冬夜品嚐無比幸福。
+            </p>
+            <div class="hokkaido-pairing-box">
+              <strong><i class="fas fa-link"></i> 搭配推薦景點：</strong>
+              登上 <a href="javascript:void(0)" data-target-spot="spot-hakodate" style="color:#385E86; font-weight:700; text-decoration:underline;">函館山夜景</a> 或大通公園受凍後，走進拉麵街大口吸麵暖身！
+            </div>
+          </div>
+        </article>
+
+        <!-- LeTAO 乳酪起司蛋糕 -->
+        <article class="hokkaido-card">
+          <div class="hokkaido-card-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1533134242443-d4fd215305ad?w=800&auto=format&fit=crop&q=80" alt="雙層起司乳酪蛋糕" class="hokkaido-card-img" loading="lazy">
+            <button class="spot-fav-btn" data-fav-id="hokkaido-food-letao" data-fav-name="LeTAO乳酪蛋糕" data-fav-region="北海道" data-fav-type="美食" data-fav-image="https://images.unsplash.com/photo-1533134242443-d4fd215305ad?w=600&auto=format&fit=crop&q=80">
+              <i class="far fa-heart"></i>
+            </button>
+          </div>
+          <div class="hokkaido-card-body">
+            <h3 class="hokkaido-card-title">🍰 小樽 LeTAO 雙層乳酪蛋糕</h3>
+            <span class="hokkaido-card-sub">ドゥーブルフロマージュ · 如奇蹟般融化於舌尖的雙重乳香</span>
+            <p class="hokkaido-card-desc">
+              上層是清爽細緻的半熟義大利馬斯卡彭生乳酪，下層是濃郁滑順的澳大利亞焗烤重乳酪，放入口中宛如冰淇淋般悄然化開。
+            </p>
+            <div class="hokkaido-pairing-box">
+              <strong><i class="fas fa-link"></i> 搭配推薦景點：</strong>
+              逛完 <a href="javascript:void(0)" data-target-spot="spot-otaru" style="color:#385E86; font-weight:700; text-decoration:underline;">小樽童話十字路口</a> 音樂盒堂，登上對面 LeTAO 本店二樓享用下午茶！
+            </div>
+          </div>
+        </article>
+
+        <!-- 夕張哈密瓜純奶霜淇淋 -->
+        <article class="hokkaido-card">
+          <div class="hokkaido-card-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=800&auto=format&fit=crop&q=80" alt="夕張哈密瓜霜淇淋" class="hokkaido-card-img" loading="lazy">
+            <button class="spot-fav-btn" data-fav-id="hokkaido-food-melon" data-fav-name="夕張哈密瓜霜淇淋" data-fav-region="北海道" data-fav-type="美食" data-fav-image="https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=600&auto=format&fit=crop&q=80">
+              <i class="far fa-heart"></i>
+            </button>
+          </div>
+          <div class="hokkaido-card-body">
+            <h3 class="hokkaido-card-title">🍈 富良野夕張哈密瓜霜淇淋</h3>
+            <span class="hokkaido-card-sub">メロンソフト · 多汁甜瓜與純淨牧場牛乳的奢華結合</span>
+            <p class="hokkaido-card-desc">
+              將半顆切開的完熟夕張橘肉哈密瓜當作甜品碗，中央擠上高達8%乳脂肪的北海道鮮乳霜淇淋，香甜果汁與奶香在口中迸發。
+            </p>
+            <div class="hokkaido-pairing-box">
+              <strong><i class="fas fa-link"></i> 搭配推薦景點：</strong>
+              在 <a href="javascript:void(0)" data-target-spot="spot-furano" style="color:#385E86; font-weight:700; text-decoration:underline;">富良野四季彩之丘</a> 與美瑛青池曬完夏日陽光後，來上一份清涼消暑！
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 三、北海道行程推薦規劃 -->
+  <section class="region-plans-section" id="plans">
+    <div class="region-container">
+      <div class="section-header-center">
+        <span class="section-badge"><i class="fas fa-route"></i> 自在漫遊</span>
+        <h2 class="section-title">北海道推薦旅遊行程規劃</h2>
+        <p class="section-subtitle">專為四季北國打造的經典鐵道與自駕路線推薦。</p>
+      </div>
+
+      <div class="plan-cards-grid">
+        <div class="plan-card">
+          <span class="plan-card-tag"><i class="far fa-clock"></i> 三日雪國 · 浪漫小樽札幌</span>
+          <h3 class="plan-card-title">札幌小樽冬季浪漫三日遊</h3>
+          <div class="plan-timeline">
+            <div class="timeline-row">
+              <div class="timeline-hour">Day 1</div>
+              <div class="timeline-text">
+                <strong>抵達札幌與時計台巡禮</strong>
+                <p>新千歲機場 ➔ 大通公園電視塔 ➔ 狸小路商店街 ➔ 晚餐成吉思汗烤肉</p>
+              </div>
+            </div>
+            <div class="timeline-row">
+              <div class="timeline-hour">Day 2</div>
+              <div class="timeline-text">
+                <strong>小樽復古運河與玻璃音樂盒</strong>
+                <p>三角市場海鮮丼早餐 ➔ 小樽運河漫步 ➔ 音樂盒堂 ➔ LeTAO下午茶</p>
+              </div>
+            </div>
+            <div class="timeline-row">
+              <div class="timeline-hour">Day 3</div>
+              <div class="timeline-text">
+                <strong>白色戀人公園與湯咖哩</strong>
+                <p>白色戀人觀光工廠 ➔ 享用 Suage 湯咖哩 ➔ 機場最後伴手禮大採購</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="plan-card">
+          <span class="plan-card-tag"><i class="far fa-clock"></i> 五日自駕 · 美瑛富良野全景</span>
+          <h3 class="plan-card-title">道央自然花海與溫泉五日遊</h3>
+          <div class="plan-timeline">
+            <div class="timeline-row">
+              <div class="timeline-hour">Day 1-2</div>
+              <div class="timeline-text">
+                <strong>札幌都會與小樽運河</strong>
+                <p>經典地標、三角市場鮮美海味、夜間瓦斯燈遊船散策</p>
+              </div>
+            </div>
+            <div class="timeline-row">
+              <div class="timeline-hour">Day 3-4</div>
+              <div class="timeline-text">
+                <strong>富良野拼布花田與美瑛青池</strong>
+                <p>租車自駕超廣角之路、四季彩之丘、白金青池、品嚐哈密瓜冰淇淋</p>
+              </div>
+            </div>
+            <div class="timeline-row">
+              <div class="timeline-hour">Day 5</div>
+              <div class="timeline-text">
+                <strong>登別地獄谷與溫泉放鬆</strong>
+                <p>白煙蒸騰地獄谷、足湯體驗、新千歲機場滿載而歸</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 四、北海道交通須知 -->
+  <section class="region-spots-section" id="traffic" style="background:#FAF3EB;">
+    <div class="region-container">
+      <div class="section-header-center">
+        <span class="section-badge"><i class="fas fa-train"></i> 交通指引</span>
+        <h2 class="section-title">北海道鐵道與自駕小提醒</h2>
+        <p class="section-subtitle">北海道幅員廣大，點對點移動需預先規劃好交通工具！</p>
+      </div>
+
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:24px;">
+        <div style="background:#fff; padding:24px; border-radius:var(--radius-md); border:1px solid var(--border-color);">
+          <h4 style="font-family:var(--font-serif); font-size:1.15rem; margin-bottom:10px; color:var(--text-main);"><i class="fas fa-ticket-alt" style="color:#5C7B9E;"></i> JR 北海道鐵路周遊券</h4>
+          <p style="font-size:0.88rem; color:var(--text-muted); line-height:1.7;">
+            針對搭乘大眾運輸的旅客，可購買 5日 / 7日券，不限次數搭乘 JR 特急列車與快速列車（如快速機場號、特急北斗號），往返札幌、小樽、函館、旭川非常划算。
+          </p>
+        </div>
+
+        <div style="background:#fff; padding:24px; border-radius:var(--radius-md); border:1px solid var(--border-color);">
+          <h4 style="font-family:var(--font-serif); font-size:1.15rem; margin-bottom:10px; color:var(--text-main);"><i class="fas fa-car" style="color:var(--color-torii);"></i> 夏季自駕 vs 冬季雪道安全</h4>
+          <p style="font-size:0.88rem; color:var(--text-muted); line-height:1.7;">
+            夏季（6-9月）美瑛富良野非常適合租車自駕；但冬季（12-3月）路面常有黑冰與暴風雪，若無雪地駕駛經驗建議搭乘 JR 電車或參加一日遊觀光巴士更安心。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 全站頁尾 Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="site-logo">
+            <div class="logo-icon"><i class="fas fa-torii-gate"></i></div>
+            <div class="logo-text-group">
+              <span class="logo-title">日本旅遊誌</span>
+              <span class="logo-sub">JAPAN TRAVEL JOURNAL</span>
+            </div>
+          </div>
+          <p class="footer-desc">「日本旅遊誌」陪伴您走進銀白純淨的北國童話，品嚐大海與大地交織的最美盛宴！</p>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">推薦地區</h4>
+          <ul class="footer-links">
+            <li><a href="tokyo.html"><i class="fas fa-angle-right"></i> 東京 Tokyo</a></li>
+            <li><a href="kyoto.html"><i class="fas fa-angle-right"></i> 京都 Kyoto</a></li>
+            <li><a href="osaka.html"><i class="fas fa-angle-right"></i> 大阪 Osaka</a></li>
+            <li><a href="hokkaido.html"><i class="fas fa-angle-right"></i> 北海道 Hokkaido</a></li>
+            <li><a href="okinawa.html"><i class="fas fa-angle-right"></i> 沖繩 Okinawa</a></li>
+            <li><a href="fuji.html"><i class="fas fa-angle-right"></i> 富士山 Mt. Fuji</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">網站導覽</h4>
+          <ul class="footer-links">
+            <li><a href="index.html"><i class="fas fa-angle-right"></i> 首頁</a></li>
+            <li><a href="itinerary.html"><i class="fas fa-angle-right"></i> 行程推薦</a></li>
+            <li><a href="food.html"><i class="fas fa-angle-right"></i> 特色美食</a></li>
+            <li><a href="guide.html"><i class="fas fa-angle-right"></i> 旅遊須知 & Q&A</a></li>
+            <li><a href="contact.html"><i class="fas fa-angle-right"></i> 聯絡我們</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">聯絡我們</h4>
+          <div class="footer-contact-item"><i class="fas fa-map-marker-alt"></i><div>地址：台北市 XX 區 XX 路 XX 號</div></div>
+          <div class="footer-contact-item"><i class="fas fa-phone-alt"></i><div>電話：02-1234-5678</div></div>
+          <div class="footer-contact-item"><i class="fas fa-envelope"></i><div>Email：japantravel@example.com</div></div>
+          <div class="footer-contact-item"><i class="far fa-clock"></i><div>營業時間：週二至週日 11:00 - 21:00 (週一公休)</div></div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>© 2026 日本旅遊誌 Japan Travel Journal. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="fav-drawer-overlay" id="fav-drawer-overlay"></div>
+  <aside class="fav-drawer" id="fav-drawer">
+    <div class="fav-drawer-header">
+      <h3 class="fav-drawer-title"><i class="fas fa-heart" style="color:var(--color-torii);"></i> 我的收藏地點</h3>
+      <button class="close-drawer-btn" id="fav-close-btn"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="fav-drawer-body" id="fav-drawer-body"></div>
+    <div class="fav-drawer-footer">
+      <button class="btn btn-outline" id="clear-fav-btn" style="padding:6px 14px; font-size:0.85rem;"><i class="fas fa-trash-alt"></i> 全部清空</button>
+      <a href="itinerary.html" class="btn btn-primary" style="padding:6px 16px; font-size:0.85rem;"><i class="fas fa-route"></i> 帶入行程規劃</a>
+    </div>
+  </aside>
+
+  <div class="modal-overlay" id="detail-modal">
+    <div class="modal-content-wrapper">
+      <button class="modal-close-btn" id="modal-close-btn"><i class="fas fa-times"></i></button>
+      <img src="" alt="" class="modal-hero-img" id="modal-img">
+      <div class="modal-body">
+        <span class="section-badge" id="modal-badge">北海道推薦</span>
+        <h2 style="font-family:var(--font-serif); font-size:1.6rem; margin-top:8px; margin-bottom:4px;" id="modal-title">標題</h2>
+        <div style="font-size:0.85rem; color:var(--color-wood); margin-bottom:16px;" id="modal-subtitle">副標題</div>
+        <p style="color:var(--text-muted); line-height:1.8; font-size:0.95rem;" id="modal-desc">說明內容</p>
+        <div id="modal-extra-info"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/common.js"></script>
+  <script src="js/hokkaido.js"></script>
+</body>
+</html>
+

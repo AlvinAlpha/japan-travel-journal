@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>東京旅遊指南 ｜ 熱門景點、必吃美食與行程推薦 - 日本旅遊誌</title>
+  <meta name="description" content="探索日本首都東京！走訪晴空塔、淺草寺、澀谷Sky、明治神宮，品嚐江戶前壽司、道地拉麵與文字燒。提供東京一日遊、三日遊行程與地鐵交通攻略。">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/tokyo.css">
+</head>
+<body>
+
+  <!-- 櫻花背景與控制 -->
+  <canvas id="sakura-canvas"></canvas>
+  <button id="sakura-toggle-btn" class="sakura-toggle-btn"><span>🌸 櫻花：開</span></button>
+  <button id="back-to-top" class="back-to-top"><i class="fas fa-chevron-up"></i></button>
+
+  <!-- 頂部導航 -->
+  <header class="site-header">
+    <div class="header-container">
+      <a href="index.html" class="site-logo">
+        <div class="logo-icon"><i class="fas fa-torii-gate"></i></div>
+        <div class="logo-text-group">
+          <span class="logo-title">日本旅遊誌</span>
+          <span class="logo-sub">JAPAN TRAVEL JOURNAL</span>
+        </div>
+      </a>
+
+      <nav class="main-nav" id="main-nav">
+        <ul class="nav-list">
+          <li><a href="index.html" class="nav-link"><i class="fas fa-home"></i> 首頁</a></li>
+          <li class="dropdown">
+            <a href="javascript:void(0)" class="nav-link active">
+              <i class="fas fa-map-marked-alt"></i> 推薦地區 <i class="fas fa-angle-down" style="font-size:0.75rem;"></i>
+            </a>
+            <div class="dropdown-menu">
+              <a href="tokyo.html" class="dropdown-item" style="color:var(--color-torii); font-weight:700;"><span>🗼 東京 Tokyo</span> <span class="badge">當前地區</span></a>
+              <a href="kyoto.html" class="dropdown-item"><span>⛩️ 京都 Kyoto</span> <span class="badge">古都古韻</span></a>
+              <a href="osaka.html" class="dropdown-item"><span>🏯 大阪 Osaka</span> <span class="badge">美食熱情</span></a>
+              <a href="hokkaido.html" class="dropdown-item"><span>❄️ 北海道 Hokkaido</span> <span class="badge">純白浪漫</span></a>
+              <a href="okinawa.html" class="dropdown-item"><span>🌺 沖繩 Okinawa</span> <span class="badge">度假蔚藍</span></a>
+              <a href="fuji.html" class="dropdown-item"><span>🗻 富士山 Fuji</span> <span class="badge">壯麗神山</span></a>
+            </div>
+          </li>
+          <li><a href="itinerary.html" class="nav-link"><i class="fas fa-route"></i> 行程推薦</a></li>
+          <li><a href="food.html" class="nav-link"><i class="fas fa-utensils"></i> 特色美食</a></li>
+          <li><a href="guide.html" class="nav-link"><i class="fas fa-compass"></i> 旅遊須知 & Q&A</a></li>
+          <li><a href="contact.html" class="nav-link"><i class="fas fa-envelope"></i> 聯絡我們</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button class="fav-btn" id="fav-open-btn">
+          <i class="fas fa-heart" style="color:var(--color-torii);"></i>
+          <span>我的收藏</span>
+          <span class="fav-count">0</span>
+        </button>
+        <button class="mobile-menu-toggle" id="mobile-menu-toggle"><i class="fas fa-bars"></i></button>
+      </div>
+    </div>
+  </header>
+
+  <!-- 麵包屑導航 -->
+  <div class="breadcrumb-section">
+    <div class="breadcrumb-container">
+      <a href="index.html"><i class="fas fa-home"></i> 首頁</a>
+      <span class="breadcrumb-separator"><i class="fas fa-chevron-right"></i></span>
+      <span>推薦地區</span>
+      <span class="breadcrumb-separator"><i class="fas fa-chevron-right"></i></span>
+      <span class="breadcrumb-current">東京 Tokyo</span>
+    </div>
+  </div>
+
+  <!-- 東京 Hero 橫幅 -->
+  <section class="region-hero">
+    <div class="region-hero-content">
+      <div class="region-hero-title-group">
+        <span class="region-badge-pill"><i class="fas fa-city"></i> 現代大都會與江戶傳統</span>
+        <h1 class="region-hero-title">東京 <span>とうきょう · TOKYO</span></h1>
+        <p class="region-hero-desc">
+          感受日本現代都市的極致繁華！在東京，你可以上一秒穿梭於澀谷與新宿的摩登高樓霓虹，下一秒走入淺草寺與明治神宮的百年參拜小徑；這裡更是無數世界頂級米其林與街頭美味交會的璀璨之都。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 頁面內部錨點導航 -->
+  <div class="region-nav-bar">
+    <div class="region-nav-container">
+      <a href="#spots" class="region-nav-item active"><i class="fas fa-camera"></i> 東京著名景點</a>
+      <a href="#foods" class="region-nav-item"><i class="fas fa-utensils"></i> 東京特色美食</a>
+      <a href="#plans" class="region-nav-item"><i class="fas fa-calendar-alt"></i> 推薦遊程規劃</a>
+      <a href="#traffic" class="region-nav-item"><i class="fas fa-subway"></i> 地鐵交通指南</a>
+    </div>
+  </div>
+
+  <!-- 一、東京著名景點介紹 -->
+  <section class="region-spots-section" id="spots">
+    <div class="region-container">
+      <div class="section-header-center">
+        <span class="section-badge"><i class="fas fa-map-marker-alt"></i> 必遊名勝</span>
+        <h2 class="section-title">東京代表性旅遊景點</h2>
+        <p class="section-subtitle">
+          精選東京六大最具人氣之景點，包含高空地標、百年靈寺、流行中心與都會綠洲。
+        </p>
+      </div>
+
+      <div class="tokyo-spots-grid">
+        <!-- 1. 東京晴空塔 -->
+        <article class="tokyo-spot-card" id="spot-skytree">
+          <div class="tokyo-spot-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1542051841857-5f90071e7989?w=800&auto=format&fit=crop&q=80" alt="東京晴空塔" class="tokyo-spot-img" loading="lazy">
+            <span class="tokyo-spot-tag">展望地標</span>
+            <button class="spot-fav-btn" data-fav-id="tokyo-skytree" data-fav-name="東京晴空塔" data-fav-region="東京" data-fav-type="景點" data-fav-image="https://images.unsplash.com/photo-1542051841857-5f90071e7989?w=600&auto=format&fit=crop&q=80">
+              <i class="far fa-heart"></i>
+            </button>
+          </div>
+          <div class="tokyo-spot-body">
+            <h3 class="tokyo-spot-title">🗼 東京晴空塔 (Tokyo Skytree)</h3>
+            <span class="tokyo-spot-subtitle">押上 · 高達 634 公尺的世界第一高自立電波塔</span>
+            <p class="tokyo-spot-desc">
+              日本著名地標之一，可以從天望回廊高處俯瞰東京都會地平線。塔下的 Solamachi 商場擁有超過300家特色店鋪，十分適合安排半天遊程。
+            </p>
+            <div class="tokyo-spot-footer">
+              <span style="color:var(--color-wood);"><i class="fas fa-subway"></i> 押上站直達</span>
+              <button class="btn btn-outline" style="padding:4px 12px; font-size:0.82rem;" data-tokyo-spot="tokyo-skytree">查看詳情</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- 2. 淺草寺 -->
+        <article class="tokyo-spot-card" id="spot-sensoji">
+          <div class="tokyo-spot-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?w=800&auto=format&fit=crop&q=80" alt="淺草寺雷門" class="tokyo-spot-img" loading="lazy">
+            <span class="tokyo-spot-tag">江戶歷史名剎</span>
+            <button class="spot-fav-btn" data-fav-id="tokyo-sensoji" data-fav-name="淺草寺雷門" data-fav-region="東京" data-fav-type="景點" data-fav-image="https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?w=600&auto=format&fit=crop&q=80">
+              <i class="far fa-heart"></i>
+            </button>
+          </div>
+          <div class="tokyo-spot-body">
+            <h3 class="tokyo-spot-title">⛩️ 淺草寺雷門 (Senso-ji)</h3>
+            <span class="tokyo-spot-subtitle">淺草 · 東京都內最古老、香火最鼎盛之寺廟</span>
+            <p class="tokyo-spot-desc">
+              火紅巨大的「雷門」燈籠是東京最具代表性的門面。穿過熱鬧的仲見世商店街，品嚐人形燒，感受濃厚傳統江戶風情。
+            </p>
+            <div class="tokyo-spot-footer">
+              <span style="color:var(--color-wood);"><i class="fas fa-subway"></i> 地鐵淺草站步5分</span>
+              <button class="btn btn-outline" style="padding:4px 12px; font-size:0.82rem;" data-tokyo-spot="tokyo-sensoji">查看詳情</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- 3. 澀谷十字路口 & Shibuya Sky -->
+        <article class="tokyo-spot-card" id="spot-shibuya">
+          <div class="tokyo-spot-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1503899036084-c55cdd92da26?w=800&auto=format&fit=crop&q=80" alt="澀谷十字路口" class="tokyo-spot-img" loading="lazy">
+            <span class="tokyo-spot-tag">流行熱門焦點</span>
+            <button class="spot-fav-btn" data-fav-id="tokyo-shibuya" data-fav-name="澀谷十字路口與Shibuya Sky" data-fav-region="東京" data-fav-type="景點" data-fav-image="https://images.unsplash.com/photo-1503899036084-c55cdd92da26?w=600&auto=format&fit=crop&q=80">
+              <i class="far fa-heart"></i>
+            </button>
+          </div>
+          <div class="tokyo-spot-body">
+            <h3 class="tokyo-spot-title">🌆 澀谷十字路口 & Shibuya Sky</h3>
+            <span class="tokyo-spot-subtitle">澀谷 · 世界最繁忙十字路口與 360 度頂樓展望台</span>
+            <p class="tokyo-spot-desc">
+              每次變換綠燈都有數千人交錯走過，壯觀場面無與倫比！登上高空 SHIBUYA SKY，將繁華東京城市天際線盡收眼底。
+            </p>
+            <div class="tokyo-spot-footer">
+              <span style="color:var(--color-wood);"><i class="fas fa-subway"></i> 澀谷站八公口直通</span>
+              <button class="btn btn-outline" style="padding:4px 12px; font-size:0.82rem;" data-tokyo-spot="tokyo-shibuya">查看詳情</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- 4. 明治神宮 -->
+        <article class="tokyo-spot-card" id="spot-meiji">
+          <div class="tokyo-spot-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1583084336829-5704f7a9a52e?w=800&auto=format&fit=crop&q=80" alt="明治神宮大鳥居" class="tokyo-spot-img" loading="lazy">
+            <span class="tokyo-spot-tag">神聖森林</span>
+            <button class="spot-fav-btn" data-fav-id="tokyo-meiji" data-fav-name="明治神宮" data-fav-region="東京" data-fav-type="景點" data-fav-image="https://images.unsplash.com/photo-1583084336829-5704f7a9a52e?w=600&auto=format&fit=crop&q=80">
+              <i class="far fa-heart"></i>
+            </button>
+          </div>
+          <div class="tokyo-spot-body">
+            <h3 class="tokyo-spot-title">🌲 明治神宮 (Meiji Jingu)</h3>
+            <span class="tokyo-spot-subtitle">原宿 · 隱身於繁華市中心的 70 公頃廣闊綠洲</span>
+            <p class="tokyo-spot-desc">
+              擁有全日本最大的木造大鳥居，碎石參道兩側林木高聳。走在林間能洗滌喧囂，亦常可看見舉行傳統神前婚禮的新人。
+            </p>
+            <div class="tokyo-spot-footer">
+              <span style="color:var(--color-wood);"><i class="fas fa-subway"></i> 原宿站步行2分</span>
+              <button class="btn btn-outline" style="padding:4px 12px; font-size:0.82rem;" data-tokyo-spot="tokyo-meiji">查看詳情</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- 5. 東京鐵塔 -->
+        <article class="tokyo-spot-card" id="spot-tower">
+          <div class="tokyo-spot-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1536098561742-ca998e48cbcc?w=800&auto=format&fit=crop&q=80" alt="東京鐵塔" class="tokyo-spot-img" loading="lazy">
+            <span class="tokyo-spot-tag">經典紅紅白塔</span>
+            <button class="spot-fav-btn" data-fav-id="tokyo-tower" data-fav-name="東京鐵塔" data-fav-region="東京" data-fav-type="景點" data-fav-image="https://images.unsplash.com/photo-1536098561742-ca998e48cbcc?w=600&auto=format&fit=crop&q=80">
+              <i class="far fa-heart"></i>
+            </button>
+          </div>
+          <div class="tokyo-spot-body">
+            <h3 class="tokyo-spot-title">🗼 東京鐵塔 (Tokyo Tower)</h3>
+            <span class="tokyo-spot-subtitle">港區 · 昭和浪漫永恆記憶的象徵</span>
+            <p class="tokyo-spot-desc">
+              高達 332.9 公尺的紅白色電波塔，夜間橘黃色溫馨燈光映照整個芝公園，是無數日劇中的浪漫告白名場面。
+            </p>
+            <div class="tokyo-spot-footer">
+              <span style="color:var(--color-wood);"><i class="fas fa-subway"></i> 赤羽橋站步5分</span>
+              <button class="btn btn-outline" style="padding:4px 12px; font-size:0.82rem;" data-tokyo-spot="tokyo-tower">查看詳情</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- 6. 上野恩賜公園與阿美橫丁 -->
+        <article class="tokyo-spot-card" id="spot-ueno">
+          <div class="tokyo-spot-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=800&auto=format&fit=crop&q=80" alt="上野公園與街區" class="tokyo-spot-img" loading="lazy">
+            <span class="tokyo-spot-tag">文化藝術與市場</span>
+            <button class="spot-fav-btn" data-fav-id="tokyo-ueno" data-fav-name="上野恩賜公園" data-fav-region="東京" data-fav-type="景點" data-fav-image="https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=600&auto=format&fit=crop&q=80">
+              <i class="far fa-heart"></i>
+            </button>
+          </div>
+          <div class="tokyo-spot-body">
+            <h3 class="tokyo-spot-title">🌸 上野公園 & 阿美橫丁</h3>
+            <span class="tokyo-spot-subtitle">上野 · 賞櫻名所、動物園與熱鬧平民市場街</span>
+            <p class="tokyo-spot-desc">
+              擁有美術館、博物館、大片池畔櫻花，隔壁的高架橋下「阿美橫丁」則能買到物美價廉的乾貨、零食與排隊街頭小吃。
+            </p>
+            <div class="tokyo-spot-footer">
+              <span style="color:var(--color-wood);"><i class="fas fa-subway"></i> 上野站出站即達</span>
+              <button class="btn btn-outline" style="padding:4px 12px; font-size:0.82rem;" data-tokyo-spot="tokyo-ueno">查看詳情</button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 二、東京必吃特色美食 (皆有照片並搭配景點) -->
+  <section class="region-foods-section" id="foods">
+    <div class="region-container">
+      <div class="section-header-center">
+        <span class="section-badge"><i class="fas fa-utensils"></i> 東京好味</span>
+        <h2 class="section-title">東京必吃特色美食推薦</h2>
+        <p class="section-subtitle">
+          每道美食均附上實拍圖片與特色解說，並貼心搭配相鄰的東京人氣景點，邊玩邊吃最順路！
+        </p>
+      </div>
+
+      <div class="tokyo-foods-grid">
+        <!-- 美食 1: 江戶前握壽司 -->
+        <article class="tokyo-food-card">
+          <div class="tokyo-food-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=800&auto=format&fit=crop&q=80" alt="江戶前握壽司" class="tokyo-food-img" loading="lazy">
+            <button class="spot-fav-btn" data-fav-id="tokyo-food-sushi" data-fav-name="江戶前握壽司" data-fav-region="東京" data-fav-type="美食" data-fav-image="https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=600&auto=format&fit=crop&q=80">
+              <i class="far fa-heart"></i>
+            </button>
+          </div>
+          <div class="tokyo-food-body">
+            <h3 class="tokyo-food-title">🍣 江戶前握壽司 (Edomae Sushi)</h3>
+            <span class="tokyo-food-jp">えどまえずし · 東京極致職人手藝</span>
+            <p class="tokyo-food-desc">
+              江戶前壽司講究魚獲的熟成與醃漬手藝，搭配微溫赤醋飯，鮪魚大腹（Otoro）、海膽、海鰻入口軟嫩甜美，餘韻回甘。
+            </p>
+            <div class="pairing-spot-box">
+              <strong><i class="fas fa-link"></i> 搭配推薦景點：</strong>
+              逛完 <a href="javascript:void(0)" data-target-spot="spot-ueno" style="color:var(--color-torii); font-weight:700; text-decoration:underline;">上野阿美橫丁</a> 或築地場外市場後，品嚐最新鮮的職人現捏壽司！
+            </div>
+          </div>
+        </article>
+
+        <!-- 美食 2: 濃厚豚骨/醬油拉麵 -->
+        <article class="tokyo-food-card">
+          <div class="tokyo-food-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=800&auto=format&fit=crop&q=80" alt="東京拉麵" class="tokyo-food-img" loading="lazy">
+            <button class="spot-fav-btn" data-fav-id="tokyo-food-ramen" data-fav-name="東京拉麵" data-fav-region="東京" data-fav-type="美食" data-fav-image="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=600&auto=format&fit=crop&q=80">
+              <i class="far fa-heart"></i>
+            </button>
+          </div>
+          <div class="tokyo-food-body">
+            <h3 class="tokyo-food-title">🍜 濃郁東京醬油/豚骨拉麵</h3>
+            <span class="tokyo-food-jp">とうきょうラーメン · 激戰區百家爭鳴</span>
+            <p class="tokyo-food-desc">
+              以雞骨、柴魚和秘傳醬油熬製的清爽系醬油湯底，或是濃郁豚骨沾麵，搭配溏心蛋與炙燒叉燒，讓人連湯都喝得一滴不剩。
+            </p>
+            <div class="pairing-spot-box">
+              <strong><i class="fas fa-link"></i> 搭配推薦景點：</strong>
+              走訪 <a href="javascript:void(0)" data-target-spot="spot-shibuya" style="color:var(--color-torii); font-weight:700; text-decoration:underline;">澀谷十字路口</a> 或新宿後，鑽進巷弄拉麵店大快朵頤！
+            </div>
+          </div>
+        </article>
+
+        <!-- 美食 3: 月島文字燒 -->
+        <article class="tokyo-food-card">
+          <div class="tokyo-food-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&auto=format&fit=crop&q=80" alt="文字燒與鐵板料理" class="tokyo-food-img" loading="lazy">
+            <button class="spot-fav-btn" data-fav-id="tokyo-food-monja" data-fav-name="東京文字燒" data-fav-region="東京" data-fav-type="美食" data-fav-image="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&auto=format&fit=crop&q=80">
+              <i class="far fa-heart"></i>
+            </button>
+          </div>
+          <div class="tokyo-food-body">
+            <h3 class="tokyo-food-title">🥘 下町鐵板文字燒 (Monjayaki)</h3>
+            <span class="tokyo-food-jp">もんじゃやき · 東京下町平民鐵板魂</span>
+            <p class="tokyo-food-desc">
+              將高湯麵糊、高麗菜絲、明太子、麻糬與起司在鐵板上翻炒，用小鐵鏟刮起底部焦香脆口的鍋巴，是東京在地人聚餐的必備美味。
+            </p>
+            <div class="pairing-spot-box">
+              <strong><i class="fas fa-link"></i> 搭配推薦景點：</strong>
+              下午參觀完 <a href="javascript:void(0)" data-target-spot="spot-skytree" style="color:var(--color-torii); font-weight:700; text-decoration:underline;">東京晴空塔</a>，順道前往月島文字燒街或商場餐廳體驗DIY樂趣！
+            </div>
+          </div>
+        </article>
+
+        <!-- 美食 4: 炸蝦天婦羅丼 -->
+        <article class="tokyo-food-card">
+          <div class="tokyo-food-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1615361200141-f45040f367be?w=800&auto=format&fit=crop&q=80" alt="天婦羅天丼" class="tokyo-food-img" loading="lazy">
+            <button class="spot-fav-btn" data-fav-id="tokyo-food-tempura" data-fav-name="天婦羅丼" data-fav-region="東京" data-fav-type="美食" data-fav-image="https://images.unsplash.com/photo-1615361200141-f45040f367be?w=600&auto=format&fit=crop&q=80">
+              <i class="far fa-heart"></i>
+            </button>
+          </div>
+          <div class="tokyo-food-body">
+            <h3 class="tokyo-food-title">🍤 淺草百年老舖天丼 (Tendon)</h3>
+            <span class="tokyo-food-jp">てんどん · 酥脆鮮香的江戶風名物</span>
+            <p class="tokyo-food-desc">
+              以胡麻油炸得金黃微酥的巨大海老炸蝦、穴子魚與季節野菜，浸入秘製甜鹹天婦羅醬汁，覆蓋在熱騰騰白飯上，香氣四溢。
+            </p>
+            <div class="pairing-spot-box">
+              <strong><i class="fas fa-link"></i> 搭配推薦景點：</strong>
+              參拜完 <a href="javascript:void(0)" data-target-spot="spot-sensoji" style="color:var(--color-torii); font-weight:700; text-decoration:underline;">淺草寺雷門</a> 仲見世老街後，走進周邊老字號天婦羅名店享用中餐！
+            </div>
+          </div>
+        </article>
+
+        <!-- 美食 5: 澀谷極品黑毛和牛燒肉 -->
+        <article class="tokyo-food-card">
+          <div class="tokyo-food-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1558030006-450675393462?w=800&auto=format&fit=crop&q=80" alt="黑毛和牛燒肉" class="tokyo-food-img" loading="lazy">
+            <button class="spot-fav-btn" data-fav-id="tokyo-food-wagyu" data-fav-name="東京和牛燒肉" data-fav-region="東京" data-fav-type="美食" data-fav-image="https://images.unsplash.com/photo-1558030006-450675393462?w=600&auto=format&fit=crop&q=80">
+              <i class="far fa-heart"></i>
+            </button>
+          </div>
+          <div class="tokyo-food-body">
+            <h3 class="tokyo-food-title">🥩 頂級黑毛和牛炭火燒肉</h3>
+            <span class="tokyo-food-jp">やきにく · 油花豐腴入口即化的幸福</span>
+            <p class="tokyo-food-desc">
+              精選 A5 級黑毛和牛肋脊肉與厚切牛舌，經過炭火迅速鎖住肉汁，沾上少許山葵與海鹽，油脂香氣在口中炸裂，頂級奢華感受。
+            </p>
+            <div class="pairing-spot-box">
+              <strong><i class="fas fa-link"></i> 搭配推薦景點：</strong>
+              在 <a href="javascript:void(0)" data-target-spot="spot-tower" style="color:var(--color-torii); font-weight:700; text-decoration:underline;">東京鐵塔</a> 或六本木觀賞完浪漫夜景後，與好友情侶一同共享和牛晚宴。
+            </div>
+          </div>
+        </article>
+
+        <!-- 美食 6: 人形町鯛魚燒與甜點 -->
+        <article class="tokyo-food-card">
+          <div class="tokyo-food-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1582293041079-7814c2f12063?w=800&auto=format&fit=crop&q=80" alt="日式甜點和菓子鯛魚燒" class="tokyo-food-img" loading="lazy">
+            <button class="spot-fav-btn" data-fav-id="tokyo-food-wagashi" data-fav-name="日式甜點鯛魚燒" data-fav-region="東京" data-fav-type="美食" data-fav-image="https://images.unsplash.com/photo-1582293041079-7814c2f12063?w=600&auto=format&fit=crop&q=80">
+              <i class="far fa-heart"></i>
+            </button>
+          </div>
+          <div class="tokyo-food-body">
+            <h3 class="tokyo-food-title">🐟 天然鯛魚燒 & 和風甘味 (Taiyaki)</h3>
+            <span class="tokyo-food-jp">たいやき · 皮薄酥脆餡料飽滿的古早味</span>
+            <p class="tokyo-food-desc">
+              採用單支剪刀式鐵模一隻一隻碳火烘烤的「天然鯛魚燒」，薄脆的外皮包裹著熱騰騰的十勝紅豆餡，甜而不膩，暖手又暖心。
+            </p>
+            <div class="pairing-spot-box">
+              <strong><i class="fas fa-link"></i> 搭配推薦景點：</strong>
+              悠閒漫步 <a href="javascript:void(0)" data-target-spot="spot-meiji" style="color:var(--color-torii); font-weight:700; text-decoration:underline;">明治神宮</a> 森林參道後，買一隻熱呼呼的鯛魚燒散步享用！
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 三、東京行程推薦規劃 -->
+  <section class="region-plans-section" id="plans">
+    <div class="region-container">
+      <div class="section-header-center">
+        <span class="section-badge"><i class="fas fa-route"></i> 路線規劃</span>
+        <h2 class="section-title">東京推薦旅遊行程建議</h2>
+        <p class="section-subtitle">
+          依據不同旅遊時間與需求，為你量身打造最順暢的東京自由行路線。
+        </p>
+      </div>
+
+      <div class="plan-cards-grid">
+        <!-- 一日遊 -->
+        <div class="plan-card">
+          <span class="plan-card-tag"><i class="far fa-clock"></i> 一日精華遊 · 現代與古老東京</span>
+          <h3 class="plan-card-title">東京經典核心一日散策</h3>
+          <div class="plan-timeline">
+            <div class="timeline-row">
+              <div class="timeline-hour">09:00</div>
+              <div class="timeline-text">
+                <strong>淺草寺雷門參拜 & 仲見世老街</strong>
+                <p>抽御神籤、品嚐炸饅頭，拍攝大紅雷門燈籠合照。</p>
+              </div>
+            </div>
+            <div class="timeline-row">
+              <div class="timeline-hour">12:30</div>
+              <div class="timeline-text">
+                <strong>東京晴空塔俯瞰 & 商場品嚐文字燒</strong>
+                <p>登上展望台飽覽關東平原，並於 Solamachi 享用特色鐵板美食。</p>
+              </div>
+            </div>
+            <div class="timeline-row">
+              <div class="timeline-hour">16:30</div>
+              <div class="timeline-text">
+                <strong>明治神宮綠意漫步 & 原宿竹下通</strong>
+                <p>感受都會森林幽靜，順路逛原宿流行潮流店鋪。</p>
+              </div>
+            </div>
+            <div class="timeline-row">
+              <div class="timeline-hour">19:00</div>
+              <div class="timeline-text">
+                <strong>澀谷十字路口震撼夜景 & 和牛晚餐</strong>
+                <p>登上 SHIBUYA SKY 眺望璀璨都會夜景，再享用香氣濃郁的拉麵或燒肉。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 三日遊 -->
+        <div class="plan-card">
+          <span class="plan-card-tag"><i class="far fa-clock"></i> 三日深度遊 · 深度玩遍東西東京</span>
+          <h3 class="plan-card-title">東京潮流、文藝與歷史三日遊</h3>
+          <div class="plan-timeline">
+            <div class="timeline-row">
+              <div class="timeline-hour">Day 1</div>
+              <div class="timeline-text">
+                <strong>下町經典風華日</strong>
+                <p>上野恩賜公園 ➔ 淺草寺 ➔ 東京晴空塔 ➔ 晚餐築地壽司</p>
+              </div>
+            </div>
+            <div class="timeline-row">
+              <div class="timeline-hour">Day 2</div>
+              <div class="timeline-text">
+                <strong>摩登時尚潮流日</strong>
+                <p>明治神宮 ➔ 原宿表參道名品街 ➔ 澀谷十字路口 ➔ Shibuya Sky 夕陽</p>
+              </div>
+            </div>
+            <div class="timeline-row">
+              <div class="timeline-hour">Day 3</div>
+              <div class="timeline-text">
+                <strong>浪漫地標與海灣夜景日</strong>
+                <p>台場彩虹大橋與巨大鋼彈 ➔ 東京鐵塔夜景 ➔ 六本木居酒屋歡聚</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 四、東京交通與旅行須知 -->
+  <section class="region-spots-section" id="traffic" style="background:#FAF3EB;">
+    <div class="region-container">
+      <div class="section-header-center">
+        <span class="section-badge"><i class="fas fa-subway"></i> 自由行必備</span>
+        <h2 class="section-title">東京交通與旅遊須知</h2>
+        <p class="section-subtitle">
+          東京擁有全世界最密集的軌道運輸系統，掌握這幾項工具即可暢行無阻！
+        </p>
+      </div>
+
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:24px;">
+        <div style="background:#fff; padding:24px; border-radius:var(--radius-md); border:1px solid var(--border-color);">
+          <h4 style="font-family:var(--font-serif); font-size:1.15rem; margin-bottom:10px; color:var(--text-main);"><i class="fas fa-ticket-alt" style="color:var(--color-torii);"></i> Tokyo Subway Ticket (地鐵通票)</h4>
+          <p style="font-size:0.88rem; color:var(--text-muted); line-height:1.7;">
+            專為外國觀光客設計，分 24小時（¥800）、48小時（¥1,200）、72小時（¥1,500）。有效時間內可無限次搭乘全線東京地鐵（Tokyo Metro）與都營地下鐵，是市區移動的最省錢神券！
+          </p>
+        </div>
+
+        <div style="background:#fff; padding:24px; border-radius:var(--radius-md); border:1px solid var(--border-color);">
+          <h4 style="font-family:var(--font-serif); font-size:1.15rem; margin-bottom:10px; color:var(--text-main);"><i class="fas fa-credit-card" style="color:var(--color-matcha);"></i> 交通 IC 卡 (Suica / PASMO)</h4>
+          <p style="font-size:0.88rem; color:var(--text-muted); line-height:1.7;">
+            俗稱西瓜卡。iPhone 用戶可在 Apple 錢包中直接綁定數位 Suica/PASMO 並以 Apple Pay 儲值，進出閘門直接感應手機，超商與自動販賣機亦可隨處感應小額付款。
+          </p>
+        </div>
+
+        <div style="background:#fff; padding:24px; border-radius:var(--radius-md); border:1px solid var(--border-color);">
+          <h4 style="font-family:var(--font-serif); font-size:1.15rem; margin-bottom:10px; color:var(--text-main);"><i class="fas fa-plane" style="color:var(--color-wood);"></i> 機場往返市區交通</h4>
+          <p style="font-size:0.88rem; color:var(--text-muted); line-height:1.7;">
+            成田機場可搭乘「Skyliner 京成電鐵」36分鐘直達上野，或搭乘「N'EX 成田特快」直達東京、新宿；羽田機場搭乘東京單軌電車或京急線約20分鐘即可輕鬆進入市中心。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 全站頁尾 Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="site-logo">
+            <div class="logo-icon"><i class="fas fa-torii-gate"></i></div>
+            <div class="logo-text-group">
+              <span class="logo-title">日本旅遊誌</span>
+              <span class="logo-sub">JAPAN TRAVEL JOURNAL</span>
+            </div>
+          </div>
+          <p class="footer-desc">「日本旅遊誌」陪伴您探索東京的現代魅力與下町溫情，為每一次出發帶來最棒的靈感！</p>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">推薦地區</h4>
+          <ul class="footer-links">
+            <li><a href="tokyo.html"><i class="fas fa-angle-right"></i> 東京 Tokyo</a></li>
+            <li><a href="kyoto.html"><i class="fas fa-angle-right"></i> 京都 Kyoto</a></li>
+            <li><a href="osaka.html"><i class="fas fa-angle-right"></i> 大阪 Osaka</a></li>
+            <li><a href="hokkaido.html"><i class="fas fa-angle-right"></i> 北海道 Hokkaido</a></li>
+            <li><a href="okinawa.html"><i class="fas fa-angle-right"></i> 沖繩 Okinawa</a></li>
+            <li><a href="fuji.html"><i class="fas fa-angle-right"></i> 富士山 Mt. Fuji</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">網站導覽</h4>
+          <ul class="footer-links">
+            <li><a href="index.html"><i class="fas fa-angle-right"></i> 首頁</a></li>
+            <li><a href="itinerary.html"><i class="fas fa-angle-right"></i> 行程推薦</a></li>
+            <li><a href="food.html"><i class="fas fa-angle-right"></i> 特色美食</a></li>
+            <li><a href="guide.html"><i class="fas fa-angle-right"></i> 旅遊須知 & Q&A</a></li>
+            <li><a href="contact.html"><i class="fas fa-angle-right"></i> 聯絡我們</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">聯絡我們</h4>
+          <div class="footer-contact-item"><i class="fas fa-map-marker-alt"></i><div>地址：台北市 XX 區 XX 路 XX 號</div></div>
+          <div class="footer-contact-item"><i class="fas fa-phone-alt"></i><div>電話：02-1234-5678</div></div>
+          <div class="footer-contact-item"><i class="fas fa-envelope"></i><div>Email：japantravel@example.com</div></div>
+          <div class="footer-contact-item"><i class="far fa-clock"></i><div>營業時間：週二至週日 11:00 - 21:00 (週一公休)</div></div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>© 2026 日本旅遊誌 Japan Travel Journal. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 收藏清單 Drawer -->
+  <div class="fav-drawer-overlay" id="fav-drawer-overlay"></div>
+  <aside class="fav-drawer" id="fav-drawer">
+    <div class="fav-drawer-header">
+      <h3 class="fav-drawer-title"><i class="fas fa-heart" style="color:var(--color-torii);"></i> 我的收藏地點</h3>
+      <button class="close-drawer-btn" id="fav-close-btn"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="fav-drawer-body" id="fav-drawer-body"></div>
+    <div class="fav-drawer-footer">
+      <button class="btn btn-outline" id="clear-fav-btn" style="padding:6px 14px; font-size:0.85rem;"><i class="fas fa-trash-alt"></i> 全部清空</button>
+      <a href="itinerary.html" class="btn btn-primary" style="padding:6px 16px; font-size:0.85rem;"><i class="fas fa-route"></i> 帶入行程規劃</a>
+    </div>
+  </aside>
+
+  <!-- 詳情 Modal -->
+  <div class="modal-overlay" id="detail-modal">
+    <div class="modal-content-wrapper">
+      <button class="modal-close-btn" id="modal-close-btn"><i class="fas fa-times"></i></button>
+      <img src="" alt="" class="modal-hero-img" id="modal-img">
+      <div class="modal-body">
+        <span class="section-badge" id="modal-badge">東京推薦</span>
+        <h2 style="font-family:var(--font-serif); font-size:1.6rem; margin-top:8px; margin-bottom:4px;" id="modal-title">標題</h2>
+        <div style="font-size:0.85rem; color:var(--color-wood); margin-bottom:16px;" id="modal-subtitle">副標題</div>
+        <p style="color:var(--text-muted); line-height:1.8; font-size:0.95rem;" id="modal-desc">說明內容</p>
+        <div id="modal-extra-info"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/common.js"></script>
+  <script src="js/tokyo.js"></script>
+</body>
+</html>
+

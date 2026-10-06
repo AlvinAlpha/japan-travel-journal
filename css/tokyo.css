@@ -1,0 +1,381 @@
+/**
+ * 日本旅遊誌 - 東京專頁樣式 (tokyo.css)
+ */
+
+.region-hero {
+  position: relative;
+  min-height: 52vh;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(135deg, rgba(20, 24, 33, 0.6) 0%, rgba(30, 20, 25, 0.75) 100%),
+              url('https://images.unsplash.com/photo-1503899036084-c55cdd92da26?w=1800&auto=format&fit=crop&q=80') center/cover no-repeat;
+  color: #fff;
+  padding: 60px 24px;
+}
+
+.region-hero-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.region-hero-title-group {
+  max-width: 760px;
+}
+
+.region-badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(232, 142, 155, 0.35);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--color-sakura);
+  color: #FFF;
+  padding: 5px 16px;
+  border-radius: var(--radius-full);
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  margin-bottom: 16px;
+}
+
+.region-hero-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2.4rem, 4vw, 3.6rem);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  line-height: 1.25;
+  margin-bottom: 14px;
+}
+
+.region-hero-title span {
+  font-size: 1.3rem;
+  font-family: var(--font-jp);
+  color: var(--color-sakura);
+  margin-left: 12px;
+  font-weight: 400;
+}
+
+.region-hero-desc {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: #F0ECE6;
+  max-width: 680px;
+}
+
+/* 快速錨點導航列 */
+.region-nav-bar {
+  background: #FFFFFF;
+  border-bottom: 1px solid var(--border-color);
+  position: sticky;
+  top: 65px;
+  z-index: 850;
+  box-shadow: var(--shadow-sm);
+}
+
+.region-nav-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.region-nav-item {
+  padding: 16px 12px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  border-bottom: 3px solid transparent;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all var(--transition-fast);
+}
+
+.region-nav-item:hover, .region-nav-item.active {
+  color: var(--color-torii);
+  border-bottom-color: var(--color-torii);
+}
+
+/* 景點區塊 */
+.region-spots-section {
+  padding: 70px 24px;
+}
+
+.region-container {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.tokyo-spots-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+.tokyo-spot-card {
+  background: var(--bg-card);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  transition: all var(--transition-normal);
+}
+
+.tokyo-spot-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-hover);
+  border-color: var(--color-sakura);
+}
+
+.tokyo-spot-img-wrapper {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+}
+
+.tokyo-spot-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.tokyo-spot-card:hover .tokyo-spot-img {
+  transform: scale(1.08);
+}
+
+.tokyo-spot-tag {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: rgba(44, 40, 37, 0.85);
+  backdrop-filter: blur(4px);
+  color: #fff;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.tokyo-spot-body {
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.tokyo-spot-title {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 4px;
+}
+
+.tokyo-spot-subtitle {
+  font-size: 0.8rem;
+  color: var(--color-wood);
+  margin-bottom: 12px;
+}
+
+.tokyo-spot-desc {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+  margin-bottom: 16px;
+  flex: 1;
+}
+
+.tokyo-spot-footer {
+  border-top: 1px dashed var(--border-color);
+  padding-top: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.84rem;
+}
+
+/* 美食區塊 (各美食皆有圖片並搭配景點) */
+.region-foods-section {
+  padding: 70px 24px;
+  background: var(--bg-secondary);
+}
+
+.tokyo-foods-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+.tokyo-food-card {
+  background: #ffffff;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  transition: all var(--transition-normal);
+}
+
+.tokyo-food-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-hover);
+  border-color: var(--color-torii);
+}
+
+.tokyo-food-img-wrapper {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+}
+
+.tokyo-food-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.tokyo-food-card:hover .tokyo-food-img {
+  transform: scale(1.08);
+}
+
+.tokyo-food-body {
+  padding: 22px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.tokyo-food-title {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 4px;
+}
+
+.tokyo-food-jp {
+  font-size: 0.8rem;
+  color: var(--color-wood);
+  margin-bottom: 10px;
+}
+
+.tokyo-food-desc {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+  margin-bottom: 14px;
+  flex: 1;
+}
+
+/* 美食與景點搭配高亮卡片 */
+.pairing-spot-box {
+  background: var(--color-sakura-light);
+  border-left: 3px solid var(--color-torii);
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  font-size: 0.84rem;
+  line-height: 1.6;
+  margin-top: auto;
+}
+
+.pairing-spot-box strong {
+  color: var(--color-torii);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 2px;
+}
+
+/* 行程推薦與交通卡片 */
+.region-plans-section {
+  padding: 70px 24px;
+}
+
+.plan-cards-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+}
+
+.plan-card {
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 30px;
+  box-shadow: var(--shadow-sm);
+}
+
+.plan-card-tag {
+  display: inline-block;
+  background: var(--color-matcha-light);
+  color: var(--color-matcha);
+  font-weight: 700;
+  font-size: 0.8rem;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  margin-bottom: 12px;
+}
+
+.plan-card-title {
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.plan-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.timeline-row {
+  display: flex;
+  gap: 16px;
+  position: relative;
+}
+
+.timeline-hour {
+  font-weight: 700;
+  color: var(--color-torii);
+  font-size: 0.9rem;
+  width: 50px;
+  flex-shrink: 0;
+}
+
+.timeline-text strong {
+  display: block;
+  font-size: 0.95rem;
+  color: var(--text-main);
+}
+
+.timeline-text p {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+@media (max-width: 1024px) {
+  .tokyo-spots-grid, .tokyo-foods-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .plan-cards-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .tokyo-spots-grid, .tokyo-foods-grid {
+    grid-template-columns: 1fr;
+  }
+}
+

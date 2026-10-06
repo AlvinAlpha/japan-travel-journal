@@ -1,0 +1,139 @@
+/**
+ * 日本旅遊誌 - 京都專頁樣式 (kyoto.css)
+ * 風格特色：和風古雅、抹茶綠與櫻粉點綴、和紙質感
+ */
+
+.region-hero.kyoto-hero {
+  background: linear-gradient(135deg, rgba(38, 28, 20, 0.65) 0%, rgba(45, 30, 22, 0.75) 100%),
+              url('https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=1800&auto=format&fit=crop&q=80') center/cover no-repeat;
+}
+
+.kyoto-badge {
+  background: rgba(104, 122, 88, 0.35);
+  border: 1px solid var(--color-matcha);
+}
+
+.kyoto-spots-grid, .kyoto-foods-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+.kyoto-card {
+  background: var(--bg-card);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  transition: all var(--transition-normal);
+}
+
+.kyoto-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-hover);
+  border-color: var(--color-matcha);
+}
+
+.kyoto-card-img-wrapper {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+}
+
+.kyoto-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.kyoto-card:hover .kyoto-card-img {
+  transform: scale(1.08);
+}
+
+.kyoto-card-tag {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: rgba(104, 122, 88, 0.9);
+  backdrop-filter: blur(4px);
+  color: #fff;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.kyoto-card-body {
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.kyoto-card-title {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 4px;
+}
+
+.kyoto-card-sub {
+  font-size: 0.8rem;
+  color: var(--color-matcha);
+  font-family: var(--font-jp);
+  margin-bottom: 12px;
+}
+
+.kyoto-card-desc {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+  margin-bottom: 16px;
+  flex: 1;
+}
+
+.kyoto-card-footer {
+  border-top: 1px dashed var(--border-color);
+  padding-top: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.84rem;
+}
+
+/* 抹茶系搭配標籤 */
+.kyoto-pairing-box {
+  background: var(--color-matcha-light);
+  border-left: 3px solid var(--color-matcha);
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  font-size: 0.84rem;
+  line-height: 1.6;
+  margin-top: auto;
+}
+
+.kyoto-pairing-box strong {
+  color: var(--color-matcha);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 2px;
+}
+
+@media (max-width: 1024px) {
+  .kyoto-spots-grid, .kyoto-foods-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .kyoto-spots-grid, .kyoto-foods-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
